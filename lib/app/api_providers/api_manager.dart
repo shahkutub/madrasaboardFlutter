@@ -36,11 +36,11 @@ class APIManager {
     return responseJson;
   }
 
-  Future<dynamic> get(String url) async {
+  Future<dynamic> get(String url,Map<String, String> headerData) async {
     print("Calling API: $url");
     var responseJson;
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(Uri.parse(url),headers: headerData);
       print(response.body);
       responseJson = _response(response);
     } on SocketException {

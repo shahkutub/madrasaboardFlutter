@@ -19,7 +19,7 @@ class AuthRepository {
       print('response: ${response}');
 
       if (response != null) {
-        //Get.find<AuthService>().setUser(LoginResponse.fromJson(response));
+        Get.find<AuthService>().setUser(LoginResponse.fromJson(response));
         return LoginResponse.fromJson(response);
       } else {
         return 'Unauthorised';

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:brac_arna/app/database_helper/offline_database_helper.dart';
 import 'package:brac_arna/app/models/AllStudentRessponse.dart';
+import 'package:brac_arna/app/models/Inspection_model.dart';
 import 'package:brac_arna/app/models/InstituteTypeModel.dart';
 import 'package:brac_arna/app/models/InstitutionDataModel.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
@@ -22,6 +23,7 @@ import 'package:date_format/date_format.dart';
 
 import '../../../models/District.dart';
 import '../../../models/Thana.dart';
+import '../../../routes/app_pages.dart';
 
 class InformationFormController extends GetxController {
   //TODO: Implement InformationFormController
@@ -64,15 +66,15 @@ class InformationFormController extends GetxController {
   late var instiruteHeadName = '';
   late var instiruteHeadMobile = '';
 
-  final IsInternet = ''.obs;
-  final IsOnlineClass = ''.obs;
-  final IsGurdianMeeting = ''.obs;
-  final IsTecherTraining = ''.obs;
-  final IsCleanActivity = ''.obs;
-  final IsElectricity = ''.obs;
-  final IsMentalHealthActivity = ''.obs;
-  final IsPrimaryHealthActivity = ''.obs;
-  final IsPichiyePoraJorePora = ''.obs;
+  final IsInternet = 0.obs;
+  final IsOnlineClass = 0.obs;
+  final IsGurdianMeeting = 0.obs;
+  final IsTecherTraining = 0.obs;
+  final IsCleanActivity = 0.obs;
+  final IsElectricity = 0.obs;
+  final IsMentalHealthActivity = 0.obs;
+  final IsPrimaryHealthActivity = 0.obs;
+  final IsPichiyePoraJorePora = 0.obs;
   final StatePlaintiffCaseDescription = ''.obs;
   final informationSource = ''.obs;
 
@@ -150,7 +152,7 @@ class InformationFormController extends GetxController {
   var yesNo = ['হ্যাঁ না'];
 
   var types_of_co_karikulam = [
-    {'id': '864958', 'title': 'অন্যান্য'},
+
     {'id': '864345', 'title': 'খেলাধুলা'},
     {'id': '864344', 'title': 'চিত্রাঙ্কন'},
     {'id': '864343', 'title': 'বিতর্ক'},
@@ -382,6 +384,7 @@ class InformationFormController extends GetxController {
 
   var myController;
 
+  final Rx<Inspection_model> inspectionData = Inspection_model().obs;
 
   @override
   Future<void> onInit() async {
@@ -389,7 +392,7 @@ class InformationFormController extends GetxController {
     box = Hive.box('formBox');
     documentType.value = document_type[0]['name']!;
     //getLocationData();
-    getAllStudent();
+    //getAllStudent();
     getAldivDis();
     getAllInstituteType();
 
@@ -551,10 +554,21 @@ class InformationFormController extends GetxController {
 
   getAldivDis() async {
     InformationRepository().getDivDisThana().then((resp) {
+      if(resp == null){
+        Get.toNamed(Routes.LOGIN);
+      }
       allDivDisTana.value = resp;
 
     });
   }
+
+  postInsPection() async {
+    InformationRepository().postInspection(inspectionData.value, true).then((resp) {
+    //  allStudentData.value = resp;
+
+    });
+  }
+
 
   getAllStudent() async {
     InformationRepository().getAllStudent().then((resp) {

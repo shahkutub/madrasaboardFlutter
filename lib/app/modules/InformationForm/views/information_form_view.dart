@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../services/auth_service.dart';
 import '../controllers/information_form_controller.dart';
 
 class InformationFormView extends GetView<InformationFormController> {
@@ -27,7 +28,9 @@ class InformationFormView extends GetView<InformationFormController> {
             backgroundColor: Colors.green,
             elevation: 0,
             centerTitle: true,
-            title: Text('শিক্ষা প্রতিঠান পরিদর্শন'),
+            title: Text('শিক্ষা প্রতিঠান পরিদর্শন',
+              textAlign: TextAlign.left,
+            ),
 
             actions: <Widget>[
               // RaisedButton(
@@ -50,10 +53,37 @@ class InformationFormView extends GetView<InformationFormController> {
               //     ),
               //
               // ),
-
+              SizedBox(
+                width: 5,
+              ),
               Center(
                 child: Container(
                   height: 30,
+                  width: 60,
+                  child: RawMaterialButton(
+                    onPressed: () {
+                      Get.find<AuthService>().removeCurrentUser();
+                      Get.toNamed(Routes.LOGIN);
+                    },
+                    elevation: 2.0,
+                    fillColor: Colors.red,
+                    child: Text("লগ আউট",
+                      style: TextStyle(color: Colors.white,fontSize: 10),
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ),
+
+              SizedBox(
+                width: 5,
+              ),
+              Center(
+                child: Container(
+                  height: 30,
+
                   child: RawMaterialButton(
                     onPressed: () {
                       Get.toNamed(Routes.PROVIDED_DATA_LIST);
@@ -61,7 +91,7 @@ class InformationFormView extends GetView<InformationFormController> {
                     elevation: 2.0,
                     fillColor: Colors.indigo,
                     child: Text("পূর্বের পরিদর্শন",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white,fontSize: 10),
                     ),
                     padding: EdgeInsets.all(5.0),
                     shape: RoundedRectangleBorder(
@@ -102,6 +132,18 @@ class InformationFormView extends GetView<InformationFormController> {
                           children: [
 
 
+                            // Container(
+                            //
+                            //   //color: Colors.blue[800],
+                            //   width: double.maxFinite,
+                            //   alignment: Alignment.center,
+                            //   padding: EdgeInsets.symmetric(vertical: 10),
+                            //   child: Text(
+                            //     'শিক্ষা প্রতিঠান পরিদর্শন',
+                            //     style: TextStyle(fontSize: 20, color: Colors.white),
+                            //   ),
+                            // ),
+
                             DropDownWidget(
                               labelText: "বিভাগ",
                               hintText: "বিভাগ নির্বাচন করুন",
@@ -117,7 +159,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                   if (item.name == input) {
                                     controller.victimDivision.value = item.id.toString();
                                     //controller.districtList.add(item);
-
+                                    controller.inspectionData.value.division_id = item.id;
                                   }
                                 }
 
@@ -160,6 +202,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                 for (var item in controller.allDivDisTana.value.district_list!) {
                                   if (item.name == input) {
                                     controller.victimDistrict.value = item.id!.toString();
+                                    controller.inspectionData.value.district_id = item.id;
                                   }
                                 }
 
@@ -190,6 +233,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                 for (var item in controller.thanaList) {
                                   if (item.name == input) {
                                     controller.instituteUpazila.value = item.id!.toString();
+                                    controller.inspectionData.value.thana_id = item.id;
                                   }
                                 }
                                // controller.getLocationData();
@@ -208,6 +252,8 @@ class InformationFormView extends GetView<InformationFormController> {
                                 for (var item in controller.allInstype.value.institute__type_list!) {
                                   if (item.name == input) {
                                     controller.instituteTypeId.value = item.id!.toString();
+                                    controller.inspectionData.value.institute_type = item.id;
+
                                   }
                                 }
                                 //controller.getLocationData();
@@ -224,19 +270,23 @@ class InformationFormView extends GetView<InformationFormController> {
                               iconData: Icons.phone_android,
                               data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
                               onChanged: (input) {
-                                // for (var item in controller.instituteData.value.institute_list!) {
-                                //   if (item.name == input) {
-                                //     controller.eiinNumber.value = item.eiin!;
-                                //   }
-                                // }
 
 
-                                for (var item in controller.allStudentData.value.students!) {
-                                  if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-                                    controller.totalStudent.value = item.total! as int;
-                                    controller.totalFemaleStudent.value = item.total_girls! as int;
+
+                                for (var item in controller.instituteData.value.institute_list!) {
+                                  if (item.name == input) {
+                                    controller.eiinNumber.value = item.eiin!;
+                                    controller.inspectionData.value.institute_id = item.id;
                                   }
                                 }
+
+
+                                // for (var item in controller.allStudentData.value.students!) {
+                                //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
+                                //     controller.totalStudent.value = item.total! as int;
+                                //     controller.totalFemaleStudent.value = item.total_girls! as int;
+                                //   }
+                                // }
 
                                 //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
 
@@ -340,6 +390,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.instiruteHeadName = input;
+                                controller.inspectionData.value.headmaster_name = input;
                               },
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -354,6 +405,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.instiruteHeadMobile = input;
+                                controller.inspectionData.value.headmaster_mobile_no = input;
                               },
                               keyboardType: TextInputType.phone,
                               // limit: 255,
@@ -369,6 +421,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.teacherCount = input;
+                                controller.inspectionData.value.total_teachers = input;
                               },
                               keyboardType: TextInputType.number,
                               // limit: 255,
@@ -384,6 +437,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.femaleteacherCount = input;
+                                controller.inspectionData.value.total_teachers = input;
+
                               },
                               keyboardType: TextInputType.number,
                               // limit: 255,
@@ -399,6 +454,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '${controller.totalStudent.value}',
                               onChanged: (input) {
                                 controller.totalStudent.value = input as int;
+                                controller.inspectionData.value.total_students = controller.totalStudent.value as int;
+
                               },
                               keyboardType: TextInputType.number,
                               // limit: 255,
@@ -414,6 +471,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '${controller.totalFemaleStudent.value}',
                               onChanged: (input) {
                                 controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.total_girls_students = controller.totalFemaleStudent as int;
+
                               },
                               keyboardType: TextInputType.number,
                               // limit: 255,
@@ -872,6 +931,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: controller.multimediaRoomCount.toString(),
                               onChanged: (input) {
                                 controller.multimediaRoomCount.value = input;
+                                controller.inspectionData.value.total_multimedia_classroom = controller.multimediaRoomCount.value as int;
+
                               },
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -886,6 +947,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.skRaselLabCount.value = input;
+                                controller.inspectionData.value.total_digital_lab = controller.skRaselLabCount.value as int;
+
                               },
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -900,7 +963,10 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.covidVacCount.value = input;
+                                controller.inspectionData.value.covid19_vaccinated = input as int? ;
+
                               },
+                              keyboardType: TextInputType.number,
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
                               //iconData: Icons.phone_android,
@@ -914,8 +980,15 @@ class InformationFormView extends GetView<InformationFormController> {
                               //initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                 controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
                                 // print(controller.IsStatePlaintiffCase);
+                                 controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
                               },
                               //  iconData: Icons.merge_type,
                               isFirst: true,
@@ -928,8 +1001,17 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'হ্যাঁ',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                 controller.IsElectricity.value = input!;
-                                 print(controller.IsElectricity);
+                                 // controller.IsElectricity.value = input!;
+                                 // print(controller.IsElectricity);
+
+                                 if(input == 'হ্যাঁ'){
+                                   controller.IsElectricity.value = 1;
+                                 }else{
+                                   controller.IsElectricity.value = 0;
+                                 }
+                                 controller.inspectionData.value.electricity_facility = controller.IsElectricity.value as int;
+
+
                               },
                               // iconData: Icons.merge_type,
                               isFirst: true,
@@ -944,27 +1026,43 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                controller.IsTecherTraining.value = input!;
-                                print(controller.IsTecherTraining);
+                              //  controller.IsTecherTraining.value = input!;
+
+
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.teacher_training = 1;
+                                }else{
+                                  controller.inspectionData.value.teacher_training = 0;
+                                }
+                                //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
+
+
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
                               isLast: false,
                             ),
 
-                            DropDownWidget(
-                              labelText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
-                              hintText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
-                              initialValue: '',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                 controller.IsCleanActivity.value = input!;
-                                // print(controller.IsStatePlaintiffCase);
-                              },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
+                            // DropDownWidget(
+                            //   labelText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
+                            //   hintText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
+                            //   initialValue: '',
+                            //   data: ['হ্যাঁ', 'না'],
+                            //   onChanged: (input) {
+                            //      //controller.IsCleanActivity.value = input!;
+                            //
+                            //      if(input == 'হ্যাঁ'){
+                            //        controller.IsCleanActivity.value = 1;
+                            //      }else{
+                            //        controller.IsCleanActivity.value = 0;
+                            //      }
+                            //      controller.inspectionData.value.cleaning_steps = controller.IsTecherTraining.toString();
+                            //
+                            //   },
+                            //   //iconData: Icons.merge_type,
+                            //   isFirst: true,
+                            //   isLast: false,
+                            // ),
 
                             TextFieldWidgetSmall(
                               labelText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার বিষয়ে কি পদক্ষেপ গ্রহণ করা হয়েছে?",
@@ -972,6 +1070,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 controller.cleanActivity = input;
+                                controller.inspectionData.value.cleaning_steps = input;
+
                               },
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -985,10 +1085,12 @@ class InformationFormView extends GetView<InformationFormController> {
                               labelText: "শিক্ষকদের আইসিটি সংক্রান্ত কী কী প্রশিক্ষণ রয়েছে?",
                               hintText: "",
                               initialValue: '',
+                              keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 controller.techerIctTraining = input;
+                                controller.inspectionData.value.ict_training = input;
                               },
-                               limit: 255,
+                              // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
                               //iconData: Icons.phone_android,
                               isFirst: true,
@@ -1014,8 +1116,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                controller.IsInternet.value = input!;
-                                print(controller.IsInternet);
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = 1;
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = 0;
+                                }
+
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
@@ -1033,7 +1140,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                     controller.type_of_co_karikulam.value = item['id']!;
                                   }
                                 }
-                                print('union_name: ${controller.type_of_co_karikulam.value}');
+                                print('type_of_co_karikulam: ${controller.type_of_co_karikulam}');
                               },
                               iconData: Icons.merge_type,
                               isFirst: true,
@@ -1143,55 +1250,6 @@ class InformationFormView extends GetView<InformationFormController> {
                             // ),
                             // ),
 
-                            DropDownWidget(
-                              labelText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যার বিষয়ে  ব্যবস্থা নেয়া হয়েছে?",
-                              hintText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যার বিষয়ে ব্যবস্থা নেয়া হয়েছে?",
-                              initialValue: '',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                controller.IsPrimaryHealthActivity.value = input!;
-                                print(controller.IsPrimaryHealthActivity);
-                              },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-                            Obx(() {
-                              return Column(
-                                children: [
-                                  controller.IsPrimaryHealthActivity.value == 'হ্যাঁ'
-                                      ? TextFieldWidgetSmall(
-                                    labelText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যার বিষয়ে কী ধরনের ব্যবস্থা নেয়া হয়েছে?",
-                                    hintText: "বিবরণ লিখুন",
-                                    initialValue: '',
-                                    onChanged: (input) {
-                                      controller.IsPrimaryHealthActivity.value = input;
-                                    },
-                                    limit: 255,
-                                    validator: (input) => controller.IsPrimaryHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                    // iconData: Icons.description,
-                                    isFirst: true,
-                                    isLast: false,
-                                  )
-                                      : Wrap(),
-
-                                  // TextFieldWidget(
-                                  //   labelText: "Information Source".tr,
-                                  //   hintText: "Enter information source".tr,
-                                  //   initialValue: '',
-                                  //   onChanged: (input) {
-                                  //     controller.informationSource.value = input;
-                                  //     controller.count.value = 1;
-                                  //   },
-                                  //   limit: 255,
-                                  //   validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                  //   iconData: controller.count.value == 0 ? Icons.description : Icons.description,
-                                  //   isFirst: true,
-                                  //   isLast: false,
-                                  // ),
-                                ],
-                              );
-                            }),
 
 
 
@@ -1202,7 +1260,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 controller.IsMentalHealthActivity.value = input!;
-                                print(controller.IsMentalHealthActivity);
+                                if(input == 'হ্যাঁ'){
+                                  // controller.inspectionData.value.first_aid_description = 1;
+                                }else{
+                                  controller.inspectionData.value.mental_health_activities = "";
+                                }
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
@@ -1217,7 +1279,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                     hintText: "বিবরণ লিখুন",
                                     initialValue: '',
                                     onChanged: (input) {
-                                      controller.mentalHealthActivity = input;
+                                      controller.inspectionData.value.mental_health_activities = "";
                                     },
                                     limit: 255,
                                     validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -1252,8 +1314,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                controller.IsOnlineClass.value = input!;
-                                print(controller.IsOnlineClass);
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.online_class = 1;
+                                }else{
+                                  controller.inspectionData.value.online_class = 0;
+                                }
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
@@ -1267,7 +1332,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 controller.IsPichiyePoraJorePora.value = input!;
-                                print(controller.IsPichiyePoraJorePora);
+                                if(input == 'হ্যাঁ'){
+                                 // controller.inspectionData.value.online_class = 1;
+                                }else{
+                                  controller.inspectionData.value.week_studuents_activities = "";
+                                }
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
@@ -1284,7 +1353,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                     hintText: "বিবরণ লিখুন",
                                     initialValue: '',
                                     onChanged: (input) {
-                                      controller.StatePlaintiffCaseDescription.value = input;
+                                      controller.inspectionData.value.week_studuents_activities  = input;
                                     },
                                     limit: 255,
                                     validator: (input) => controller.IsPichiyePoraJorePora.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -1313,51 +1382,62 @@ class InformationFormView extends GetView<InformationFormController> {
                             }),
 
 
-                            MultipleSelectionDropDownWidget(
-                              labelText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill বিষয়ে কী ধরনের কার্যক্রম গ্রহণ করাহয়েছে তার বিবরণ",
-                              hintText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill",
-                              initialValue: '',
-                              data: controller.types_of_co_karikulam.map((item) => item['title']!).toList(),
-                              onChanged: (input) {
-                                for (var item in controller.types_of_co_karikulam) {
-                                  if (item['title'] == input.toString().trim()) {
-                                    controller.type_of_co_karikulam.value = item['id']!;
-                                  }
-                                }
-                                print('union_name: ${controller.type_of_co_karikulam.value}');
-                              },
-                              iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
+                            // MultipleSelectionDropDownWidget(
+                            //   labelText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill বিষয়ে কী ধরনের কার্যক্রম গ্রহণ করাহয়েছে তার বিবরণ",
+                            //   hintText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill",
+                            //   initialValue: '',
+                            //   data: controller.types_of_co_karikulam.map((item) => item['title']!).toList(),
+                            //   onChanged: (input) {
+                            //     for (var item in controller.types_of_co_karikulam) {
+                            //       if (item['title'] == input.toString().trim()) {
+                            //         controller.type_of_co_karikulam.value = item['id']!;
+                            //       }
+                            //     }
+                            //     print('union_name: ${controller.type_of_co_karikulam.value}');
+                            //   },
+                            //   iconData: Icons.merge_type,
+                            //   isFirst: true,
+                            //   isLast: false,
+                            // ),
 
-
-                            MultipleSelectionDropDownWidget(
+                            TextFieldWidgetSmall(
                               labelText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যার বিষয়ে কী ধরনের ব্যবস্থা নেয়া হয়েছে?",
-                              hintText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যা",
+                              hintText: "",
                               initialValue: '',
-                              data: controller.types_of_co_karikulam.map((item) => item['title']!).toList(),
+                              keyboardType: TextInputType.multiline,
                               onChanged: (input) {
-                                for (var item in controller.types_of_co_karikulam) {
-                                  if (item['title'] == input.toString().trim()) {
-                                    controller.type_of_co_karikulam.value = item['id']!;
-                                  }
-                                }
-                                print('union_name: ${controller.type_of_co_karikulam.value}');
+                                //controller.techerIctTraining = input;
+                                controller.inspectionData.value.first_aid_description = input;
                               },
-                              iconData: Icons.merge_type,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
                               isFirst: true,
                               isLast: false,
                             ),
 
 
-
+                            TextFieldWidgetSmall(
+                              labelText: "সার্বিক মন্তব্য",
+                              hintText: "",
+                              initialValue: '',
+                              keyboardType: TextInputType.multiline,
+                              onChanged: (input) {
+                                //controller.techerIctTraining = input;
+                                controller.inspectionData.value.comments = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
 
 
                             GestureDetector(
                               onTap: () {
                                 if (controller.infoFormKey.currentState!.validate()) {
-                                  controller.addData();
+                                  controller.postInsPection();
                                 }
                               },
                               child: Padding(

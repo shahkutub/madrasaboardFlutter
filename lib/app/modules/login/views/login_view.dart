@@ -129,12 +129,15 @@ class LoginView extends GetView<LoginController> {
                                 padding: EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
                                 child: TextFormField(
+                                 // controller: controller.userNameController.value,
+                                  initialValue: "admin@gmail.com",
                                   onChanged: (input) {
                                     controller.userData.value.userName = input;
                                   },
                                   validator: (input) {
                                     return input!.isEmpty ? 'Please provide your username.' : null;
                                   },
+                                  style: TextStyle(fontSize: 20),
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "User Name".tr,
@@ -145,12 +148,15 @@ class LoginView extends GetView<LoginController> {
                               Container(
                                 padding: EdgeInsets.all(8.0),
                                 child: TextFormField(
+                                 // controller: controller.passwordController.value,
+                                  initialValue: "123",
                                   onChanged: (input) {
                                     controller.userData.value.password = input;
                                   },
                                   validator: (input) {
                                     return input!.isEmpty ? 'Please provide your password.' : null;
                                   },
+                                  style: TextStyle(fontSize: 20),
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,

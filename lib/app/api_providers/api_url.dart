@@ -7,6 +7,6 @@ class ApiClient {
   static String alllocation = '${baseUrl}api/area_list';
   static String instituteTypeUrl = '${baseUrl}api/institute_type_list';
   static String allstudentUrl = 'http://202.72.235.218/survey_api/public/apiFirstPage/student122';
-
+  static String postInspectionUrl = '${baseUrl}api/save-inspection';
   static String sendInfo = '${baseUrl}api/FirstResponder';
 }

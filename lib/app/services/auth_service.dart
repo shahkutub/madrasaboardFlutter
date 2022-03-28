@@ -1,3 +1,4 @@
+import 'package:brac_arna/app/models/LoginResponse.dart';
 import 'package:brac_arna/app/models/user_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'settings_service.dart';
 
 class AuthService extends GetxService {
-  final currentUser = UserModel().obs;
+  final currentUser = LoginResponse().obs;
   late GetStorage _box;
 
   AuthService() {
@@ -31,7 +32,7 @@ class AuthService extends GetxService {
   //   return this;
   // }
 
-  void setUser(UserModel user) async {
+  void setUser(LoginResponse user) async {
     _box.write('current_user', user.toJson());
 
     await getCurrentUser();
@@ -39,19 +40,19 @@ class AuthService extends GetxService {
 
   Future getCurrentUser() async {
     if (_box.hasData('current_user')) {
-      currentUser.value = UserModel.fromJson(await _box.read('current_user'));
+      currentUser.value = LoginResponse.fromJson(await _box.read('current_user'));
     }
-    print('customer data: ${currentUser.value.userName}');
+    print('customer data: ${currentUser.value.api_info?.original?.user?.name}');
   }
 
   Future removeCurrentUser() async {
-    currentUser.value = UserModel();
+    currentUser.value = LoginResponse();
     await _box.remove('current_user');
   }
 
-  bool get isAuth => currentUser.value.token == null ? false : true;
+  bool get isAuth => currentUser.value.api_info?.original?.access_token == null ? false : true;
 
-  bool get isAdmin => currentUser.value.roleName == 'admin_api' ? true : false;
+  //bool get isAdmin => currentUser.value.roleName == 'admin_api' ? true : false;
 
-  String get apiToken => currentUser.value.token!;
+  String? get apiToken => currentUser.value.api_info?.original?.access_token;
 }

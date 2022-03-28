@@ -74,11 +74,12 @@ class TextFieldWidgetSmall extends StatelessWidget {
             onTap: onTapped,
             keyboardType: keyboardType ?? TextInputType.multiline,
             onSaved: onSaved,
-            maxLength: limit,
+            //maxLength: limit,
+            maxLines: null,
             onChanged: onChanged,
             validator: validator,
             initialValue: initialValue ?? '',
-            style: style ?? Get.textTheme.bodyText2,
+            style: TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 20),
             obscureText: obscureText ?? false,
             textAlign: textAlign ?? TextAlign.start,
             // decoration: Ui.getInputDecoration(
@@ -90,7 +91,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
             // ),
 
               decoration:InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  contentPadding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -99,6 +100,8 @@ class TextFieldWidgetSmall extends StatelessWidget {
                   // )
 
               ),
+
+
 
           ),
         ],

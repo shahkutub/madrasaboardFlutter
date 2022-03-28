@@ -5,10 +5,14 @@ import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../services/auth_service.dart';
+
 class LoginController extends GetxController {
   //TODO: Implement LoginController
 
   final Rx<UserModel> userData = UserModel().obs;
+  Rx<TextEditingController> userNameController = TextEditingController().obs;
+  Rx<TextEditingController> passwordController = TextEditingController().obs;
 
   final loading = false.obs;
 
@@ -20,6 +24,8 @@ class LoginController extends GetxController {
   }
 
   void login() async {
+    // userData.value.fullName = userNameController.value.text;
+    // userData.value.password = passwordController.value.text;
     Get.focusScope!.unfocus();
 
     Ui.customLoaderDialogWithMessage();
@@ -27,6 +33,7 @@ class LoginController extends GetxController {
       print(response);
 
       if(response != null){
+        //String? loginData = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
         Get.offAllNamed(Routes.INFORMATION_FORM);
         //Get.offAllNamed(Routes.HOME);
         // Get.find<RootController>().changePageOutRoot(0);
