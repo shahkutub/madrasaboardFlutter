@@ -82,6 +82,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
             style: TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 20),
             obscureText: obscureText ?? false,
             textAlign: textAlign ?? TextAlign.start,
+            //readOnly: true,
             // decoration: Ui.getInputDecoration(
             //   hintText: hintText ?? '',
             //   iconData: iconData,

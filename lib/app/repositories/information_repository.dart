@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:brac_arna/app/api_providers/api_manager.dart';
 import 'package:brac_arna/app/api_providers/api_url.dart';
 import 'package:brac_arna/app/database_helper/offline_database_helper.dart';
+import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/InstitutionDataModel.dart';
+import 'package:brac_arna/app/models/PostResponse.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
 import 'package:brac_arna/app/models/placeDataModel.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
@@ -95,7 +97,36 @@ class InformationRepository {
     }
   }
 
-  Future<void> postInspection(Inspection_model inspection_model, _connectionStatus) async {
+  Future<InspectionListREsponse> getInspectionList() async {
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+
+    var response;
+
+    try {
+      //  if (_connectionStatus == true) {
+      var headers = {'Authorization': 'Bearer $token'};
+      APIManager _manager = APIManager();
+
+
+      response = await _manager.postAPICallWithHeaderWithoutParam(ApiClient.inspectionList, headers);
+      print('responseInspectionList: ${response}');
+
+      String body = response.statusMessage;
+      print(body);
+
+      return InspectionListREsponse.fromJson(response);
+      //} else {}
+
+
+    } catch (error) {
+
+      return InspectionListREsponse.fromJson(response);
+      throw (error);
+    }
+  }
+
+
+  Future<PostResponse> postInspection(Inspection_model inspection_model, _connectionStatus) async {
     String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
     Map data = {
 
@@ -112,6 +143,7 @@ class InformationRepository {
       'first_aid_description': ""+inspection_model.first_aid_description.toString(),
       'guardian_gathering': ""+inspection_model.guardian_gathering.toString(),
       'headmaster_mobile_no': ""+inspection_model.headmaster_mobile_no.toString(),
+      'headmaster_name': ""+inspection_model.headmaster_name.toString(),
       'mental_health_activities': ""+inspection_model.mental_health_activities.toString(),
       'week_studuents_activities': ""+inspection_model.week_studuents_activities.toString(),
       'online_class': ""+inspection_model.online_class.toString(),
@@ -125,22 +157,30 @@ class InformationRepository {
       'total_students': ""+inspection_model.total_students.toString(),
       'institute_id': ""+inspection_model.institute_id.toString(),
       'total_teachers': ""+inspection_model.total_teachers.toString(),
+      'total_women_teachers': ""+inspection_model.total_women_teachers.toString(),
       'year': "2022",
     };
     print(_connectionStatus.toString());
+    var response;
     try {
-      if (_connectionStatus == true) {
+    //  if (_connectionStatus == true) {
         var headers = {'Authorization': 'Bearer $token'};
         APIManager _manager = APIManager();
-        var response;
+
 
         response = await _manager.postAPICallWithHeader(ApiClient.postInspectionUrl, data, headers);
         print('response: ${response}');
 
         String body = response.statusMessage;
         print(body);
-      } else {}
+
+        return PostResponse.fromJson(response);
+      //} else {}
+
+
     } catch (error) {
+
+      return PostResponse.fromJson(response);
       throw (error);
     }
   }

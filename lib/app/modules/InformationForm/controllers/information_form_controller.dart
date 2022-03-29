@@ -5,6 +5,7 @@ import 'package:brac_arna/app/models/AllStudentRessponse.dart';
 import 'package:brac_arna/app/models/Inspection_model.dart';
 import 'package:brac_arna/app/models/InstituteTypeModel.dart';
 import 'package:brac_arna/app/models/InstitutionDataModel.dart';
+import 'package:brac_arna/app/models/PostResponse.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
 import 'package:brac_arna/app/models/placeDataModel.dart';
 import 'package:brac_arna/app/models/place_model.dart';
@@ -43,6 +44,7 @@ class InformationFormController extends GetxController {
   final allStudentData = AllStudentRessponse().obs;
   final allInstype = InstituteTypeModel().obs;
   final instituteData = InstitutionDataModel().obs;
+  final postResponse = PostResponse().obs;
 
 
   final torturerplaces = PlaceDataModel().obs;
@@ -554,10 +556,11 @@ class InformationFormController extends GetxController {
 
   getAldivDis() async {
     InformationRepository().getDivDisThana().then((resp) {
-      if(resp == null){
+      allDivDisTana.value = resp;
+      if(allDivDisTana.value == null){
         Get.toNamed(Routes.LOGIN);
       }
-      allDivDisTana.value = resp;
+
 
     });
   }
@@ -565,6 +568,12 @@ class InformationFormController extends GetxController {
   postInsPection() async {
     InformationRepository().postInspection(inspectionData.value, true).then((resp) {
     //  allStudentData.value = resp;
+      postResponse.value = resp;
+
+      if(postResponse.value.status == "success"){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Inspection successfully inserted', title: 'Success'));
+        Get.toNamed(Routes.PROVIDED_DATA_LIST);
+      }
 
     });
   }

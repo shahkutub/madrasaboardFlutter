@@ -1,3 +1,4 @@
+import 'package:brac_arna/app/modules/provided_data_list/views/single_inspection_form_view.dart';
 import 'package:get/get.dart';
 
 import 'package:brac_arna/app/modules/InformationForm/bindings/information_form_binding.dart';
@@ -10,6 +11,8 @@ import 'package:brac_arna/app/modules/provided_data_list/bindings/provided_data_
 import 'package:brac_arna/app/modules/provided_data_list/views/provided_data_list_view.dart';
 import 'package:brac_arna/app/modules/splashscreen/bindings/splashscreen_binding.dart';
 import 'package:brac_arna/app/modules/splashscreen/views/splashscreen_view.dart';
+
+import '../modules/provided_data_list/bindings/single_inspectionView.dart';
 
 part 'app_routes.dart';
 
@@ -43,6 +46,12 @@ class AppPages {
       name: _Paths.PROVIDED_DATA_LIST,
       page: () => ProvidedDataListView(),
       binding: ProvidedDataListBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.SINGLE_INSPECTION_VIEW,
+      page: () => single_inspection_form_view(),
+      binding: single_inspectionView(),
     ),
   ];
 }

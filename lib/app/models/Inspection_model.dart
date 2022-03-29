@@ -13,16 +13,16 @@ class Inspection_model {
   int? thana_id;
   int? institute_type;
   int? institute_id;
-  int? total_multimedia_classroom;
-  int? total_digital_lab;
+  String? total_multimedia_classroom;
+  String? total_digital_lab;
   int? internet_facility;
   int? electricity_facility;
   String? headmaster_name;
   String? headmaster_mobile_no;
   String? total_teachers;
-  int? total_women_teachers;
-  int? total_students;
-  int? total_girls_students;
+  String? total_women_teachers;
+  String? total_students;
+  String? total_girls_students;
   String? class_inspection;
   String? class_upgradation_suggestion;
   int? total_examinees;
@@ -30,13 +30,13 @@ class Inspection_model {
   int? teacher_training;
   String? cleaning_steps;
   String? ict_training;
-  int? guardian_gathering;
+  String? guardian_gathering;
   String? cocurricular_activities;
   String? mental_health_activities;
   int? online_class;
   String? week_studuents_activities;
   String? first_aid_description;
-  int? covid19_vaccinated;
+  String? covid19_vaccinated;
   String? comments;
 
 

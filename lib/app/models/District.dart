@@ -3,13 +3,13 @@ class District {
     int? id;
     String? name;
 
-    District({this.division_id, this.id, this.name});
+    District({ this.division_id, this.id, this.name});
 
     factory District.fromJson(Map<String, dynamic> json) {
         return District(
             division_id: json['division_id'],
-            id: json['id'], 
-            name: json['name'], 
+            id: json['id'],
+            name: json['name'],
         );
     }
 

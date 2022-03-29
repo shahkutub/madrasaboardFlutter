@@ -9,6 +9,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const INFORMATION_FORM = _Paths.INFORMATION_FORM;
   static const PROVIDED_DATA_LIST = _Paths.PROVIDED_DATA_LIST;
+  static const SINGLE_INSPECTION_VIEW = _Paths.SINGLE_INSPECTION_VIEW;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const INFORMATION_FORM = '/information-form';
   static const PROVIDED_DATA_LIST = '/provided-data-list';
+  static const SINGLE_INSPECTION_VIEW = '/single_inspection_form_view';
 }
