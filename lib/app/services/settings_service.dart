@@ -105,7 +105,7 @@ class SettingsService extends GetxService {
     switch (_themeMode) {
       case 'ThemeMode.light':
         SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Colors.white),
+          SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Colors.black87),
         );
         return ThemeMode.light;
       case 'ThemeMode.dark':
@@ -115,7 +115,7 @@ class SettingsService extends GetxService {
         return ThemeMode.dark;
       default:
         SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Colors.white),
+          SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Colors.black87),
         );
         return ThemeMode.light;
     }

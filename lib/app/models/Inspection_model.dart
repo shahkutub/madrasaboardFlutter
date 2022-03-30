@@ -25,8 +25,8 @@ class Inspection_model {
   String? total_girls_students;
   String? class_inspection;
   String? class_upgradation_suggestion;
-  int? total_examinees;
-  int? total_passed;
+  String? total_examinees;
+  String? total_passed;
   int? teacher_training;
   String? cleaning_steps;
   String? ict_training;
@@ -38,6 +38,8 @@ class Inspection_model {
   String? first_aid_description;
   String? covid19_vaccinated;
   String? comments;
+  String? overall_status;
+  String? soft_skill_description;
 
 
 }

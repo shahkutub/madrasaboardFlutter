@@ -3,7 +3,15 @@ import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../models/District.dart';
+import '../../../models/Inspection.dart';
+import '../../../models/InstituteTypeModel.dart';
+import '../../../models/InstitutionDataModel.dart';
+import '../../../models/Thana.dart';
+import '../../../models/all_division_dis_thanan_model.dart';
 import '../../../repositories/information_repository.dart';
 
 class ProvidedDataListController extends GetxController {
@@ -15,22 +23,32 @@ class ProvidedDataListController extends GetxController {
   late GlobalKey<FormState> infoFormKey;
   List<PoridorshonDataModel> poridorshonList = <PoridorshonDataModel>[].obs;
   final inspectionListData = InspectionListREsponse().obs;
+  List<Inspection> reversedList =  <Inspection>[].obs;
   final placeLoaded = false.obs;
   var  inspectListPos = 0.obs;
+
+  final allDivDisTana = all_division_dis_thanan_model().obs;
+  final allInstype = InstituteTypeModel().obs;
+  final instituteData = InstitutionDataModel().obs;
+
+  final victimDivision = ''.obs;
+  final victimDivisionName = ''.obs;
+  final victimDistrict = ''.obs;
+  final instituteUpazila = ''.obs;
+  final victimUnion = ''.obs;
+  final eiinNumber = ''.obs;
+  final instituteTypeId = ''.obs;
+
+  List<District> districtList = <District>[].obs;
+  List<Thana> thanaList = <Thana>[].obs;
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
     //addDataInList();
 
+     getAldivDis();
+     getAllInstituteType();
 
-    // poridorshonDataModel.date = "00-00-000";
-    // poridorshonDataModel.location = "test location";
-    // poridorshonDataModel.nameInstitute = "test Institution";
-    // poridorshonDataModel.namePoridorshok = "test poridorsok";
-    //
-    // for (int i = 0; i < 2; i++) {
-    //  poridorshonList.add(poridorshonDataModel);
-    // }
     getInsPectionList();
     super.onInit();
   }
@@ -46,16 +64,54 @@ class ProvidedDataListController extends GetxController {
     }
   }
 
+  getAldivDis() async {
+    InformationRepository().getDivDisThana().then((resp) {
+      allDivDisTana.value = resp;
+      if(allDivDisTana.value == null){
+        //Get.toNamed(Routes.LOGIN);
+      }
+
+
+    });
+  }
+  getAllInstituteType() async {
+    InformationRepository().getInstituteType().then((resp) {
+      allInstype.value = resp;
+     // placeLoaded.value = true;
+    });
+  }
+
+  getInstitute() async {
+    InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
+      instituteData.value = resp;
+    });
+  }
+
+
   getInsPectionList() async {
     InformationRepository().getInspectionList().then((resp) {
       //  allStudentData.value = resp;
       inspectionListData.value = resp;
       placeLoaded.value = true;
       if(inspectionListData.value.inspection_list!.length > 0){
-
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
       }
 
     });
+  }
+
+
+
+  launchURL(String url) async {
+    if (!await launch(url)) throw 'Could not launch $url';
+  }
+
+  String dateFomat(String inputDate)  {
+    var inputFormat = DateFormat('yyyy-MM-dd hh:mm');
+    var date1 = inputFormat.parse(inputDate);
+
+    var outputFormat = DateFormat('dd-MM-yyyy');
+    return outputFormat.format(date1);
   }
 
 }

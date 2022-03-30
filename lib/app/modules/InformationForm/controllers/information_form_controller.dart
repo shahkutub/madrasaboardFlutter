@@ -41,11 +41,11 @@ class InformationFormController extends GetxController {
 
   final places = PlaceDataModel().obs;
   final allDivDisTana = all_division_dis_thanan_model().obs;
-  final allStudentData = AllStudentRessponse().obs;
   final allInstype = InstituteTypeModel().obs;
   final instituteData = InstitutionDataModel().obs;
   final postResponse = PostResponse().obs;
 
+  final allStudentData = AllStudentRessponse().obs;
 
   final torturerplaces = PlaceDataModel().obs;
   final placeLoaded = false.obs;
@@ -74,9 +74,9 @@ class InformationFormController extends GetxController {
   final IsTecherTraining = 0.obs;
   final IsCleanActivity = 0.obs;
   final IsElectricity = 0.obs;
-  final IsMentalHealthActivity = 0.obs;
+  final IsMentalHealthActivity = ''.obs;
   final IsPrimaryHealthActivity = 0.obs;
-  final IsPichiyePoraJorePora = 0.obs;
+  final IsPichiyePoraJorePora = ''.obs;
   final StatePlaintiffCaseDescription = ''.obs;
   final informationSource = ''.obs;
 
@@ -564,6 +564,18 @@ class InformationFormController extends GetxController {
 
     });
   }
+  getAllInstituteType() async {
+    InformationRepository().getInstituteType().then((resp) {
+      allInstype.value = resp;
+      placeLoaded.value = true;
+    });
+  }
+
+  getInstitute() async {
+    InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
+      instituteData.value = resp;
+    });
+  }
 
   postInsPection() async {
     InformationRepository().postInspection(inspectionData.value, true).then((resp) {
@@ -586,18 +598,7 @@ class InformationFormController extends GetxController {
     });
   }
 
-  getAllInstituteType() async {
-    InformationRepository().getInstituteType().then((resp) {
-      allInstype.value = resp;
-      placeLoaded.value = true;
-    });
-  }
 
-  getInstitute() async {
-    InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
-      instituteData.value = resp;
-    });
-  }
 
   // Future<List<District>?> listdistrict(int id) async {
   //   List<District>? di_list;

@@ -48,9 +48,10 @@ class Inspection {
     int? total_women_teachers;
     String? updated_at;
     String? week_studuents_activities;
+    String? details_url;
     int? year;
 
-    Inspection({this.approval_date, this.class_inspection, this.class_upgradation_suggestion, this.cleaning_steps, this.cocurricular_activities, this.comments, this.covid19_vaccinated, this.created_at, this.district_id, this.district_name,  this.division_id, this.division_name, this.electricity_facility, this.first_aid_description, this.guardian_gathering, this.headmaster_mobile_no, this.headmaster_name, this.ict_training, this.id, this.inspector_id, this.institute_id, this.institute_type, this.institution_name, this.internet_facility, this.mental_health_activities, this.mpo_date, this.online_class, this.overall_status, this.soft_skill_description, this.teacher_training,  this.thana_id, this.thana_name, this.total_digital_lab, this.total_examinees, this.total_girls_students, this.total_multimedia_classroom, this.total_passed, this.total_students, this.total_teachers, this.total_women_teachers, this.updated_at, this.week_studuents_activities, this.year});
+    Inspection({this.approval_date, this.class_inspection, this.class_upgradation_suggestion, this.cleaning_steps, this.cocurricular_activities, this.comments, this.covid19_vaccinated, this.created_at, this.district_id, this.district_name,  this.division_id, this.division_name, this.electricity_facility, this.first_aid_description, this.guardian_gathering, this.headmaster_mobile_no, this.headmaster_name, this.ict_training, this.id, this.inspector_id, this.institute_id, this.institute_type, this.institution_name, this.internet_facility, this.mental_health_activities, this.mpo_date, this.online_class, this.overall_status, this.soft_skill_description, this.teacher_training,  this.thana_id, this.thana_name, this.total_digital_lab, this.total_examinees, this.total_girls_students, this.total_multimedia_classroom, this.total_passed, this.total_students, this.total_teachers, this.total_women_teachers, this.updated_at, this.week_studuents_activities,this.details_url, this.year});
 
     factory Inspection.fromJson(Map<String, dynamic> json) {
         return Inspection(
@@ -96,7 +97,8 @@ class Inspection {
             total_women_teachers: json['total_women_teachers'], 
             updated_at: json['updated_at'], 
             week_studuents_activities: json['week_studuents_activities'] ,
-            year: json['year'], 
+            details_url: json['details_url'] ,
+            year: json['year'],
         );
     }
 
@@ -129,6 +131,7 @@ class Inspection {
         data['total_teachers'] = this.total_teachers;
         data['total_women_teachers'] = this.total_women_teachers;
         data['updated_at'] = this.updated_at;
+        data['details_url'] = this.details_url;
         data['year'] = this.year;
 
         return data;

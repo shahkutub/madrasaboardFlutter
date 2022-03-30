@@ -481,6 +481,92 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
+                            TextFieldWidgetSmall(
+                              labelText: 'শ্রেণী কার্যক্রম পর্যবেক্ষণ',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.class_inspection = input;
+                                print('class_inspection: ${controller.inspectionData.value.class_inspection}');
+                              },
+                              keyboardType: TextInputType.text,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            TextFieldWidgetSmall(
+                              labelText: 'পাঠের মান  উন্নয়নে পর্যবেক্ষকের পরামর্শ ',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.class_upgradation_suggestion = input;
+                                print('class_upgradation_suggestion: ${controller.inspectionData.value.class_upgradation_suggestion}');
+                              },
+                              keyboardType: TextInputType.text,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: 'সার্বিক মূল্যায়নে বিদ্যায়লয়ের মান',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.overall_status = input;
+                                print('overall_status: ${controller.inspectionData.value.overall_status}');
+                              },
+                              keyboardType: TextInputType.text,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: 'মোট পরীক্ষার্থীর সংখ্যা',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.total_examinees = input;
+                                print('total_examinees: ${controller.inspectionData.value.total_examinees}');
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            TextFieldWidgetSmall(
+                              labelText: 'মোট পাশের সংখ্যা',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.total_passed = input;
+                                print('total_passed: ${controller.inspectionData.value.total_passed}');
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
 
                             // Padding(
                             //   padding: const EdgeInsets.all(10.0),
@@ -1162,165 +1248,86 @@ class InformationFormView extends GetView<InformationFormController> {
                               isFirst: true,
                               isLast: false,
                             ),
-
-    //                         controller.IsStatePlaintiffCase.value == 'হ্যাঁ'
-    //                             ? TextFieldWidget(
-    //                           labelText: "Nationalist case's details *".tr,
-    //                           hintText: "Enter details".tr,
-    //                           initialValue: '',
-    //                           onChanged: (input) {
-    //                             controller.StatePlaintiffCaseDescription.value = input;
-    //                           },
-    //                           limit: 255,
-    //                           validator: (input) => controller.IsStatePlaintiffCase.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-    //                           iconData: Icons.description,
-    //                           isFirst: true,
-    //                           isLast: false,
-    //                         )
-    //                             : Wrap(),
-    //                         TextFieldWidget(
-    //                           labelText: "Information Source".tr,
-    //                           hintText: "Enter information source".tr,
-    //                           initialValue: '',
-    //                           onChanged: (input) {
-    //                             controller.informationSource.value = input;
-    //                             controller.count.value = 1;
-    //                           },
-    //                           limit: 255,
-    //                           validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-    //                           iconData: controller.count.value == 0 ? Icons.description : Icons.description,
-    //                           isFirst: true,
-    //                           isLast: false,
-    //                         ),
-    //                       ],
-    //                     );
-    //                   }),
-    //             SizedBox(
-    //               height: 10,
-    //             ),
-    //             ],
-    //           ),
-    //         ),
-    // ),
-
-
-                            // Obx(() =>Padding(
-                            //   padding: const EdgeInsets.all(20),
-                            //   child:
-                            //   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            //     const Text(
-                            //       'Choose your hobbies:',
-                            //       style: TextStyle(fontSize: 24),
-                            //     ),
-                            //     const SizedBox(height: 10),
-                            //     const Divider(),
-                            //     const SizedBox(height: 10),
-                            //
-                            //     // The checkboxes will be here
-                            //     Column(
-                            //         children: controller.availableHobbies.map((hobby) {
-                            //           return CheckboxListTile(
-                            //               value: hobby["isChecked"],
-                            //               title: Text(hobby["name"]),
-                            //               onChanged: (newValue) {
-                            //                 // for (var item in controller.availableHobbies) {
-                            //                 //   if (item['name'] == hobby["name"]) {
-                            //                 //     hobby["isChecked"] = newValue;
-                            //                 //     controller.availableHobbies[0] = hobby;
-                            //                 //   }
-                            //                 // }
-                            //
-                            //                 print('isChecked: ${newValue}');
-                            //                 //setState(() {
-                            //
-                            //                 hobby["isChecked"] = newValue;
-                            //                // controller.availableHobbies[0] = hobby;
-                            //
-                            //                 //});
-                            //               });
-                            //         }).toList()),
-                            //
-                            //     // Display the result here
-                            //     const SizedBox(height: 10),
-                            //     const Divider(),
-                            //     const SizedBox(height: 10),
-                            //     Wrap(
-                            //       children: controller.availableHobbies.map((hobby) {
-                            //         if (hobby["isChecked"] == true) {
-                            //           return Card(
-                            //             elevation: 3,
-                            //             color: Colors.amber,
-                            //             child: Padding(
-                            //               padding: const EdgeInsets.all(8.0),
-                            //               child: Text(hobby["name"]),
-                            //             ),
-                            //           );
-                            //         }
-                            //
-                            //         return Container();
-                            //       }).toList(),
-                            //     )
-                            //   ]),
-                            // ),
-                            // ),
-
-
-
-
                             DropDownWidgetMenu(
                               labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কোন কার্যক্রম গ্রহণ করা হয়েছে কি না? করা হলে সংক্ষিপ্ত বিবরণ",
                               hintText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কোন কার্যক্রম গ্রহণ করা হয়েছে কি না?",
                               initialValue: '',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                controller.inspectionData.value.mental_health_activities = input;
-                                //controller.IsMentalHealthActivity.value = input!;
-                                print('IsMentalHealthActivity: ${controller.inspectionData.value.mental_health_activities}');
+                                controller.IsMentalHealthActivity.value = input!;
+                                print('IsMentalHealthActivity: ${controller.IsMentalHealthActivity.value}');
 
-                                // if(input == 'হ্যাঁ'){
-                                //  // controller.IsMentalHealthActivity.value = input!;
-                                //   // controller.inspectionData.value.first_aid_description = 1;
-                                // }else{
-                                //   controller.inspectionData.value.mental_health_activities = "";
-                                // }
+                                if(input == 'হ্যাঁ'){
+                                 // controller.IsMentalHealthActivity.value = input!;
+                                  controller.inspectionData.value.mental_health_activities = "হ্যাঁ";
+                                }else{
+                                  controller.inspectionData.value.mental_health_activities = "না";
+                                }
+
+                                print('IsMentalHealthActivityInspectionData: ${controller.inspectionData.value.mental_health_activities}');
+
                               },
                               //iconData: Icons.merge_type,
                               // isFirst: true,
                               // isLast: false,
                             ),
                             Obx(() {
-                              return Column(
-                                children: [
-                                  controller.inspectionData.value.mental_health_activities == 'হ্যাঁ'
-                                      ? TextFieldWidgetSmall(
-                                    labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
-                                    hintText: "বিবরণ লিখুন",
-                                    initialValue: '',
-                                    onChanged: (input) {
-                                      controller.inspectionData.value.mental_health_activities = input;
-                                    },
-                                    //limit: 255,
-                                    validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                    // iconData: Icons.description,
-                                    isFirst: true,
-                                    isLast: false,
-                                  )
-                                      : Wrap(),
-                                  TextFieldWidgetSmall(
-                                    labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
-                                    hintText: "বিবরণ লিখুন",
-                                    initialValue: '',
-                                    onChanged: (input) {
-                                      controller.inspectionData.value.mental_health_activities = input;
-                                    },
-                                    //limit: 255,
-                                    validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                    // iconData: Icons.description,
-                                    isFirst: true,
-                                    isLast: false,
-                                  )
-                                ],
-                              );
+                              print('IsMentalHealthActivity: ${controller.IsMentalHealthActivity.value}');
+                     if(controller.IsMentalHealthActivity.value == 'হ্যাঁ'){
+                      return TextFieldWidgetSmall(
+                         labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
+                         hintText: "বিবরণ লিখুন",
+                         initialValue: '',
+                         onChanged: (input) {
+                           controller.inspectionData.value.mental_health_activities = input;
+
+                           print('IsMentalHealthActivityInspectionData: ${controller.inspectionData.value.mental_health_activities}');
+
+                         },
+                         //limit: 255,
+                         //validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                         // iconData: Icons.description,
+                         isFirst: true,
+                         isLast: false,
+                       );
+                     }else{
+                       return SizedBox(
+                         height: 0.0,
+                       );
+                     }
+
+                              // return Column(
+                              //   children: [
+                              //     controller.inspectionData.value.mental_health_activities == 'হ্যাঁ'
+                              //         ? TextFieldWidgetSmall(
+                              //       labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
+                              //       hintText: "বিবরণ লিখুন",
+                              //       initialValue: '',
+                              //       onChanged: (input) {
+                              //         controller.inspectionData.value.mental_health_activities = input;
+                              //       },
+                              //       //limit: 255,
+                              //       validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //       // iconData: Icons.description,
+                              //       isFirst: true,
+                              //       isLast: false,
+                              //     )
+                              //         : Wrap(),
+                              //     TextFieldWidgetSmall(
+                              //       labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
+                              //       hintText: "বিবরণ লিখুন",
+                              //       initialValue: '',
+                              //       onChanged: (input) {
+                              //         controller.inspectionData.value.mental_health_activities = input;
+                              //       },
+                              //       //limit: 255,
+                              //       validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //       // iconData: Icons.description,
+                              //       isFirst: true,
+                              //       isLast: false,
+                              //     )
+                              //   ],
+                              // );
                             }),
 
 
@@ -1351,11 +1358,14 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 controller.IsPichiyePoraJorePora.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.IsPichiyePoraJorePora.value = input!;
+                                  controller.inspectionData.value.week_studuents_activities = 'হ্যাঁ';
                                  // controller.inspectionData.value.online_class = 1;
                                 }else{
-                                  controller.inspectionData.value.week_studuents_activities = "";
+                                  controller.inspectionData.value.week_studuents_activities = "না";
                                 }
+
+                                print('controller.inspectionData.week_studuents_activities: ${controller.inspectionData.value.week_studuents_activities}');
+
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
@@ -1364,39 +1374,27 @@ class InformationFormView extends GetView<InformationFormController> {
 
 
                             Obx(() {
-                              return Column(
-                                children: [
-                                  controller.IsPichiyePoraJorePora.value == 'হ্যাঁ'
-                                      ? TextFieldWidgetSmall(
-                                    labelText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে,বিবরণ লিখুন",
-                                    hintText: "বিবরণ লিখুন",
-                                    initialValue: '',
-                                    onChanged: (input) {
-                                      controller.inspectionData.value.week_studuents_activities  = input;
-                                    },
-                                    //limit: 255,
-                                    validator: (input) => controller.IsPichiyePoraJorePora.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                   // iconData: Icons.description,
-                                    isFirst: true,
-                                    isLast: false,
-                                  )
-                                      : Wrap(),
+                              if(controller.IsPichiyePoraJorePora.value == 'হ্যাঁ'){
+                                return TextFieldWidgetSmall(
+                                  labelText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে,বিবরণ লিখুন",
+                                  hintText: "বিবরণ লিখুন",
+                                  initialValue: '',
+                                  onChanged: (input) {
+                                    controller.inspectionData.value.week_studuents_activities  = input;
+                                    print('controller.inspectionData.week_studuents_activities: ${controller.inspectionData.value.week_studuents_activities}');
+                                  },
+                                  //limit: 255,
+                                  validator: (input) => controller.IsPichiyePoraJorePora.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                                  // iconData: Icons.description,
+                                  isFirst: true,
+                                  isLast: false,
+                                );
+                              }else{
+                                return SizedBox(
+                                  height: 0.0,
+                                );
+                              }
 
-                                  TextFieldWidgetSmall(
-                                    labelText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে,বিবরণ লিখুন",
-                                    hintText: "বিবরণ লিখুন",
-                                    initialValue: '',
-                                    onChanged: (input) {
-                                      controller.inspectionData.value.week_studuents_activities  = input;
-                                    },
-                                    //limit: 255,
-                                    validator: (input) => controller.IsPichiyePoraJorePora.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                    // iconData: Icons.description,
-                                    isFirst: true,
-                                    isLast: false,
-                                  )
-                                ],
-                              );
                             }),
 
 
@@ -1417,6 +1415,24 @@ class InformationFormView extends GetView<InformationFormController> {
                             //   isFirst: true,
                             //   isLast: false,
                             // ),
+
+
+                            TextFieldWidgetSmall(
+                              labelText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill বিষয়ে কী ধরনের কার্যক্রম গ্রহণ করাহয়েছে তার বিবরণ",
+                              hintText: "",
+                              initialValue: '',
+                              keyboardType: TextInputType.multiline,
+                              onChanged: (input) {
+                                //controller.techerIctTraining = input;
+                                controller.inspectionData.value.soft_skill_description = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
 
                             TextFieldWidgetSmall(
                               labelText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যার বিষয়ে কী ধরনের ব্যবস্থা নেয়া হয়েছে?",

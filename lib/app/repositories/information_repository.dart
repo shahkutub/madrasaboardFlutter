@@ -17,6 +17,7 @@ import 'package:http/http.dart' as http;
 import '../models/AllStudentRessponse.dart';
 import '../models/Inspection_model.dart';
 import '../models/InstituteTypeModel.dart';
+import '../routes/app_pages.dart';
 
 class InformationRepository {
   final dbHelper = DatabaseHelper.instance;
@@ -158,6 +159,12 @@ class InformationRepository {
       'institute_id': ""+inspection_model.institute_id.toString(),
       'total_teachers': ""+inspection_model.total_teachers.toString(),
       'total_women_teachers': ""+inspection_model.total_women_teachers.toString(),
+      'total_passed': ""+inspection_model.total_passed.toString(),
+      'total_passed': ""+inspection_model.total_examinees.toString(),
+      'overall_status': ""+inspection_model.overall_status.toString(),
+      'class_inspection': ""+inspection_model.class_inspection.toString(),
+      'soft_skill_description': ""+inspection_model.soft_skill_description.toString(),
+      'class_upgradation_suggestion': ""+inspection_model.class_upgradation_suggestion.toString(),
       'year': "2022",
     };
     print(_connectionStatus.toString());
@@ -205,6 +212,10 @@ class InformationRepository {
       response = await _manager.get(ApiClient.alllocation,headers);
       print('responseAllDivDis: ${response}');
 
+      if(response == null){
+        Get.toNamed(Routes.LOGIN);
+      }
+
       return all_division_dis_thanan_model.fromJson(response);
      // return all_division_dis_thanan_model().fromJson(response);
      //  if (response['IsLoggedIn'] == true) {
@@ -215,6 +226,7 @@ class InformationRepository {
      //  }
     } catch (e) {
       print('error:$e');
+      Get.toNamed(Routes.LOGIN);
       return all_division_dis_thanan_model.fromJson(response);
     }
   }
