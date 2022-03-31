@@ -98,7 +98,11 @@ class InformationRepository {
     }
   }
 
-  Future<InspectionListREsponse> getInspectionList() async {
+  Future<InspectionListREsponse> getInspectionList(Map data) async {
+
+
+
+
     String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
 
     var response;
@@ -109,7 +113,7 @@ class InformationRepository {
       APIManager _manager = APIManager();
 
 
-      response = await _manager.postAPICallWithHeaderWithoutParam(ApiClient.inspectionList, headers);
+      response = await _manager.postAPICallWithHeader(ApiClient.inspectionList,data,headers);
       print('responseInspectionList: ${response}');
 
       String body = response.statusMessage;
@@ -126,6 +130,35 @@ class InformationRepository {
     }
   }
 
+
+  Future<InspectionListREsponse> getInspectionListAll() async {
+
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+
+    var response;
+
+    try {
+      //  if (_connectionStatus == true) {
+      var headers = {'Authorization': 'Bearer $token'};
+      APIManager _manager = APIManager();
+
+
+      response = await _manager.postAPICallWithHeaderWithoutParam(ApiClient.inspectionList,headers);
+      print('responseInspectionList: ${response}');
+
+      String body = response.statusMessage;
+      print(body);
+
+      return InspectionListREsponse.fromJson(response);
+      //} else {}
+
+
+    } catch (error) {
+
+      return InspectionListREsponse.fromJson(response);
+      throw (error);
+    }
+  }
 
   Future<PostResponse> postInspection(Inspection_model inspection_model, _connectionStatus) async {
     String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
@@ -157,6 +190,7 @@ class InformationRepository {
       'total_girls_students': ""+inspection_model.total_girls_students.toString(),
       'total_students': ""+inspection_model.total_students.toString(),
       'institute_id': ""+inspection_model.institute_id.toString(),
+      'institute_type': ""+inspection_model.institute_type.toString(),
       'total_teachers': ""+inspection_model.total_teachers.toString(),
       'total_women_teachers': ""+inspection_model.total_women_teachers.toString(),
       'total_passed': ""+inspection_model.total_passed.toString(),

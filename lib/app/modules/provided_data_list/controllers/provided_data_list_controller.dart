@@ -37,6 +37,7 @@ class ProvidedDataListController extends GetxController {
   final instituteUpazila = ''.obs;
   final victimUnion = ''.obs;
   final eiinNumber = ''.obs;
+  final instituteID = ''.obs;
   final instituteTypeId = ''.obs;
 
   List<District> districtList = <District>[].obs;
@@ -49,7 +50,7 @@ class ProvidedDataListController extends GetxController {
      getAldivDis();
      getAllInstituteType();
 
-    getInsPectionList();
+    getInsPectionListAll();
     super.onInit();
   }
 
@@ -84,15 +85,46 @@ class ProvidedDataListController extends GetxController {
   getInstitute() async {
     InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
       instituteData.value = resp;
+
     });
   }
 
 
-  getInsPectionList() async {
-    InformationRepository().getInspectionList().then((resp) {
+  getInsPectionListDivision() async {
+
+    Map data = {
+      "division_id": victimDivision.value.toString(),
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
       //  allStudentData.value = resp;
       inspectionListData.value = resp;
       placeLoaded.value = true;
+      reversedList.clear();
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+      //placeLoaded.value = false;
+    });
+  }
+
+  getInsPectionListDistrictd() async {
+
+    Map data = {
+      "division_id": victimDivision.value.toString(),
+      "district_id": victimDistrict.value.toString(),
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+      reversedList.clear();
       if(inspectionListData.value.inspection_list!.length > 0){
         reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
       }
@@ -100,6 +132,92 @@ class ProvidedDataListController extends GetxController {
     });
   }
 
+
+  getInsPectionListThana() async {
+
+    Map data = {
+      "division_id": victimDivision.value.toString(),
+      "district_id": victimDistrict.value.toString(),
+      "thana_id": instituteUpazila.value.toString(),
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+      reversedList.clear();
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+    });
+  }
+
+  getInsPectionListType() async {
+
+    Map data = {
+      "division_id": victimDivision.value.toString(),
+      "district_id": victimDistrict.value.toString(),
+      "thana_id": instituteUpazila.value.toString(),
+      "institute_type": instituteTypeId.value.toString(),
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+      reversedList.clear();
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+    });
+  }
+
+  getInsPectionListInstituteId() async {
+
+    Map data = {
+      // "division_id": victimDivision.value.toString(),
+      // "district_id": victimDistrict.value.toString(),
+      // "thana_id": instituteUpazila.value.toString(),
+      // "institute_type": instituteTypeId.value.toString(),
+      "institute_id": instituteID.value.toString(),
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+
+      reversedList.clear();
+
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+    });
+  }
+
+
+  getInsPectionListAll() async {
+
+    InformationRepository().getInspectionListAll().then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+      reversedList.clear();
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+    });
+  }
 
 
   launchURL(String url) async {

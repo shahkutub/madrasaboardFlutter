@@ -61,7 +61,9 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                               //controller.districtList.add(item);
                             }
                           }
-
+                         // controller.fetchJoke();
+                          controller.placeLoaded.value = false;
+                          controller.getInsPectionListDivision();
 
                           //controller.getAldivDis();
                           print('divisionId: ${controller.victimDivision.value}');
@@ -107,7 +109,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                               //controller.inspectionData.value.district_id = item.id;
                             }
                           }
-
+                          controller.placeLoaded.value = false;
                           controller.thanaList.clear();
                           for (var itemd in controller.allDivDisTana.value.thana_list!) {
                             //print('divisionId: ${controller.victimDivision.value}');
@@ -118,7 +120,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
                             }
                           }
-
+                          controller.getInsPectionListDistrictd();
                           // controller.getLocationData();
                           print('district: ${controller.victimDistrict.value}');
                         },
@@ -154,6 +156,9 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                         }
                         // controller.getLocationData();
                         print('upazila: ${controller.instituteUpazila.value}');
+                        controller.placeLoaded.value = false;
+                        controller.getInsPectionListThana();
+
                       },
                       isFirst: true,
                       isLast: false,
@@ -178,6 +183,8 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                         //controller.getLocationData();
                         //print('union_ id: ${controller.victimUnion.value}');
                         controller.getInstitute();
+                        controller.placeLoaded.value = false;
+                        controller.getInsPectionListType();
                       },
                       isFirst: true,
                       isLast: false,
@@ -197,11 +204,13 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
                   for (var item in controller.instituteData.value.institute_list!) {
                     if (item.name == input) {
-                      controller.eiinNumber.value = item.eiin!;
+                      controller.instituteID.value = item.id!.toString();
                       //controller.inspectionData.value.institute_id = item.id;
                     }
                   }
 
+                  controller.placeLoaded.value = false;
+                  controller.getInsPectionListInstituteId();
 
                   // for (var item in controller.allStudentData.value.students!) {
                   //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
@@ -235,8 +244,8 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
                         Container(
                           margin: EdgeInsets.all(5),
-
-                          child: DataTable(
+                   // Obx(() => )
+                    child: DataTable(
                             columnSpacing: 35,
                             headingRowColor: MaterialStateColor.resolveWith((states) => Colors.teal),
                             dataRowHeight: _size.height * .1,
@@ -289,7 +298,8 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                               //   ),
                               // ),
                             ],
-                            rows: controller.reversedList
+                        
+                        rows: controller.reversedList
                                 .map(
                                   (data) => DataRow(
 
