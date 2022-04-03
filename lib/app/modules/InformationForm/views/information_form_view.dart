@@ -1082,7 +1082,7 @@ class InformationFormView extends GetView<InformationFormController> {
 
                             DropDownWidgetMenu(
                               labelText: "ইলেক্ট্রিসিটি আছে কি নেই",
-                              hintText: "ইন্টারনেট আছে কি নেই",
+                              hintText: "ইলেক্ট্রিসিটি আছে কি নেই",
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
@@ -1261,7 +1261,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                  // controller.IsMentalHealthActivity.value = input!;
                                   controller.inspectionData.value.mental_health_activities = "হ্যাঁ";
                                 }else{
-                                  controller.inspectionData.value.mental_health_activities = "না";
+                                  controller.inspectionData.value.mental_health_activities = "0";
                                 }
 
                                 print('IsMentalHealthActivityInspectionData: ${controller.inspectionData.value.mental_health_activities}');
@@ -1361,7 +1361,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                   controller.inspectionData.value.week_studuents_activities = 'হ্যাঁ';
                                  // controller.inspectionData.value.online_class = 1;
                                 }else{
-                                  controller.inspectionData.value.week_studuents_activities = "না";
+                                  controller.inspectionData.value.week_studuents_activities = "0";
                                 }
 
                                 print('controller.inspectionData.week_studuents_activities: ${controller.inspectionData.value.week_studuents_activities}');
