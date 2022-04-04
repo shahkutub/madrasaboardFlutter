@@ -7,16 +7,22 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
   static const LOGIN = _Paths.LOGIN;
+  static const AFTER_LOGIN = _Paths.AFTER_LOGIN;
   static const INFORMATION_FORM = _Paths.INFORMATION_FORM;
   static const PROVIDED_DATA_LIST = _Paths.PROVIDED_DATA_LIST;
   static const SINGLE_INSPECTION_VIEW = _Paths.SINGLE_INSPECTION_VIEW;
+  static const SINGLE_INSPECTION_VIEW_PDF = _Paths.SINGLE_INSPECTION_VIEW_PDF;
+  static const INSTITUTE_SEARCH = _Paths.INSTITUTE_SEARCH;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const SPLASHSCREEN = '/splashscreen';
   static const LOGIN = '/login';
+  static const AFTER_LOGIN = '/after-login';
   static const INFORMATION_FORM = '/information-form';
   static const PROVIDED_DATA_LIST = '/provided-data-list';
   static const SINGLE_INSPECTION_VIEW = '/single_inspection_form_view';
+  static const SINGLE_INSPECTION_VIEW_PDF = '/inspection_report_pdf_view';
+  static const INSTITUTE_SEARCH = '/institute_search';
 }

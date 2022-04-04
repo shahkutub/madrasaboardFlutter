@@ -338,4 +338,28 @@ class InformationRepository {
     }
   }
 
+
+  Future<InstitutionDataModel> getInstituteAll() async {
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get("http://ei.nanoit.biz/api/institute_list",headers);
+      print('respInstiTyp: ${response}');
+
+      return InstitutionDataModel.fromJson(response);
+      // return all_division_dis_thanan_model().fromJson(response);
+      //  if (response['IsLoggedIn'] == true) {
+      //    Get.find<AuthService>().setUser(UserModel.fromJson(response));
+      //    return all_division_dis_thanan_model.fromJson(response);
+      //  } else {
+      //    return 'Unauthorised';
+      //  }
+    } catch (e) {
+      print('error:$e');
+      return InstitutionDataModel.fromJson(response);
+    }
+  }
+
 }

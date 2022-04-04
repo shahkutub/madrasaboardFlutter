@@ -34,7 +34,7 @@ class LoginController extends GetxController {
 
       if(response != null){
         //String? loginData = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
-        Get.offAllNamed(Routes.INFORMATION_FORM);
+        Get.offAllNamed(Routes.AFTER_LOGIN);
         //Get.offAllNamed(Routes.HOME);
         // Get.find<RootController>().changePageOutRoot(0);
         Get.showSnackbar(Ui.SuccessSnackBar(message: 'Successfully logged in'.tr, title: 'Success'.tr));

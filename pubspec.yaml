@@ -24,6 +24,7 @@ dependencies:
   image_cropper: ^1.4.1
   flutter_image_compress: ^1.1.0
   url_launcher: ^6.0.20
+  syncfusion_flutter_pdfviewer: ^19.4.56-beta
   uuid: ^3.0.6
   intl: ^0.17.0
   date_format: ^2.0.5

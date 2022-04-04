@@ -31,6 +31,7 @@ class ProvidedDataListController extends GetxController {
   final allInstype = InstituteTypeModel().obs;
   final instituteData = InstitutionDataModel().obs;
 
+  final pdfUrl = ''.obs;
   final victimDivision = ''.obs;
   final victimDivisionName = ''.obs;
   final victimDistrict = ''.obs;
@@ -46,7 +47,7 @@ class ProvidedDataListController extends GetxController {
   Future<void> onInit() async {
     box = Hive.box('formBox');
     //addDataInList();
-
+    getInstitute();
      getAldivDis();
      getAllInstituteType();
 
@@ -85,7 +86,13 @@ class ProvidedDataListController extends GetxController {
   getInstitute() async {
     InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
       instituteData.value = resp;
-
+      placeLoaded.value = true;
+    });
+  }
+  getInstituteAll() async {
+    InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
+      instituteData.value = resp;
+      placeLoaded.value = true;
     });
   }
 

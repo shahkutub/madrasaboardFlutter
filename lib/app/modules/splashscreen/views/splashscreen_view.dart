@@ -21,7 +21,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
         //   ),
         // ),
         Scaffold(
-          backgroundColor: Colors.white.withOpacity(0.9),
+          backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -41,7 +41,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
                             height: 200,
                             width: 200,
                             image: AssetImage(
-                              'assets/images/madsaraboardlogo.png',
+                              'assets/images/govlogo.png',
                             ),
                           ),
                           SizedBox(
@@ -49,10 +49,19 @@ class SplashscreenView extends GetView<SplashscreenController> {
                           ),
                           Center(
                             child: Text(
-                              '',
+                              'কারিগরি ও মাদ্রাসা শিক্ষা বিভাগ',
                               style: TextStyle(
-                                fontSize: 30,
-                                color: Color(0xffec008c),
+                                fontSize: 25,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Text(
+                              'শিক্ষা মন্ত্রণালয়',
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.black,
                               ),
                             ),
                           ),

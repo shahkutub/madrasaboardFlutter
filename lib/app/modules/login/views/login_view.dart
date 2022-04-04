@@ -101,7 +101,7 @@ class LoginView extends GetView<LoginController> {
                         child: Center(
                           child: Image(
                             image: AssetImage(
-                              'assets/images/madsaraboardlogo.png',
+                              'assets/images/govlogo.png',
                             ),
                             fit: BoxFit.fill,
                             // color: Color(0xffec008c),

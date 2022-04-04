@@ -316,9 +316,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                                             backgroundColor: Colors.white
                                         ),
                                       ),
-                                      onTap: (){
-                                        controller.launchURL(data.details_url!);
-                                      }
+
                                   ),
                                   // DataCell(
                                   //   Text(
@@ -350,8 +348,14 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                                         color: Colors.green,
                                         size: 30.0,
                                       ),
+                                      // onTap: (){
+                                      //   controller.launchURL(data.details_url!);
+                                      // }
                                       onTap: (){
-                                        controller.launchURL(data.details_url!);
+                                        controller.pdfUrl.value = data.details_url!;
+                                        print('pdfUrl : ${controller.pdfUrl.value}');
+                                        //controller.launchURL(data.details_url!);
+                                        Get.toNamed(Routes.SINGLE_INSPECTION_VIEW_PDF);
                                       }
                                   ),
 

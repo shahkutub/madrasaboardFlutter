@@ -1,3 +1,5 @@
+import 'package:brac_arna/app/modules/login/views/after_login_view.dart';
+import 'package:brac_arna/app/modules/provided_data_list/views/inspection_report_pdf_view.dart';
 import 'package:brac_arna/app/modules/provided_data_list/views/single_inspection_form_view.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +14,11 @@ import 'package:brac_arna/app/modules/provided_data_list/views/provided_data_lis
 import 'package:brac_arna/app/modules/splashscreen/bindings/splashscreen_binding.dart';
 import 'package:brac_arna/app/modules/splashscreen/views/splashscreen_view.dart';
 
+import '../modules/institute_search/bindings/institute_search_binding.dart';
+import '../modules/institute_search/views/institute_search_list_view.dart';
+import '../modules/login/bindings/after_login_binding.dart';
 import '../modules/provided_data_list/bindings/single_inspectionView.dart';
+import '../modules/provided_data_list/bindings/single_inspectionView_pdf.dart';
 
 part 'app_routes.dart';
 
@@ -38,6 +44,13 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
+      name: _Paths.AFTER_LOGIN,
+      page: () => AfterLoginView(),
+      binding: AfterLoginBinding(),
+    ),
+
+
+    GetPage(
       name: _Paths.INFORMATION_FORM,
       page: () => InformationFormView(),
       binding: InformationFormBinding(),
@@ -53,5 +66,18 @@ class AppPages {
       page: () => single_inspection_form_view(),
       binding: single_inspectionView(),
     ),
+
+    GetPage(
+      name: _Paths.SINGLE_INSPECTION_VIEW_PDF,
+      page: () => InspectionReportPDFView(),
+      binding: single_inspectionViewPdf(),
+    ),
+    GetPage(
+      name: _Paths.INSTITUTE_SEARCH,
+      page: () => institute_search_list_view(),
+      binding: institute_search_binding(),
+    ),
+
+
   ];
 }
