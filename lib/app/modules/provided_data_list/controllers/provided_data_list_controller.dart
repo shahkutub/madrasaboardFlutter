@@ -1,3 +1,4 @@
+
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,7 @@ import '../../../models/InstitutionDataModel.dart';
 import '../../../models/Thana.dart';
 import '../../../models/all_division_dis_thanan_model.dart';
 import '../../../repositories/information_repository.dart';
-
+import 'package:flutter_share/flutter_share.dart';
 class ProvidedDataListController extends GetxController {
   //TODO: Implement ProvidedDataListController
   var poridorshonDataModel = new PoridorshonDataModel();
@@ -238,5 +239,43 @@ class ProvidedDataListController extends GetxController {
     var outputFormat = DateFormat('dd-MM-yyyy');
     return outputFormat.format(date1);
   }
+
+
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'TMED app institute inspection report pdf',
+        text: 'Inspection report pdf',
+        //text: 'Please click on attach link to show & download pdf',
+        linkUrl: 'Please click on attach link to show & download pdf\n \n'+pdfUrl.value,
+        //chooserTitle: 'Please click on attach link to show & download pdf'
+    );
+  }
+
+
+  // Future<String> downloadFile(String url, String fileName, String dir) async {
+  //   HttpClient httpClient = new HttpClient();
+  //   File file;
+  //   String filePath = '';
+  //   String myUrl = '';
+  //
+  //   try {
+  //     myUrl = url+'/'+fileName;
+  //     var request = await httpClient.getUrl(Uri.parse(myUrl));
+  //     var response = await request.close();
+  //     if(response.statusCode == 200) {
+  //       var bytes = await consolidateHttpClientResponseBytes(response);
+  //       filePath = '$dir/$fileName';
+  //       file = File(filePath);
+  //       await file.writeAsBytes(bytes);
+  //     }
+  //     else
+  //       filePath = 'Error code: '+response.statusCode.toString();
+  //   }
+  //   catch(ex){
+  //     filePath = 'Can not fetch url';
+  //   }
+  //
+  //   return filePath;
+  // }
 
 }

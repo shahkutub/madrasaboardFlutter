@@ -23,6 +23,54 @@ class InspectionReportPDFView extends GetView<ProvidedDataListController> {
             textAlign: TextAlign.left,
           ),
 
+          actions: <Widget>[
+            // RaisedButton(
+            //   onPressed: () {
+            //     Get.toNamed(Routes.PROVIDED_DATA_LIST);
+            //   },
+            //   color: Colors.amber,
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10)),
+            //   child: Text("পূর্বের পরিদর্শন",
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            // ),
+            // TextButton(
+            //     onPressed: () {
+            //       Get.toNamed(Routes.PROVIDED_DATA_LIST);
+            //     },
+            //     child: Text("পূর্বের পরিদর্শন",
+            //       style: TextStyle(color: Colors.purple),
+            //     ),
+            //
+            // ),
+            SizedBox(
+              width: 5,
+            ),
+
+            Center(
+              child: Container(
+                height: 30,
+
+                child: RawMaterialButton(
+                  onPressed: () {
+                    controller.share();
+                  },
+                  elevation: 2.0,
+                  fillColor: Colors.indigo,
+                  child: Text("Share PDF",
+                    style: TextStyle(color: Colors.white,fontSize: 10),
+                  ),
+                  padding: EdgeInsets.all(5.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              ),
+            ),
+
+
+          ],
+
         ),
       ),
       body: Obx(() {

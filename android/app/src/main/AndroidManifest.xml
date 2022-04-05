@@ -47,5 +47,8 @@
                  This is used by the Flutter tool to generate GeneratedPluginRegistrant.java  -->
     <meta-data android:name="flutterEmbedding" android:value="2"/>
     <activity android:name="com.yalantis.ucrop.UCropActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+    <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyDbyQUqqWpxFCkZJdGSxqc4f-zDTR8QZfU"/>
   </application>
 </manifest>

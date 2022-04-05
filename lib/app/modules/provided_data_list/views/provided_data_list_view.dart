@@ -18,7 +18,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: Size(60,35),
+          preferredSize: Size(60,55),
           child:  AppBar(
               backgroundColor: Colors.green,
               elevation: 0,
@@ -39,11 +39,13 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
               // ),
 
               Center(
-                child:   Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+
                   children: [
                     Container(
-                      width: 205,
+                      width: 180,
                       child: dropdown_widget_small(
                         labelText: "বিভাগ",
                         hintText: "বিভাগ নির্বাচন করুন",
@@ -85,7 +87,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                       ),
                     ),
                     Container(
-                      width: 205,
+                      width: 180,
                       child: dropdown_widget_small(
                         labelText: "জেলা",
                         hintText: "জেলা নির্বাচন করুন",
@@ -137,10 +139,11 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
                 children: [
                   Container(
-                    width: 205,
+                    width: 180,
                     child: dropdown_widget_small(
                       labelText: "উপজেলা",
                       hintText: "উপজেলা নির্বাচন করুন",
@@ -165,10 +168,10 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                     ),
                   ),
                   Container(
-                    width: 205,
+                    width: 180,
                     child: dropdown_widget_small(
                       labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                      hintText: "শিক্ষা প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
+                      hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
                       initialValue: '',
                       iconData: Icons.phone_android,
                       data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),

@@ -24,7 +24,7 @@ class InstituteSearchController extends GetxController {
   List<PoridorshonDataModel> poridorshonList = <PoridorshonDataModel>[].obs;
   final inspectionListData = InspectionListREsponse().obs;
   List<Inspection> reversedList =  <Inspection>[].obs;
-  final placeLoaded = false.obs;
+  final placeLoaded = true.obs;
   var  inspectListPos = 0.obs;
 
   final allDivDisTana = all_division_dis_thanan_model().obs;
@@ -41,6 +41,7 @@ class InstituteSearchController extends GetxController {
   final instituteID = ''.obs;
   final instituteTypeId = ''.obs;
 
+  //List<District> districtList = <District>[].obs;
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
   @override
@@ -49,7 +50,7 @@ class InstituteSearchController extends GetxController {
     //addDataInList();
     getAldivDis();
     getAllInstituteType();
-    getInstitute();
+    //getInstitute();
 
 
 

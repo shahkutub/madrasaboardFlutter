@@ -19,12 +19,12 @@ class institute_search_list_view extends GetView<InstituteSearchController> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: Size(60,35),
+          preferredSize: Size(60,55),
           child:  AppBar(
               backgroundColor: Colors.green,
               elevation: 0,
               centerTitle: true,
-              title: Text('শিক্ষা প্রতিষ্ঠান অনুসন্ধান')
+              title: Text('অনুসন্ধান')
           ),
         ),
         body: Obx(() {
@@ -41,10 +41,11 @@ class institute_search_list_view extends GetView<InstituteSearchController> {
 
               Center(
                 child:   Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
                   children: [
                     Container(
-                      width: 205,
+                      width: 180,
                       child: dropdown_widget_small(
                         labelText: "বিভাগ",
                         hintText: "বিভাগ নির্বাচন করুন",
@@ -91,7 +92,7 @@ class institute_search_list_view extends GetView<InstituteSearchController> {
                       ),
                     ),
                     Container(
-                      width: 205,
+                      width: 180,
                       child: dropdown_widget_small(
                         labelText: "জেলা",
                         hintText: "জেলা নির্বাচন করুন",
@@ -149,7 +150,7 @@ class institute_search_list_view extends GetView<InstituteSearchController> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: 205,
+                    width: 180,
                     child: dropdown_widget_small(
                       labelText: "উপজেলা",
                       hintText: "উপজেলা নির্বাচন করুন",
@@ -174,10 +175,10 @@ class institute_search_list_view extends GetView<InstituteSearchController> {
                     ),
                   ),
                   Container(
-                    width: 205,
+                    width: 180,
                     child: dropdown_widget_small(
                       labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                      hintText: "শিক্ষা প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
+                      hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
                       initialValue: '',
                       iconData: Icons.phone_android,
                       data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
