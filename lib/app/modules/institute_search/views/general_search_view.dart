@@ -479,7 +479,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('শিক্ষক-শিক্ষিকার সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -496,7 +496,25 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট শিক্ষিকার সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট ছাত্র-ছাত্রীর সংখ্যা ',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -513,7 +531,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট ছাত্রীর সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -525,12 +543,11 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             )
                                           ]),
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট পরীক্ষার্থীর সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -542,12 +559,28 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             )
                                           ]),
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট দাখিল পরীক্ষার্থীর সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট আলিম পরীক্ষার্থীর সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -559,12 +592,11 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             )
                                           ]),
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট ভোক পরীক্ষার্থীর সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -576,12 +608,11 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             )
                                           ]),
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট বি এম পরীক্ষার্থীর সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -592,6 +623,158 @@ class general_search_view extends GetView<InstituteSearchController> {
                                               ),
                                             )
                                           ]),
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট ডিপ্লোমা পরীক্ষার্থীর সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট দাখিল পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট আলিম পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট ফাজিল পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট ভোক পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট বি এম পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট দাখিল পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট ডিপ্লোমা পাশের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text("00",
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ]),
+
+
                                     ],
                                     border: TableBorder.all(width: 1, color: Colors.black),
                                   ),

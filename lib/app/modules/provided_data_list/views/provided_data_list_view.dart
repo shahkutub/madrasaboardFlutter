@@ -27,8 +27,8 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
           ),
         ),
         body: Obx(() {
-          return ListView(
-            primary: true,
+          return Column(
+           // primary: true,
             children: [
 
               // dropdown_widget_small(
@@ -239,10 +239,10 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
               Obx(() {
                 // Get.put(ProvidedDataListController()).count.value++;
                 if(controller.placeLoaded.isTrue){
-                  return SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
+                  return Expanded(
 
-                    child: Column(
+
+                    child: ListView(
                       children: [
 
                         Container(
@@ -251,7 +251,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                     child: DataTable(
                             columnSpacing: 35,
                             headingRowColor: MaterialStateColor.resolveWith((states) => Colors.teal),
-                            dataRowHeight: _size.height * .1,
+                            dataRowHeight: _size.height * .2,
                             headingRowHeight: 0,
                             columns: [
 

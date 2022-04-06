@@ -14,6 +14,8 @@ abstract class Routes {
   static const SINGLE_INSPECTION_VIEW_PDF = _Paths.SINGLE_INSPECTION_VIEW_PDF;
   static const INSTITUTE_SEARCH = _Paths.INSTITUTE_SEARCH;
   static const GENERAL_SEARCH = _Paths.GENERAL_SEARCH;
+  static const GEO_LOCATION = _Paths.GEO_LOCATION;
+
 }
 
 abstract class _Paths {
@@ -27,4 +29,5 @@ abstract class _Paths {
   static const SINGLE_INSPECTION_VIEW_PDF = '/inspection_report_pdf_view';
   static const INSTITUTE_SEARCH = '/institute_search';
   static const GENERAL_SEARCH = '/general_search';
+  static const GEO_LOCATION = '/geo_location';
 }

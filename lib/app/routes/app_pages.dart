@@ -14,6 +14,8 @@ import 'package:brac_arna/app/modules/provided_data_list/views/provided_data_lis
 import 'package:brac_arna/app/modules/splashscreen/bindings/splashscreen_binding.dart';
 import 'package:brac_arna/app/modules/splashscreen/views/splashscreen_view.dart';
 
+import '../modules/geo_location/bindings/geo_location_binding.dart';
+import '../modules/geo_location/views/geo_location_view.dart';
 import '../modules/institute_search/bindings/general_search_binding.dart';
 import '../modules/institute_search/bindings/institute_search_binding.dart';
 import '../modules/institute_search/views/general_search_view.dart';
@@ -85,6 +87,12 @@ class AppPages {
       name: _Paths.GENERAL_SEARCH,
       page: () => general_search_view(),
       binding: general_search_binding(),
+    ),
+
+    GetPage(
+      name: _Paths.GEO_LOCATION,
+      page: () => GeoLocationView(),
+      binding: GeoLocationBinding(),
     ),
 
   ];

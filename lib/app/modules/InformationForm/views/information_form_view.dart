@@ -53,52 +53,52 @@ class InformationFormView extends GetView<InformationFormController> {
               //     ),
               //
               // ),
-              SizedBox(
-                width: 5,
-              ),
-              Center(
-                child: Container(
-                  height: 30,
-                  width: 60,
-                  child: RawMaterialButton(
-                    onPressed: () {
-                      Get.find<AuthService>().removeCurrentUser();
-                      Get.toNamed(Routes.LOGIN);
-                    },
-                    elevation: 2.0,
-                    fillColor: Colors.red,
-                    child: Text("লগ আউট",
-                      style: TextStyle(color: Colors.white,fontSize: 10),
-                    ),
-                    padding: EdgeInsets.all(5.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                width: 5,
-              ),
-              Center(
-                child: Container(
-                  height: 30,
-
-                  child: RawMaterialButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.PROVIDED_DATA_LIST);
-                    },
-                    elevation: 2.0,
-                    fillColor: Colors.indigo,
-                    child: Text("পরিদশন তালিকা",
-                      style: TextStyle(color: Colors.white,fontSize: 10),
-                    ),
-                    padding: EdgeInsets.all(5.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   width: 5,
+              // ),
+              // Center(
+              //   child: Container(
+              //     height: 30,
+              //     width: 60,
+              //     child: RawMaterialButton(
+              //       onPressed: () {
+              //         Get.find<AuthService>().removeCurrentUser();
+              //         Get.toNamed(Routes.LOGIN);
+              //       },
+              //       elevation: 2.0,
+              //       fillColor: Colors.red,
+              //       child: Text("লগ আউট",
+              //         style: TextStyle(color: Colors.white,fontSize: 10),
+              //       ),
+              //       padding: EdgeInsets.all(5.0),
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(10)),
+              //     ),
+              //   ),
+              // ),
+              //
+              // SizedBox(
+              //   width: 5,
+              // ),
+              // Center(
+              //   child: Container(
+              //     height: 30,
+              //
+              //     child: RawMaterialButton(
+              //       onPressed: () {
+              //         Get.toNamed(Routes.PROVIDED_DATA_LIST);
+              //       },
+              //       elevation: 2.0,
+              //       fillColor: Colors.indigo,
+              //       child: Text("পরিদশন তালিকা",
+              //         style: TextStyle(color: Colors.white,fontSize: 10),
+              //       ),
+              //       padding: EdgeInsets.all(5.0),
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(10)),
+              //     ),
+              //   ),
+              // ),
 
 
             ],
