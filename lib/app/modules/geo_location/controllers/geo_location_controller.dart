@@ -4,11 +4,38 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
+import '../../../models/District.dart';
+import '../../../models/InstituteTypeModel.dart';
+import '../../../models/InstitutionDataModel.dart';
+import '../../../models/Thana.dart';
+import '../../../models/all_division_dis_thanan_model.dart';
+
 class GeoLocationController extends GetxController {
   var latitude = 'Getting Latitude..'.obs;
   var longitude = 'Getting Longitude..'.obs;
   var address = 'Getting Address..'.obs;
   late StreamSubscription<Position> streamSubscription;
+
+  final placeLoaded = false.obs;
+  var  inspectListPos = 0.obs;
+  var  distance = 0.obs;
+
+  final allDivDisTana = all_division_dis_thanan_model().obs;
+  final allInstype = InstituteTypeModel().obs;
+  final instituteData = InstitutionDataModel().obs;
+
+  final pdfUrl = ''.obs;
+  final victimDivision = ''.obs;
+  final victimDivisionName = ''.obs;
+  final victimDistrict = ''.obs;
+  final instituteUpazila = ''.obs;
+  final victimUnion = ''.obs;
+  final eiinNumber = ''.obs;
+  final instituteID = ''.obs;
+  final instituteTypeId = ''.obs;
+
+  List<District> districtList = <District>[].obs;
+  List<Thana> thanaList = <Thana>[].obs;
 
   @override
   void onInit() async {
@@ -70,7 +97,7 @@ class GeoLocationController extends GetxController {
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemark[0];
-    address.value = 'Address : ${place.street},${place.locality},${place.country}';
+    address.value = 'আপনার অবস্থানঃ ${place.street},${place.locality},${place.country}';
   }
 }
 

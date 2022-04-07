@@ -10,7 +10,7 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff683091),
         body: SingleChildScrollView(
           child: Container(
             child: Column(
@@ -32,7 +32,8 @@ class LoginView extends GetView<LoginController> {
                           ),
                           fit: BoxFit.fill,
                           //color: Color(0xffec008c),
-                          color: Colors.green,
+                          color: Colors.white,
+
                         )
 
                         // Stack(
@@ -83,20 +84,41 @@ class LoginView extends GetView<LoginController> {
                       child: Container(
                         margin: EdgeInsets.only(top: 50),
                         child: Center(
-                          child: Text(
-                            "Login".tr,
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Center(
+                                child: Text(
+                                  'কারিগরি ও মাদ্রাসা শিক্ষা বিভাগ',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  'শিক্ষা মন্ত্রণালয়',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
                     Positioned(
-                      bottom: 150,
+                      bottom: 180,
                       left: 0,
                       right: 0,
                       child: Container(
-                        height: 200,
-                        width: 200,
+                        height: 130,
+                        width: 130,
                         margin: EdgeInsets.only(top: 10),
                         child: Center(
                           child: Image(
@@ -108,7 +130,11 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+
                   ],
                 ),
                 Form(

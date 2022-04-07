@@ -23,7 +23,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
               backgroundColor: Colors.green,
               elevation: 0,
               centerTitle: true,
-              title: Text('পরিদশন তালিকা')
+              title: Text('পরিদর্শন তালিকা')
           ),
         ),
         body: Obx(() {
@@ -37,6 +37,10 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
               //   //data: ,
               //
               // ),
+
+              SizedBox(
+                height: 10,
+              ),
 
               Center(
                 child: Row(
@@ -136,8 +140,6 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
               ),
 
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
                 crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
@@ -232,7 +234,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
               ),
 
               SizedBox(
-                height: 10.0,
+                height: 20.0,
               ),
 
 
@@ -319,7 +321,12 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                                             backgroundColor: Colors.white
                                         ),
                                       ),
-
+                                      onTap: (){
+                                        controller.pdfUrl.value = data.details_url!;
+                                        print('pdfUrl : ${controller.pdfUrl.value}');
+                                        //controller.launchURL(data.details_url!);
+                                        Get.toNamed(Routes.SINGLE_INSPECTION_VIEW_PDF);
+                                      }
                                   ),
                                   // DataCell(
                                   //   Text(
