@@ -4,6 +4,7 @@ class ApiClient {
   static String baseUrl = 'http://nanoit.biz/project/ei/';
 
   static String login = '${baseUrl}api/login';
+  static String allproducts_v3 = 'https://medicineadmin.binaryhub360.com/public/api/all-products_v3';
   static String alllocation = '${baseUrl}api/area_list';
   static String instituteTypeUrl = '${baseUrl}api/institute_type_list';
   static String allstudentUrl = 'http://202.72.235.218/survey_api/public/apiFirstPage/student122';

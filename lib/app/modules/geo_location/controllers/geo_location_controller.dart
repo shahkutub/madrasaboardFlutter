@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -9,16 +11,22 @@ import '../../../models/InstituteTypeModel.dart';
 import '../../../models/InstitutionDataModel.dart';
 import '../../../models/Thana.dart';
 import '../../../models/all_division_dis_thanan_model.dart';
-
+import '../../../repositories/information_repository.dart';
+import '../../../routes/app_pages.dart';
 class GeoLocationController extends GetxController {
   var latitude = 'Getting Latitude..'.obs;
   var longitude = 'Getting Longitude..'.obs;
+  var currentLatitude = 0.0.obs;
+  var currentLongitude = 0.0.obs;
+  var totalDistance = 0.0.obs;
+
+
   var address = 'Getting Address..'.obs;
   late StreamSubscription<Position> streamSubscription;
 
-  final placeLoaded = false.obs;
+  final placeLoaded = true.obs;
   var  inspectListPos = 0.obs;
-  var  distance = 0.obs;
+  var  distanceBtwTwoInsti = 0.obs;
 
   final allDivDisTana = all_division_dis_thanan_model().obs;
   final allInstype = InstituteTypeModel().obs;
@@ -33,6 +41,8 @@ class GeoLocationController extends GetxController {
   final eiinNumber = ''.obs;
   final instituteID = ''.obs;
   final instituteTypeId = ''.obs;
+  final paromvikInstitute = ''.obs;
+  final gonttoboInstitute = ''.obs;
 
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
@@ -41,6 +51,8 @@ class GeoLocationController extends GetxController {
   void onInit() async {
     super.onInit();
     getLocation();
+    getAldivDis();
+    getAllInstituteType();
   }
 
   @override
@@ -89,6 +101,8 @@ class GeoLocationController extends GetxController {
         Geolocator.getPositionStream().listen((Position position) {
       latitude.value = 'Latitude : ${position.latitude}';
       longitude.value = 'Longitude : ${position.longitude}';
+      currentLatitude.value = position.latitude;
+      currentLongitude.value = position.longitude;
       getAddressFromLatLang(position);
     });
   }
@@ -99,6 +113,41 @@ class GeoLocationController extends GetxController {
     Placemark place = placemark[0];
     address.value = 'আপনার অবস্থানঃ ${place.street},${place.locality},${place.country}';
   }
+
+
+  getAldivDis() async {
+    InformationRepository().getDivDisThana().then((resp) {
+      allDivDisTana.value = resp;
+      if(allDivDisTana.value == null){
+        Get.toNamed(Routes.LOGIN);
+      }
+
+
+    });
+  }
+  getAllInstituteType() async {
+    InformationRepository().getInstituteType().then((resp) {
+      allInstype.value = resp;
+      placeLoaded.value = false;
+    });
+  }
+
+  getInstitute() async {
+    InformationRepository().getInstitute(victimDivision.value, victimDistrict.value, instituteUpazila.value, instituteTypeId.value).then((resp) {
+      instituteData.value = resp;
+      placeLoaded.value = false;
+    });
+  }
+
+   calculateDistance(lat1, lon1, lat2, lon2){
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 - c((lat2 - lat1) * p)/2 +
+        c(lat1 * p) * c(lat2 * p) *
+            (1 - c((lon2 - lon1) * p))/2;
+    totalDistance.value =  double.parse((12742 * asin(sqrt(a))).toStringAsFixed(2));
+  }
+
 }
 
 

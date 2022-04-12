@@ -30,6 +30,7 @@ class after_login_controller extends GetxController {
   @override
   void onInit() {
     getLocationPermission();
+    AuthRepository().allProd();
     super.onInit();
   }
 
