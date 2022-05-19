@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:brac_arna/app/database_helper/offline_database_helper.dart';
@@ -14,6 +15,8 @@ import 'package:brac_arna/app/repositories/information_repository.dart';
 import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -388,6 +391,17 @@ class InformationFormController extends GetxController {
 
   final Rx<Inspection_model> inspectionData = Inspection_model().obs;
 
+  var latitude = 'Getting Latitude..'.obs;
+  var longitude = 'Getting Longitude..'.obs;
+  var currentLatitude = 0.0.obs;
+  var currentLongitude = 0.0.obs;
+  var totalDistance = 0.0.obs;
+
+
+  var address = 'Getting Address..'.obs;
+  late StreamSubscription<Position> streamSubscription;
+
+
   @override
   Future<void> onInit() async {
     infoFormKey = GlobalKey<FormState>();
@@ -398,6 +412,7 @@ class InformationFormController extends GetxController {
     getAldivDis();
     getAllInstituteType();
 
+    getLocation();
     super.onInit();
   }
 
@@ -610,5 +625,57 @@ class InformationFormController extends GetxController {
   //   return di_list;
   // }
 
+  getLocation() async {
+    bool serviceEnabled;
+
+    LocationPermission permission;
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      await Geolocator.openLocationSettings();
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    streamSubscription =
+        Geolocator.getPositionStream().listen((Position position) {
+          latitude.value = 'Latitude : ${position.latitude}';
+          longitude.value = 'Longitude : ${position.longitude}';
+
+          currentLatitude.value = position.latitude;
+          currentLongitude.value = position.longitude;
+
+          print('latitude: "latitude : "+${latitude}');
+
+          getAddressFromLatLang(position);
+        });
+  }
+
+  Future<void> getAddressFromLatLang(Position position) async {
+    List<Placemark> placemark =
+    await placemarkFromCoordinates(position.latitude, position.longitude);
+    Placemark place = placemark[0];
+    address.value = 'আপনার অবস্থানঃ ${place.street},${place.locality},${place.country}';
+  }
 
 }

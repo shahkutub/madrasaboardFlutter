@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/madrasaboardFlutterProject.iml" filepath="$PROJECT_DIR$/.idea/madrasaboardFlutterProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TMED.iml" filepath="$PROJECT_DIR$/.idea/TMED.iml" />
     </modules>
   </component>
 </project>

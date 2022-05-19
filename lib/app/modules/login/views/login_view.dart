@@ -9,6 +9,12 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    final startAddressController = TextEditingController();
+    final destinationAddressController = TextEditingController();
+
+    final startAddressFocusNode = FocusNode();
+    final desrinationAddressFocusNode = FocusNode();
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Color(0xff683091),
         body: SingleChildScrollView(
@@ -156,7 +162,7 @@ class LoginView extends GetView<LoginController> {
                                 decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
                                 child: TextFormField(
                                  // controller: controller.userNameController.value,
-                                  initialValue: "",
+                                  initialValue: "admin@gmail.com",
                                   onChanged: (input) {
                                     controller.userData.value.userName = input;
                                   },
@@ -166,16 +172,35 @@ class LoginView extends GetView<LoginController> {
                                   style: TextStyle(fontSize: 20),
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: "User Name".tr,
+                                    hintText: "User Name",
                                     hintStyle: TextStyle(color: Colors.grey[500]),
                                   ),
                                 ),
                               ),
+                              // _textField(
+                              //     label: 'User Name',
+                              //     hint: 'Input User Name',
+                              //     // prefixIcon: null,
+                              //     // suffixIcon: IconButton(
+                              //     //   icon: Icon(Icons.my_location),
+                              //     //   onPressed: () {
+                              //     //     // startAddressController.text = _currentAddress;
+                              //     //     // _startAddress = _currentAddress;
+                              //     //   },
+                              //     // ),
+                              //     controller: startAddressController,
+                              //     focusNode: startAddressFocusNode,
+                              //     width: width,
+                              //     locationCallback: (String value) {
+                              //       // setState(() {
+                              //       //   _startAddress = value;
+                              //       // });
+                              //     }),
                               Container(
                                 padding: EdgeInsets.all(8.0),
                                 child: TextFormField(
                                  // controller: controller.passwordController.value,
-                                  initialValue: "",
+                                  initialValue: "123",
                                   onChanged: (input) {
                                     controller.userData.value.password = input;
                                   },
@@ -186,7 +211,7 @@ class LoginView extends GetView<LoginController> {
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: "Password".tr,
+                                    hintText: "Password",
                                     hintStyle: TextStyle(color: Colors.grey[500]),
                                   ),
                                 ),
@@ -237,4 +262,55 @@ class LoginView extends GetView<LoginController> {
           ),
         ));
   }
+
+
+  Widget _textField({
+    required TextEditingController controller,
+    required FocusNode focusNode,
+    required String label,
+    required String hint,
+    required double width,
+    Widget? prefixIcon,
+    Widget? suffixIcon,
+    required Function(String) locationCallback,
+  }) {
+    return Container(
+      width: width * 0.8,
+      child: TextField(
+        onChanged: (value) {
+          locationCallback(value);
+        },
+        controller: controller,
+        focusNode: focusNode,
+        decoration: new InputDecoration(
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          labelText: label,
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+            borderSide: BorderSide(
+              color: Colors.grey.shade400,
+              width: 2,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+            borderSide: BorderSide(
+              color: Colors.blue.shade300,
+              width: 2,
+            ),
+          ),
+          contentPadding: EdgeInsets.all(15),
+          hintText: hint,
+        ),
+      ),
+    );
+  }
+
 }

@@ -10,8 +10,10 @@ class AuthRepository {
   ///User Login api call
   Future userLogin(UserModel userData) async {
     Map user = {
-      'email': userData.userName,
-      'password': userData.password,
+      //'email': userData.userName,
+      'email': "admin@gmail.com",
+      //'password': userData.password,
+      'password': "123",
     };
     APIManager _manager = APIManager();
     var response;
