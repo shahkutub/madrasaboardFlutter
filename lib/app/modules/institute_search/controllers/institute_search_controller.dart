@@ -1,5 +1,10 @@
+import 'package:brac_arna/app/api_providers/api_manager.dart';
+import 'package:brac_arna/app/api_providers/api_url.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
+import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
+import 'package:brac_arna/app/models/user_model.dart';
+import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -24,7 +29,7 @@ class InstituteSearchController extends GetxController {
   List<PoridorshonDataModel> poridorshonList = <PoridorshonDataModel>[].obs;
   final inspectionListData = InspectionListREsponse().obs;
   List<Inspection> reversedList =  <Inspection>[].obs;
-  final placeLoaded = true.obs;
+  final placeLoaded = false.obs;
   var  inspectListPos = 0.obs;
 
   final allDivDisTana = all_division_dis_thanan_model().obs;
@@ -44,15 +49,16 @@ class InstituteSearchController extends GetxController {
   //List<District> districtList = <District>[].obs;
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
+  var instituteSummary = InstituteSumaryResponse().obs;
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
     //addDataInList();
-    getAldivDis();
-    getAllInstituteType();
-    //getInstitute();
+     getAldivDis();
+     getAllInstituteType();
+     //getInstitute();
 
-
+    instituteSumary();
 
     //getInsPectionListAll();
     super.onInit();
@@ -240,6 +246,17 @@ class InstituteSearchController extends GetxController {
 
     var outputFormat = DateFormat('dd-MM-yyyy');
     return outputFormat.format(date1);
+  }
+
+  Future instituteSumary() async {
+    InformationRepository().instituteSumary().then((resp) {
+      //  allStudentData.value = resp;
+      instituteSummary.value = resp;
+      print(''+instituteSummary.value.api_info!.total_students.toString());
+      placeLoaded.value = true;
+
+
+    });
   }
 
 }

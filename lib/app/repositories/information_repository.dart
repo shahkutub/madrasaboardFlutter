@@ -4,6 +4,7 @@ import 'package:brac_arna/app/api_providers/api_manager.dart';
 import 'package:brac_arna/app/api_providers/api_url.dart';
 import 'package:brac_arna/app/database_helper/offline_database_helper.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
+import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/InstitutionDataModel.dart';
 import 'package:brac_arna/app/models/PostResponse.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
@@ -359,6 +360,28 @@ class InformationRepository {
     } catch (e) {
       print('error:$e');
       return InstitutionDataModel.fromJson(response);
+    }
+  }
+
+  Future instituteSumary() async {
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.postAPICallWithHeaderWithoutParam(ApiClient.institutesummary,headers);
+      print('response: ${response}');
+
+      if (response != null) {
+       // instituteSummary.value = response;
+       // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
+        return InstituteSumaryResponse.fromJson(response);
+      } else {
+        return 'Unauthorised';
+      }
+    } catch (e) {
+      print('error:$e');
+      return 'Unauthorised';
     }
   }
 
