@@ -7,6 +7,7 @@ import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/InstitutionDataModel.dart';
 import 'package:brac_arna/app/models/PostResponse.dart';
+import 'package:brac_arna/app/models/SummaryPdf.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
 import 'package:brac_arna/app/models/placeDataModel.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
@@ -322,7 +323,7 @@ class InformationRepository {
     APIManager _manager = APIManager();
     var response;
     try {
-      response = await _manager.get("http://ei.nanoit.biz/api/institute_list?division_id="+divId+"&district_id="+disId+"&thana_id="+thanaId+"&institute_type_id="+insTypeId,headers);
+      response = await _manager.get(ApiClient.baseUrl+"api/institute_list?division_id="+divId+"&district_id="+disId+"&thana_id="+thanaId+"&institute_type_id="+insTypeId,headers);
       print('respInstiTyp: ${response}');
 
       return InstitutionDataModel.fromJson(response);
@@ -363,19 +364,59 @@ class InformationRepository {
     }
   }
 
-  Future instituteSumary() async {
+  Future instituteSumary(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+
+    Map param = {
+      'division_id': division_id,
+      'district_id': district_id,
+      'thana_id': thana_id,
+      'institute_type': institute_type_id,
+      'institute_id': institute_id,
+    };
+
     String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
     var headers = {'Authorization': 'Bearer $token'};
     APIManager _manager = APIManager();
     var response;
     try {
-      response = await _manager.postAPICallWithHeaderWithoutParam(ApiClient.institutesummary,headers);
+      response = await _manager.postAPICallbodyheader(ApiClient.institutesummary,param,headers);
       print('response: ${response}');
 
       if (response != null) {
        // instituteSummary.value = response;
        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
         return InstituteSumaryResponse.fromJson(response);
+      } else {
+        return 'Unauthorised';
+      }
+    } catch (e) {
+      print('error:$e');
+      return 'Unauthorised';
+    }
+  }
+
+  Future instituteSumaryPdf(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+
+    Map param = {
+      'division_id': division_id,
+      'district_id': district_id,
+      'thana_id': thana_id,
+      'institute_type': institute_type_id,
+      'institute_id': institute_id,
+    };
+
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.postAPICallbodyheader(ApiClient.institutesummaryPdf,param,headers);
+      print('response: ${response}');
+
+      if (response != null) {
+        // instituteSummary.value = response;
+        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
+        return SummaryPdf.fromJson(response);
       } else {
         return 'Unauthorised';
       }

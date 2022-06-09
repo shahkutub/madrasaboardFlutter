@@ -128,6 +128,7 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                             }
                           }
+                          controller.instituteSumary();
                           controller.getInstitute();
 
                           //print('district: ${controller.districtList[0].name}');
@@ -173,9 +174,9 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                             }
                           }
-                          controller.getInsPectionListDistrictd();
+                         // controller.getInsPectionListDistrictd();
                           // controller.getLocationData();
-
+                          controller.instituteSumary();
                           controller.getInstitute();
                           print('district: ${controller.victimDistrict.value}');
                         },
@@ -209,7 +210,8 @@ class general_search_view extends GetView<InstituteSearchController> {
                         // controller.getLocationData();
                         print('upazila: ${controller.instituteUpazila.value}');
                         controller.placeLoaded.value = false;
-                        controller.getInsPectionListThana();
+                       // controller.getInsPectionListThana();
+                        controller.instituteSumary();
                         controller.getInstitute();
                       },
                       isFirst: true,
@@ -234,10 +236,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                         }
                         //controller.getLocationData();
                         //print('union_ id: ${controller.victimUnion.value}');
-                        controller.getInstitute();
+                        //controller.getInstitute();
                         controller.placeLoaded.value = false;
-                        controller.getInsPectionListType();
-
+                       // controller.getInsPectionListType();
+                        controller.instituteSumary();
                         controller.getInstitute();
                       },
                       isFirst: true,
@@ -248,39 +250,40 @@ class general_search_view extends GetView<InstituteSearchController> {
                 ],
               ),
 
-              // dropdown_widget_small(
-              //   labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
-              //   hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
-              //   initialValue: '',
-              //   iconData: Icons.phone_android,
-              //   data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
-              //   onChanged: (input) {
-              //
-              //     for (var item in controller.instituteData.value.institute_list!) {
-              //       if (item.name == input) {
-              //         controller.instituteID.value = item.id!.toString();
-              //         //controller.inspectionData.value.institute_id = item.id;
-              //       }
-              //     }
-              //
-              //     controller.placeLoaded.value = false;
-              //     controller.getInsPectionListInstituteId();
-              //
-              //     // for (var item in controller.allStudentData.value.students!) {
-              //     //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-              //     //     controller.totalStudent.value = item.total! as int;
-              //     //     controller.totalFemaleStudent.value = item.total_girls! as int;
-              //     //   }
-              //     // }
-              //
-              //     //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
-              //
-              //     // controller.getLocationData();
-              //     // print('union_ id: ${controller.victimUnion.value}');
-              //   },
-              //   isFirst: true,
-              //   isLast: false,
-              // ),
+              dropdown_widget_small(
+                labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
+                hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
+                initialValue: '',
+                iconData: Icons.phone_android,
+                data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
+                onChanged: (input) {
+
+                  for (var item in controller.instituteData.value.institute_list!) {
+                    if (item.name == input) {
+                      controller.instituteID.value = item.id!.toString();
+                      print('insID:'+controller.instituteID.value);
+                      //controller.inspectionData.value.institute_id = item.id;
+                    }
+                  }
+
+                  controller.placeLoaded.value = false;
+                  controller.instituteSumary();
+
+                  // for (var item in controller.allStudentData.value.students!) {
+                  //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
+                  //     controller.totalStudent.value = item.total! as int;
+                  //     controller.totalFemaleStudent.value = item.total_girls! as int;
+                  //   }
+                  // }
+
+                  //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
+
+                  // controller.getLocationData();
+                  // print('union_ id: ${controller.victimUnion.value}');
+                },
+                isFirst: true,
+                isLast: false,
+              ),
 
               SizedBox(
                 height: 10.0,
@@ -393,7 +396,6 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             )
                                           ]),
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
@@ -412,7 +414,24 @@ class general_search_view extends GetView<InstituteSearchController> {
                                           ]),
 
                                       TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('ইন্টারনেট নাই এর সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text(controller.instituteSummary.value.api_info!.no_internet.toString(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                            )
+                                          ]),
 
+                                      TableRow(
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
@@ -424,6 +443,24 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
                                               child: Text(controller.instituteSummary.value.api_info!.total_electricity_facility.toString(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                            )
+                                          ]),
+
+                                      TableRow(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('ইলেক্ট্রিসিটি নাই এর সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text(controller.instituteSummary.value.api_info!.no_electricity.toString(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(fontSize: 15),
                                               ),
@@ -520,87 +557,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                               ),
                                             )
                                           ]),
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট দাখিল পরীক্ষার্থীর সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
 
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট আলিম পরীক্ষার্থীর সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট ভোক পরীক্ষার্থীর সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট বি এম পরীক্ষার্থীর সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট ডিপ্লোমা পরীক্ষার্থীর সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
                                       TableRow(
                                           children: [
                                             Padding(
@@ -612,129 +569,12 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট দাখিল পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
+                                              child: Text(controller.instituteSummary.value.api_info!.total_passed.toString(),
                                                 textAlign: TextAlign.center,
                                               ),
                                             )
                                           ]),
 
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট আলিম পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট ফাজিল পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট ভোক পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট বি এম পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট দাখিল পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
-
-                                      TableRow(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট ডিপ্লোমা পাশের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text("00",
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )
-                                          ]),
 
 
                                     ],

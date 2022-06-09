@@ -38,8 +38,17 @@ class ApiInfo {
     int? total_passed;
     int? total_students;
     int? total_teacher;
+    int? no_electricity;
+    int? no_internet;
+    int? total_recognized;
+    int? recognized_without_mpo;
 
-    ApiInfo({this.total_digital_lab, this.total_electricity_facility, this.total_examinees, this.total_female_teacher, this.total_girls_students, this.total_internet_facility, this.total_male_students, this.total_male_teachers, this.total_mpo, this.total_multimedia_class_rooms, this.total_passed, this.total_students, this.total_teacher});
+    ApiInfo({this.total_digital_lab, this.total_electricity_facility, this.total_examinees,
+        this.total_female_teacher, this.total_girls_students,
+        this.total_internet_facility, this.total_male_students,
+        this.total_male_teachers, this.total_mpo, this.total_multimedia_class_rooms,
+        this.total_passed, this.total_students, this.total_teacher,
+        this.no_electricity,this.no_internet,this.total_recognized,this.recognized_without_mpo,});
 
     factory ApiInfo.fromJson(Map<String, dynamic> json) {
         return ApiInfo(
@@ -56,6 +65,10 @@ class ApiInfo {
             total_passed: json['total_passed'],
             total_students: json['total_students'],
             total_teacher: json['total_teacher'],
+            no_electricity: json['total_teacher'],
+            no_internet: json['total_teacher'],
+            total_recognized: json['total_teacher'],
+            recognized_without_mpo: json['total_teacher'],
         );
     }
 

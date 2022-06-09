@@ -1,14 +1,21 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:brac_arna/app/api_providers/api_manager.dart';
 import 'package:brac_arna/app/api_providers/api_url.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
+import 'package:brac_arna/app/models/SummaryPdf.dart';
 import 'package:brac_arna/app/models/user_model.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:super_easy_permissions/super_easy_permissions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../models/District.dart';
@@ -37,7 +44,7 @@ class InstituteSearchController extends GetxController {
   final instituteData = InstitutionDataModel().obs;
 
   final pdfUrl = ''.obs;
-  final victimDivision = '10'.obs;
+  final victimDivision = ''.obs;
   final victimDivisionName = ''.obs;
   final victimDistrict = ''.obs;
   final instituteUpazila = ''.obs;
@@ -46,14 +53,30 @@ class InstituteSearchController extends GetxController {
   final instituteID = ''.obs;
   final instituteTypeId = ''.obs;
 
+  final hintextZela = ''.obs;
+
+
+
   //List<District> districtList = <District>[].obs;
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
   var instituteSummary = InstituteSumaryResponse().obs;
+  var instituteSummaryPdf = SummaryPdf().obs;
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
     //addDataInList();
+
+    // requesting permission
+    bool result = await SuperEasyPermissions.askPermission(
+        Permissions.storage);
+
+    SuperEasyPermissions.isGranted(Permissions.camera).then((result) {
+      if (result) {
+       // filePermission.value = 'Granted !';
+      }
+    });
+
      getAldivDis();
      getAllInstituteType();
      //getInstitute();
@@ -249,14 +272,57 @@ class InstituteSearchController extends GetxController {
   }
 
   Future instituteSumary() async {
-    InformationRepository().instituteSumary().then((resp) {
+    InformationRepository().instituteSumary(victimDivision.value,victimDistrict.value,
+        instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
       //  allStudentData.value = resp;
       instituteSummary.value = resp;
       print(''+instituteSummary.value.api_info!.total_students.toString());
       placeLoaded.value = true;
 
-
+      instituteSumaryPdf();
     });
   }
+
+  Future instituteSumaryPdf() async {
+
+
+
+    InformationRepository().instituteSumaryPdf(victimDivision.value,victimDistrict.value,
+        instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) async {
+      //  allStudentData.value = resp;
+      //instituteSummaryPdf.value = resp;
+     // print(''+instituteSummaryPdf.value.api_info!.toString());
+      //placeLoaded.value = true;
+     // createFileFromString();
+
+      Directory tempDir = await getTemporaryDirectory();
+      String tempPath = tempDir.path;
+      File file = new File('summary.png');
+      await file.writeAsBytes(resp.bodyBytes);
+      //displayImage(file);
+    });
+  }
+
+  Future<String> createFileFromString() async {
+
+    // Convert to UriData
+    var  data = Uri.parse(instituteSummaryPdf.value.api_info!).data;
+
+// You can check if data is normal base64 - should return true
+    print(data!.isBase64);
+
+// Will returns your image as Uint8List
+    Uint8List myImage = data.contentAsBytes();
+
+    final encodedStr = instituteSummaryPdf.value.api_info;
+    //Uint8List bytes = base64.decode(encodedStr!);
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    File file = File(
+        "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".jpg");
+    await file.writeAsBytes(myImage);
+    print(file.path);
+    return file.path;
+  }
+
 
 }

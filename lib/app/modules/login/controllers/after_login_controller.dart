@@ -7,6 +7,7 @@ import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:super_easy_permissions/super_easy_permissions.dart';
 
 import '../../../services/auth_service.dart';
 
@@ -26,10 +27,21 @@ class after_login_controller extends GetxController {
 
   var isLocationEnable = false.obs;
   var isLocationPermission = false.obs;
-
+  var filePermission = 'Not Enabled'.obs;
   @override
-  void onInit() {
-    getLocationPermission();
+  Future<void> onInit() async {
+    //getLocationPermission();
+
+    // requesting permission
+    bool result = await SuperEasyPermissions.askPermission(
+        Permissions.storage);
+
+    SuperEasyPermissions.isGranted(Permissions.camera).then((result) {
+      if (result) {
+        filePermission.value = 'Granted !';
+      }
+    });
+
     //AuthRepository().allProd();
     super.onInit();
   }
@@ -72,9 +84,6 @@ class after_login_controller extends GetxController {
 
       LocationPermission permission;
       permission = await Geolocator.checkPermission();
-
-
-
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
