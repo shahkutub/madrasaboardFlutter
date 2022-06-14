@@ -7,10 +7,14 @@ import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:super_easy_permissions/super_easy_permissions.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../services/auth_service.dart';
+import 'dart:io';
 
+import 'package:pdf/widgets.dart' as pw;
 class after_login_controller extends GetxController {
   //TODO: Implement LoginController
 
@@ -36,16 +40,35 @@ class after_login_controller extends GetxController {
     bool result = await SuperEasyPermissions.askPermission(
         Permissions.storage);
 
-    SuperEasyPermissions.isGranted(Permissions.camera).then((result) {
+    SuperEasyPermissions.isGranted(Permissions.storage).then((result) {
       if (result) {
         filePermission.value = 'Granted !';
       }
     });
+    final pdf = pw.Document();
 
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) => pw.Center(
+          child: pw.Text('Hello World!'),
+        ),
+      ),
+    );
+
+    final file = File('example.pdf');
+    await file.writeAsBytes(await pdf.save());
+    openFile(file);
     //AuthRepository().allProd();
     super.onInit();
   }
 
+
+
+  static Future openFile(File file) async {
+    final url = file.path;
+
+    await OpenFile.open(url);
+  }
   @override
   void onReady() {
     // TODO: implement onReady

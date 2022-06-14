@@ -324,7 +324,6 @@ class general_search_view extends GetView<InstituteSearchController> {
                                     },
                                     children: [
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
@@ -341,24 +340,24 @@ class general_search_view extends GetView<InstituteSearchController> {
                                               ),
                                             )
                                           ]),
-                                      // TableRow(
-                                      //
-                                      //     children: [
-                                      //       Padding(
-                                      //         padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                      //         child:
-                                      //         Text('মোট স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
-                                      //           textAlign: TextAlign.center,
-                                      //         ),
-                                      //       ),
-                                      //       Padding(
-                                      //         padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                      //         child: Text("0",
-                                      //           textAlign: TextAlign.center,
-                                      //           style: TextStyle(fontSize: 15),
-                                      //         ),
-                                      //       )
-                                      //     ]),
+                                      TableRow(
+
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                              child: Text(controller.instituteSummary.value.api_info!.total_recognized.toString(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                            )
+                                          ]),
                                       TableRow(
 
                                           children: [
@@ -469,7 +468,6 @@ class general_search_view extends GetView<InstituteSearchController> {
 
 
                                       TableRow(
-
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),

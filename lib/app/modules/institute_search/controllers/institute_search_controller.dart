@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:brac_arna/app/FileProcess.dart';
 import 'package:brac_arna/app/api_providers/api_manager.dart';
 import 'package:brac_arna/app/api_providers/api_url.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
@@ -10,6 +11,7 @@ import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
 import 'package:brac_arna/app/models/SummaryPdf.dart';
 import 'package:brac_arna/app/models/user_model.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -71,7 +73,7 @@ class InstituteSearchController extends GetxController {
     bool result = await SuperEasyPermissions.askPermission(
         Permissions.storage);
 
-    SuperEasyPermissions.isGranted(Permissions.camera).then((result) {
+    SuperEasyPermissions.isGranted(Permissions.storage).then((result) {
       if (result) {
        // filePermission.value = 'Granted !';
       }
@@ -276,7 +278,9 @@ class InstituteSearchController extends GetxController {
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
       //  allStudentData.value = resp;
       instituteSummary.value = resp;
-      print(''+instituteSummary.value.api_info!.total_students.toString());
+
+      // print('nointernet'+instituteSummary.value.api_info!.no_internet.toString());
+      // print('noelectricity'+instituteSummary.value.api_info!.no_electricity.toString());
       placeLoaded.value = true;
 
       instituteSumaryPdf();
@@ -285,23 +289,47 @@ class InstituteSearchController extends GetxController {
 
   Future instituteSumaryPdf() async {
 
-
-
     InformationRepository().instituteSumaryPdf(victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) async {
-      //  allStudentData.value = resp;
-      //instituteSummaryPdf.value = resp;
-     // print(''+instituteSummaryPdf.value.api_info!.toString());
-      //placeLoaded.value = true;
-     // createFileFromString();
+      instituteSummaryPdf.value = resp;
+     print(''+instituteSummaryPdf.value.api_info!.toString());
+      placeLoaded.value = true;
 
-      Directory tempDir = await getTemporaryDirectory();
-      String tempPath = tempDir.path;
-      File file = new File('summary.png');
-      await file.writeAsBytes(resp.bodyBytes);
+      //FileProcess.createFile(instituteSummaryPdf.value.api_info!.toString());
+
+      String imagepath = " /data/user/img.jpg";
+//image path, you can get it with image_picker package
+
+
+      createFileFromString();
+
+      // Directory tempDir = await getTemporaryDirectory();
+      // String tempPath = tempDir.path;
+      // File file = new File('summary.png');
+      // await file.writeAsBytes(resp.bodyBytes);
       //displayImage(file);
     });
   }
+
+  Future<File> writeFile(Uint8List data, String name) async {
+    // storage permission ask
+    // var status = await Permission.storage.status;
+    // if (!status.isGranted) {
+    //   await Permission.storage.request();
+    // }
+    // the downloads folder path
+    Directory? tempDir = await DownloadsPathProvider.downloadsDirectory;
+    String tempPath = tempDir!.path;
+    var filePath = tempPath + '/$name';
+    //
+
+    // the data
+    var bytes = ByteData.view(data.buffer);
+    final buffer = bytes.buffer;
+    // save the data in the path
+    return File(filePath).writeAsBytes(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  }
+
 
   Future<String> createFileFromString() async {
 
@@ -314,15 +342,18 @@ class InstituteSearchController extends GetxController {
 // Will returns your image as Uint8List
     Uint8List myImage = data.contentAsBytes();
 
+    writeFile(myImage, "text.pdf");
     final encodedStr = instituteSummaryPdf.value.api_info;
     //Uint8List bytes = base64.decode(encodedStr!);
     String dir = (await getApplicationDocumentsDirectory()).path;
     File file = File(
-        "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".jpg");
+        "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".pdf");
     await file.writeAsBytes(myImage);
     print(file.path);
     return file.path;
   }
+
+
 
 
 }
