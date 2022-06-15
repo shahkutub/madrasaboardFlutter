@@ -1,9 +1,14 @@
+import 'package:brac_arna/app/models/District.dart';
 import 'package:brac_arna/app/modules/global_widgets/cliper.dart';
 import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
 import 'package:brac_arna/app/routes/app_pages.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:brac_arna/common/ui.dart';
+import 'package:dropdown_plus/dropdown_plus.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 import 'package:get/get.dart';
 
@@ -100,8 +105,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                         data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
                         iconData: Icons.phone_android,
                         onChanged: (input) {
-
-                          // controller.victimDivisionName.value =input;
+                          controller.districtName.value = '';
+                          controller.upzilaName.value = '';
+                           controller.victimDivisionName.value =input;
                           for (var item in controller.allDivDisTana.value.division_list!) {
                             if (item.name == input) {
                               controller.victimDivision.value = item.id.toString();
@@ -128,8 +134,14 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                             }
                           }
+
+
+                          //controller.thanaList.clear();
                           controller.instituteSumary();
                           controller.getInstitute();
+                          controller.hintextZela.value = 'জেলা নির্বাচন করুন';
+                          controller.hintextThana.value = 'উপজেলা নির্বাচন করুন';
+                          print(controller.hintextZela.value);
 
                           //print('district: ${controller.districtList[0].name}');
                         },
@@ -137,56 +149,73 @@ class general_search_view extends GetView<InstituteSearchController> {
                         isLast: false,
                       ),
                     ),
-                    Container(
-                      width: 180,
-                      child: dropdown_widget_small(
-                        labelText: "জেলা",
-                        hintText: "জেলা নির্বাচন করুন",
-                        initialValue: '',
-                        //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
-                        data: controller.districtList?.map((item) => item.name!).toList(),
 
 
-                        // data: controller.allDivDisTana!.value.district_list!
-                        //     .where((element) => element.division_id == controller.victimDivision.value)
-                        //     .map((item) => item.name!)
-                        //     .toList(),
-                        // .where((country) => controller.victimU.add(country.toString()))
-                        // .toList()
+// Obx(() =>
+                  //
+                  // ),
 
-                        iconData: Icons.phone_android,
-                        onChanged: (input) {
-                          for (var item in controller.allDivDisTana.value.district_list!) {
-                            if (item.name == input) {
-                              controller.victimDistrict.value = item.id!.toString();
-                              //controller.inspectionData.value.district_id = item.id;
-                            }
-                          }
-                          controller.instituteUpazila.value = "";
-                          controller.placeLoaded.value = false;
-                          controller.thanaList.clear();
-                          for (var itemd in controller.allDivDisTana.value.thana_list!) {
-                            //print('divisionId: ${controller.victimDivision.value}');
-                            if (itemd.district_id.toString() == controller.victimDistrict.value.toString().trim()) {
-                              print('districtIddd: ${controller.victimDivision.value}');
-                              //controller.victimDivision.value = item.id.toString();
-                              controller.thanaList.add(itemd);
 
-                            }
-                          }
+                 Obx(() {
+                   return Container(
+                     width: 180,
+                     child: dropdown_widget_small(
+                       labelText: "জেলা",
+                        hintText: controller.hintextZela.value,
+                        //initialValue: controller.hintextZela.value,
+                       // errorText: controller.hintextZela.value,
+                       //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
+                       data: controller.districtList?.map((item) => item.name!).toList(),
+
+
+                       // data: controller.allDivDisTana!.value.district_list!
+                       //     .where((element) => element.division_id == controller.victimDivision.value)
+                       //     .map((item) => item.name!)
+                       //     .toList(),
+                       // .where((country) => controller.victimU.add(country.toString()))
+                       // .toList()
+
+                       iconData: Icons.phone_android,
+                       onChanged: (input) {
+                         controller.districtName.value = input;
+                         controller.upzilaName.value = '';
+                         for (var item in controller.allDivDisTana.value.district_list!) {
+
+                           if (item.name == input) {
+                             controller.victimDistrict.value = item.id!.toString();
+                             //controller.inspectionData.value.district_id = item.id;
+                           }
+                         }
+                         controller.instituteUpazila.value = "";
+                         controller.placeLoaded.value = false;
+                         controller.thanaList.clear();
+                         for (var itemd in controller.allDivDisTana.value.thana_list!) {
+                           //print('divisionId: ${controller.victimDivision.value}');
+                           if (itemd.district_id.toString() == controller.victimDistrict.value.toString().trim()) {
+                             print('districtIddd: ${controller.victimDivision.value}');
+                             //controller.victimDivision.value = item.id.toString();
+                             controller.thanaList.add(itemd);
+
+                           }
+                         }
                          // controller.getInsPectionListDistrictd();
-                          // controller.getLocationData();
-                          controller.instituteSumary();
-                          controller.getInstitute();
-                          print('district: ${controller.victimDistrict.value}');
-                        },
-                        isFirst: true,
-                        isLast: false,
-                      ),
-                    ),
+                         // controller.getLocationData();
+                         controller.instituteSumary();
+                         controller.getInstitute();
+                         print('district: ${controller.victimDistrict.value}');
+                       },
+                       isFirst: true,
+                       isLast: false,
+                     ),
+                   );
+                 }),
+
+
 
                   ],
                 ),
+
+
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
@@ -196,11 +225,12 @@ class general_search_view extends GetView<InstituteSearchController> {
                     width: 180,
                     child: dropdown_widget_small(
                       labelText: "উপজেলা",
-                      hintText: "উপজেলা নির্বাচন করুন",
+                      hintText: controller.hintextThana.value,
                       initialValue: '',
                       iconData: Icons.phone_android,
                       data: controller.thanaList?.map((item) => item.name!).toList(),
                       onChanged: (input) {
+                        controller.upzilaName.value = input;
                         for (var item in controller.thanaList) {
                           if (item.name == input) {
                             controller.instituteUpazila.value = item.id!.toString();
@@ -306,15 +336,64 @@ class general_search_view extends GetView<InstituteSearchController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Text(
-                                    'অনুসন্ধান সারসংক্ষেপ',
-                                    style: TextStyle(fontSize: 20,color: Colors.teal),
-                                  ),
+                                Stack(
+                                  children: [
 
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'অনুসন্ধান সারসংক্ষেপ',
+                                        style: TextStyle(fontSize: 20,color: Colors.teal),
+                                      ),
+                                    ),
+
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          FlutterShare.shareFile(
+                                            title: 'TMED app institute search report pdf',
+                                            text: 'Report pdf',
+                                            //text: 'Please click on attach link to show & download pdf',
+                                            filePath: controller.searchPdfPath.value,
+                                            //fileType: '*/*'
+                                            //chooserTitle: 'Please click on attach link to show & download pdf'
+                                          );
+                                        },
+                                        child: Container(
+                                            width: 100,
+                                            padding: EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                                color: Colors.green
+                                            ),
+                                            child: Text('Share PDF',style: TextStyle(color: Colors.white),)
+                                        ),
+                                      )
+
+                                    ),
+
+
+
+                                  ],
                                 ),
 
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('বিভাগ: '+controller.victimDivisionName.value),
+                                    Text('  জেলা: '+controller.districtName.value),
+                                    Text('  উপজেলা: '+controller.upzilaName.value),
+                                  ],
+                                ),
+
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('  উপজেলা: '+controller.upzilaName.value),
+                                  ],
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Table(

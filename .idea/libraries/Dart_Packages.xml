@@ -247,6 +247,13 @@
             </list>
           </value>
         </entry>
+        <entry key="dropdown_plus">
+          <value>
+            <list>
+              <option value="G:/flutter/.pub-cache/hosted/pub.dartlang.org/dropdown_plus-0.0.9/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="dropdown_search">
           <value>
             <list>
@@ -1153,6 +1160,7 @@
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/date_format-2.0.6/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/dbus-0.7.3/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/downloads_path_provider_28-0.1.2/lib" />
+      <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/dropdown_plus-0.0.9/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/dropdown_search-2.0.1/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.2.1/lib" />

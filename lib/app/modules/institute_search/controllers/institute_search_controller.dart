@@ -55,7 +55,8 @@ class InstituteSearchController extends GetxController {
   final instituteID = ''.obs;
   final instituteTypeId = ''.obs;
 
-  final hintextZela = ''.obs;
+  final hintextZela = 'জেলা নির্বাচন করুন'.obs;
+  final hintextThana = 'উপজেলা নির্বাচন করুন'.obs;
 
 
 
@@ -64,6 +65,11 @@ class InstituteSearchController extends GetxController {
   List<Thana> thanaList = <Thana>[].obs;
   var instituteSummary = InstituteSumaryResponse().obs;
   var instituteSummaryPdf = SummaryPdf().obs;
+  var searchPdfPath = ''.obs;
+
+  var districtName = ''.obs;
+
+  var upzilaName = ''.obs;
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
@@ -321,6 +327,9 @@ class InstituteSearchController extends GetxController {
     Directory? tempDir = await DownloadsPathProvider.downloadsDirectory;
     String tempPath = tempDir!.path;
     var filePath = tempPath + '/$name';
+
+    searchPdfPath.value = filePath;
+    print('path: '+searchPdfPath.value);
     //
 
     // the data
@@ -342,7 +351,7 @@ class InstituteSearchController extends GetxController {
 // Will returns your image as Uint8List
     Uint8List myImage = data.contentAsBytes();
 
-    writeFile(myImage, "text.pdf");
+    writeFile(myImage, "tmed.pdf");
     final encodedStr = instituteSummaryPdf.value.api_info;
     //Uint8List bytes = base64.decode(encodedStr!);
     String dir = (await getApplicationDocumentsDirectory()).path;

@@ -76,6 +76,7 @@ class dropdown_widget_small extends StatelessWidget {
           ),
 
           DropdownSearch<String>(
+
             mode: Mode.BOTTOM_SHEET,
             showSelectedItems: true,
             dropdownSearchBaseStyle: TextStyle(
@@ -86,14 +87,19 @@ class dropdown_widget_small extends StatelessWidget {
             selectedItem: hintText,
             showSearchBox: true,
             dropdownSearchDecoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                )),
+              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              labelStyle: TextStyle(
+                color: Colors.black,
+              ),
+              hintText: hintText,
+
+            ),
           ),
+
+
         ],
       ),
     );
