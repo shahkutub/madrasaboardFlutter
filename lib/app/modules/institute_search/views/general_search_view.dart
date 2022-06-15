@@ -383,7 +383,6 @@ class general_search_view extends GetView<InstituteSearchController> {
                                   children: [
                                     Text('বিভাগ: '+controller.victimDivisionName.value),
                                     Text('  জেলা: '+controller.districtName.value),
-                                    Text('  উপজেলা: '+controller.upzilaName.value),
                                   ],
                                 ),
 
