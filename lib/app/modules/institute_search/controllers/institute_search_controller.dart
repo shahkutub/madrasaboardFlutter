@@ -88,7 +88,7 @@ class InstituteSearchController extends GetxController {
      getAldivDis();
      getAllInstituteType();
      //getInstitute();
-
+    //instituteSumaryPdf();
     instituteSumary();
 
     //getInsPectionListAll();
@@ -303,8 +303,7 @@ class InstituteSearchController extends GetxController {
 
       //FileProcess.createFile(instituteSummaryPdf.value.api_info!.toString());
 
-      String imagepath = " /data/user/img.jpg";
-//image path, you can get it with image_picker package
+
 
 
       createFileFromString();
@@ -351,7 +350,7 @@ class InstituteSearchController extends GetxController {
 // Will returns your image as Uint8List
     Uint8List myImage = data.contentAsBytes();
 
-    writeFile(myImage, "tmed.pdf");
+    writeFile(myImage, "institution_summary.pdf");
     final encodedStr = instituteSummaryPdf.value.api_info;
     //Uint8List bytes = base64.decode(encodedStr!);
     String dir = (await getApplicationDocumentsDirectory()).path;

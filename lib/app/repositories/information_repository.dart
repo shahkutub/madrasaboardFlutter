@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../../common/ui.dart';
 import '../models/AllStudentRessponse.dart';
 import '../models/Inspection_model.dart';
 import '../models/InstituteTypeModel.dart';
@@ -250,6 +251,8 @@ class InformationRepository {
       print('responseAllDivDis: ${response}');
 
       if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
         Get.toNamed(Routes.LOGIN);
       }
 
@@ -303,6 +306,11 @@ class InformationRepository {
       response = await _manager.get(ApiClient.instituteTypeUrl,headers);
       print('respInstiTyp: ${response}');
 
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
       return InstituteTypeModel.fromJson(response);
       // return all_division_dis_thanan_model().fromJson(response);
       //  if (response['IsLoggedIn'] == true) {
@@ -382,6 +390,12 @@ class InformationRepository {
       response = await _manager.postAPICallbodyheader(ApiClient.institutesummary,param,headers);
       print('response: ${response}');
 
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
+
       if (response != null) {
        // instituteSummary.value = response;
        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
@@ -412,7 +426,11 @@ class InformationRepository {
     try {
       response = await _manager.postAPICallbodyheader(ApiClient.institutesummaryPdf,param,headers);
       print('response: ${response}');
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
 
+        Get.toNamed(Routes.LOGIN);
+      }
       if (response != null) {
         // instituteSummary.value = response;
         // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');

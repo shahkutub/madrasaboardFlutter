@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:brac_arna/app/models/District.dart';
 import 'package:brac_arna/app/modules/global_widgets/cliper.dart';
 import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../global_widgets/dropdown_widget.dart';
 import '../../global_widgets/dropdown_widget_small.dart';
@@ -656,8 +659,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                                     ],
                                     border: TableBorder.all(width: 1, color: Colors.black),
                                   ),
-                                )
-
+                                ),
+                    // SfPdfViewer.file(
+                    //   File(controller.searchPdfPath.value),
+                    // ),
                               ],
                             ),
                           ),
@@ -666,7 +671,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                     ),
 
 
-
+                    // child: SfPdfViewer.file(
+                    //   File('storage/emulated/0/Download/gis_succinctly.pdf'),
+                    // ),
 
 
                    // primary: true,
