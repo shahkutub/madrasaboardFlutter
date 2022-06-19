@@ -431,13 +431,20 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.total_recognized.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+
+                                            GestureDetector(
+                                              onTap: (){
+                                                displayDialog(context,'স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠান');
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.total_recognized.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
                                             )
+
                                           ]),
                                       TableRow(
 
@@ -847,6 +854,127 @@ class general_search_view extends GetView<InstituteSearchController> {
 
     );
   }
+
+  displayDialog(BuildContext context,String title) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      //transitionDuration: Duration(milliseconds: 2000),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleTransition(
+            scale: animation,
+            child: child,
+          ),
+        );
+      },
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return SafeArea(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(5),
+            color: Colors.white,
+            child: Column(
+                children:<Widget> [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child:ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("DISMISS",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ),
+
+                  Align(
+                      alignment: Alignment.center,
+                      child:Column(
+                        children: [
+                          Container(
+                            height: 40.0,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                      padding: EdgeInsets.all(10.0),
+                                      width: Get.width,
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(color: Colors.black)
+                                      // ),
+                                      child: Text(
+                                        title,
+                                        style: TextStyle(fontSize: 20,color: Colors.green),
+                                      )),
+                                ),
+
+                                // Container(
+                                //     padding: EdgeInsets.all(4.0),
+                                //     width: 100.0,
+                                //     child: Text(
+                                //       "",
+                                //       style: TextStyle(fontSize: 18),
+                                //     )),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: 100,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Row(
+                            children: [
+
+                              Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.all(10.0),
+                                  //width: MediaQuery.of(context).size.width -20,
+                                    child: Text(
+                                      "Institution Name Institution Name Institution NameInstitution Namev Institution NameInstitution Name",
+                                      style: TextStyle(fontSize: 15,color: Colors.black),
+                                    )),
+                              ),
+                              Divider(
+                                height: 1,
+                                color: Colors.grey,
+                              )
+
+
+                              // Container(
+                              //     padding: EdgeInsets.all(4.0),
+                              //     width: 200.0,
+                              //     child: Text(
+                              //       "Institution Name",
+                              //       style: TextStyle(fontSize: 18),
+                              //     )),
+                              // Container(
+                              //     padding: EdgeInsets.all(4.0),
+                              //     width: 100.0,
+                              //     child: Text(
+                              //       "",
+                              //       style: TextStyle(fontSize: 18),
+                              //     )),
+                            ],
+                          );
+                        }
+                    ),
+                  ),
+
+                ],
+
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 
 }
 
