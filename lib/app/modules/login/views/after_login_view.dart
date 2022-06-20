@@ -224,7 +224,7 @@ class AfterLoginView extends GetView<after_login_controller> {
                                         ])),
                                     child: Center(
                                       child: Text(
-                                        "শিক্ষা প্রতিষ্ঠান \nপরিদর্শন",
+                                        "পরিদর্শন",
                                         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15),
                                       ),
                                     ),
@@ -264,7 +264,7 @@ class AfterLoginView extends GetView<after_login_controller> {
                                           ])),
                                       child: Center(
                                         child: Text(
-                                          "শিক্ষা প্রতিষ্ঠান \nপরিদর্শন তালিকা",
+                                          "পরিদর্শন তালিকা",
                                           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15),
                                         ),
                                       ),

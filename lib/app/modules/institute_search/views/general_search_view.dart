@@ -1,21 +1,12 @@
 import 'dart:io';
-
-import 'package:brac_arna/app/models/District.dart';
-import 'package:brac_arna/app/modules/global_widgets/cliper.dart';
-import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
-import 'package:brac_arna/app/routes/app_pages.dart';
-import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:brac_arna/common/ui.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-import '../../global_widgets/dropdown_widget.dart';
 import '../../global_widgets/dropdown_widget_small.dart';
 import '../controllers/institute_search_controller.dart';
 
@@ -37,65 +28,15 @@ class general_search_view extends GetView<InstituteSearchController> {
         ),
         body: Obx(() {
           return Column(
-            // mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
-            // crossAxisAlignment: CrossAxisAlignment.center,//Center Column contents horizontally,
 
             children: [
               SizedBox(
                 height: 10,
               ),
-            // Container(
-            // width: 360,
-            // child:dropdown_widget_small(
-            //     labelText: "অনুসন্ধানের বিষয়",
-            //     hintText: "অনুসন্ধানের বিষয় নির্বাচন করুন",
-            //     initialValue: '',
-            //
-            //     //data: controller.places.value.area!.map((item) => item.divisionName!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
-            //     data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
-            //     iconData: Icons.phone_android,
-            //     onChanged: (input) {
-            //
-            //       // controller.victimDivisionName.value =input;
-            //       for (var item in controller.allDivDisTana.value.division_list!) {
-            //         if (item.name == input) {
-            //           controller.victimDivision.value = item.id.toString();
-            //           //controller.districtList.add(item);
-            //         }
-            //       }
-            //       controller.victimDistrict.value = "";
-            //       controller.instituteUpazila.value = "";
-            //
-            //       // controller.fetchJoke();
-            //       controller.placeLoaded.value = false;
-            //       //controller.getInsPectionListDivision();
-            //
-            //       //controller.getAldivDis();
-            //       print('divisionId: ${controller.victimDivision.value}');
-            //       //print('district: ${controller.districtList[0].name}');
-            //       controller.districtList.clear();
-            //       for (var itemd in controller.allDivDisTana.value.district_list!) {
-            //         //print('divisionId: ${controller.victimDivision.value}');
-            //         if (itemd.division_id.toString() == controller.victimDivision.value.toString().trim()) {
-            //           print('divisionIddd: ${controller.victimDivision.value}');
-            //           //controller.victimDivision.value = item.id.toString();
-            //           controller.districtList.add(itemd);
-            //
-            //         }
-            //       }
-            //       controller.getInstitute();
-            //
-            //       //print('district: ${controller.districtList[0].name}');
-            //     },
-            //     isFirst: true,
-            //     isLast: false,
-            //   ),
-            // ),
 
               Row(
                   mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
                   crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
-
                 children: [
                     Container(
                       width: 180,
@@ -154,11 +95,6 @@ class general_search_view extends GetView<InstituteSearchController> {
                     ),
 
 
-// Obx(() =>
-                  //
-                  // ),
-
-
                  Obx(() {
                    return Container(
                      width: 180,
@@ -170,13 +106,6 @@ class general_search_view extends GetView<InstituteSearchController> {
                        //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
                        data: controller.districtList?.map((item) => item.name!).toList(),
 
-
-                       // data: controller.allDivDisTana!.value.district_list!
-                       //     .where((element) => element.division_id == controller.victimDivision.value)
-                       //     .map((item) => item.name!)
-                       //     .toList(),
-                       // .where((country) => controller.victimU.add(country.toString()))
-                       // .toList()
 
                        iconData: Icons.phone_android,
                        onChanged: (input) {
@@ -413,13 +342,23 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.total_mpo.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                            )
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.instituteListSumaryBased('no_electricity');
+                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
+                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.total_mpo.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
+                                            ),
+
                                           ]),
                                       TableRow(
 
@@ -434,7 +373,11 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                                             GestureDetector(
                                               onTap: (){
-                                                displayDialog(context,'স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠান');
+                                                controller.instituteListSumaryBased('no_electricity');
+                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
+                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                }
                                               },
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
@@ -456,13 +399,23 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.total_multimedia_class_rooms.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.instituteListSumaryBased('no_electricity');
+                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
+                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.total_multimedia_class_rooms.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
                                             )
+
                                           ]),
                                       TableRow(
 
@@ -474,13 +427,23 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.total_digital_lab.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.instituteListSumaryBased('no_electricity');
+                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
+                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.total_digital_lab.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
                                             )
+
                                           ]),
                                       TableRow(
                                           children: [
@@ -491,13 +454,23 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.total_internet_facility.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.instituteListSumaryBased('no_electricity');
+                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
+                                                  displayDialog(context, 'ইন্টারনেট আছে প্রতিষ্ঠান');
+                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                }
+                                              },
+                                              child:Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.total_internet_facility.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
                                             )
+
                                           ]),
 
                                       TableRow(
@@ -859,16 +832,22 @@ class general_search_view extends GetView<InstituteSearchController> {
     showGeneralDialog(
       context: context,
       barrierDismissible: false,
+
+      barrierLabel: MaterialLocalizations.of(context)
+          .modalBarrierDismissLabel,
+      barrierColor: Colors.white.withOpacity(0),
+      //transitionDuration: const Duration(milliseconds: 200),
+
       //transitionDuration: Duration(milliseconds: 2000),
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return FadeTransition(
-          opacity: animation,
-          child: ScaleTransition(
-            scale: animation,
-            child: child,
-          ),
-        );
-      },
+      // transitionBuilder: (context, animation, secondaryAnimation, child) {
+      //   return FadeTransition(
+      //     opacity: animation,
+      //     child: ScaleTransition(
+      //       scale: animation,
+      //       child: child,
+      //     ),
+      //   );
+      // },
       pageBuilder: (context, animation, secondaryAnimation) {
         return SafeArea(
           child: Container(
@@ -925,24 +904,139 @@ class general_search_view extends GetView<InstituteSearchController> {
                       )
                   ),
                   Expanded(
-                    child: ListView.builder(
-                        itemCount: 100,
+                    child: Obx(() => ListView.builder(
+                        itemCount: controller.instituteListSummaryBased.value.api_info!.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Row(
+                          return Column(
                             children: [
 
-                              Expanded(
-                                child: Container(
-                                  padding: EdgeInsets.all(10.0),
+                              // Expanded(
+                              //   child:
+                              Container(
+                                  margin: EdgeInsets.all(10.0),
                                   //width: MediaQuery.of(context).size.width -20,
-                                    child: Text(
-                                      "Institution Name Institution Name Institution NameInstitution Namev Institution NameInstitution Name",
-                                      style: TextStyle(fontSize: 15,color: Colors.black),
-                                    )),
-                              ),
+                                  child: Text(
+                                    controller.instituteListSummaryBased.value.api_info![index].name.toString(),
+                                    style: TextStyle(fontSize: 12,color: Colors.black),
+                                    textAlign: TextAlign.left,
+                                  )),
+                              //),
                               Divider(
-                                height: 1,
-                                color: Colors.grey,
+                                thickness: 1,
+                                color: Colors.red,
+                              )
+
+
+                              // Container(
+                              //     padding: EdgeInsets.all(4.0),
+                              //     width: 200.0,
+                              //     child: Text(
+                              //       "Institution Name",
+                              //       style: TextStyle(fontSize: 18),
+                              //     )),
+                              // Container(
+                              //     padding: EdgeInsets.all(4.0),
+                              //     width: 100.0,
+                              //     child: Text(
+                              //       "",
+                              //       style: TextStyle(fontSize: 18),
+                              //     )),
+                            ],
+                          );
+                        }
+                    ),)
+
+                  ),
+
+                ],
+
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  showMaterialDialog(BuildContext context,String title) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+
+           // title: Text('Material Dialog'),
+            child: Container(
+              width: Get.width,
+              height: Get.height,
+              padding: EdgeInsets.all(5),
+              color: Colors.white,
+              child: Column(
+                children:<Widget> [
+                  Align(
+                      alignment: Alignment.topRight,
+                      child:ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("DISMISS",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                  ),
+
+                  Align(
+                      alignment: Alignment.center,
+                      child:Column(
+                        children: [
+                          Container(
+                            height: 40.0,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                      padding: EdgeInsets.all(10.0),
+                                      width: Get.width,
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(color: Colors.black)
+                                      // ),
+                                      child: Text(
+                                        title,
+                                        style: TextStyle(fontSize: 20,color: Colors.green),
+                                      )),
+                                ),
+
+                                // Container(
+                                //     padding: EdgeInsets.all(4.0),
+                                //     width: 100.0,
+                                //     child: Text(
+                                //       "",
+                                //       style: TextStyle(fontSize: 18),
+                                //     )),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: controller.instituteListSummaryBased.value.api_info!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+
+                              // Expanded(
+                              //   child:
+                                Container(
+                                    padding: EdgeInsets.all(10.0),
+                                    //width: MediaQuery.of(context).size.width -20,
+                                    child: Text(
+                                      controller.instituteListSummaryBased.value.api_info![index].name.toString(),
+                                      style: TextStyle(fontSize: 12,color: Colors.black),
+                                    )),
+                              //),
+                              Divider(
+                                thickness: 1,
+                                color: Colors.red,
                               )
 
 
@@ -968,13 +1062,25 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                 ],
 
+              ),
             ),
-          ),
-        );
-      },
-    );
+            // actions: <Widget>[
+            //   TextButton(
+            //       onPressed: () {
+            //        // _dismissDialog();
+            //       },
+            //       child: Text('Close')),
+            //   TextButton(
+            //     onPressed: () {
+            //       print('HelloWorld!');
+            //       //_dismissDialog();
+            //     },
+            //     child: Text('HelloWorld!'),
+            //   )
+            // ],
+          );
+        });
   }
-
 
 }
 

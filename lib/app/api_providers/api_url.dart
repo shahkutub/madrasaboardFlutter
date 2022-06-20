@@ -6,6 +6,7 @@ class ApiClient {
 
   static String login = '${baseUrl}api/login';
   static String institutesummary = '${baseUrl}api/institute-summary';
+  static String instituteListsummaryBased = '${baseUrl}api/institute-summary-details/html/';
   static String institutesummaryPdf = '${baseUrl}api/institute-summary/pdf';
   static String allproducts_v3 = 'https://medicineadmin.binaryhub360.com/public/api/all-products_v3';
   static String alllocation = '${baseUrl}api/area_list';

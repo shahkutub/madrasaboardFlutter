@@ -6,6 +6,7 @@ import 'package:brac_arna/app/database_helper/offline_database_helper.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/InstitutionDataModel.dart';
+import 'package:brac_arna/app/models/InstitutionListResponse.dart';
 import 'package:brac_arna/app/models/PostResponse.dart';
 import 'package:brac_arna/app/models/SummaryPdf.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
@@ -408,6 +409,45 @@ class InformationRepository {
       return 'Unauthorised';
     }
   }
+
+  Future instituteListSumaryBased(String url_last,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+
+    Map param = {
+      'division_id': division_id,
+      'district_id': district_id,
+      'thana_id': thana_id,
+      'institute_type': institute_type_id,
+      'institute_id': institute_id,
+    };
+
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.postAPICallbodyheader(ApiClient.instituteListsummaryBased+url_last.toString(),param,headers);
+      print('response: ${response}');
+
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
+
+      if (response != null) {
+        // instituteSummary.value = response;
+        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
+        return InstitutionListResponse.fromJson(response);
+      } else {
+        return 'Unauthorised';
+      }
+    } catch (e) {
+      print('error:$e');
+      return 'Unauthorised';
+    }
+  }
+
+
 
   Future instituteSumaryPdf(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
 

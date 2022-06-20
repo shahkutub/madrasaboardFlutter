@@ -7,6 +7,7 @@ import 'package:brac_arna/app/api_providers/api_manager.dart';
 import 'package:brac_arna/app/api_providers/api_url.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
+import 'package:brac_arna/app/models/InstitutionListResponse.dart';
 import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
 import 'package:brac_arna/app/models/SummaryPdf.dart';
 import 'package:brac_arna/app/models/user_model.dart';
@@ -46,6 +47,7 @@ class InstituteSearchController extends GetxController {
   final instituteData = InstitutionDataModel().obs;
 
   final pdfUrl = ''.obs;
+  //var url_last = ''.obs;
   final victimDivision = ''.obs;
   final victimDivisionName = ''.obs;
   final victimDistrict = ''.obs;
@@ -64,6 +66,7 @@ class InstituteSearchController extends GetxController {
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
   var instituteSummary = InstituteSumaryResponse().obs;
+  var instituteListSummaryBased = InstitutionListResponse().obs;
   var instituteSummaryPdf = SummaryPdf().obs;
   var searchPdfPath = ''.obs;
 
@@ -290,6 +293,21 @@ class InstituteSearchController extends GetxController {
       placeLoaded.value = true;
 
       instituteSumaryPdf();
+    });
+  }
+
+  Future instituteListSumaryBased(String url_last) async {
+    InformationRepository().instituteListSumaryBased(url_last,victimDivision.value,victimDistrict.value,
+        instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
+      //  allStudentData.value = resp;
+      instituteListSummaryBased.value = resp;
+      print('nointernet'+instituteListSummaryBased.value.api_info![0].name.toString());
+
+      // print('nointernet'+instituteSummary.value.api_info!.no_internet.toString());
+      // print('noelectricity'+instituteSummary.value.api_info!.no_electricity.toString());
+      //placeLoaded.value = true;
+
+      //instituteSumaryPdf();
     });
   }
 
