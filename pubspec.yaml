@@ -44,6 +44,7 @@ dependencies:
   pdf: ^3.8.1
   downloads_path_provider_28: ^0.1.2
   dropdown_plus: ^0.0.9
+  basic_utils: ^4.2.2
 
 
 dev_dependencies:

@@ -379,7 +379,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             GestureDetector(
                                               onTap: (){
                                                 controller.placeLoaded.value = false;
-                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
+                                                controller.instituteListTitle.value = 'স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
                                                 Get.toNamed(Routes.INSTITUTE_LIST);
                                               },
@@ -406,7 +406,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             GestureDetector(
                                               onTap: (){
                                                 controller.placeLoaded.value = false;
-                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
+                                                controller.instituteListTitle.value = 'মাল্টিমিডিয়া ক্লাসরুম আছে প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
                                                 Get.toNamed(Routes.INSTITUTE_LIST);
                                               },
@@ -433,7 +433,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             GestureDetector(
                                               onTap: (){
                                                 controller.placeLoaded.value = false;
-                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
+                                                controller.instituteListTitle.value = 'শেখ রাসেল ডিজিটাল ল্যাব আছে প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
                                                 Get.toNamed(Routes.INSTITUTE_LIST);
                                               },

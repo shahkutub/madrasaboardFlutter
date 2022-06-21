@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:brac_arna/app/modules/global_widgets/cliper.dart';
 import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
 import 'package:brac_arna/app/routes/app_pages.dart';
@@ -63,7 +64,7 @@ class InstituteListView extends GetView<InstituteSearchController> {
                                     ),
 
                                     Expanded(
-                                       child: Text(controller.instituteListSummaryBased.value.api_info![index].name.toString(),
+                                       child: Text(StringUtils.capitalize(controller.instituteListSummaryBased.value.api_info![index].name.toString()),
                                           style: TextStyle(fontSize: 15,color: Colors.indigo,),
                                         )
                                     ),
