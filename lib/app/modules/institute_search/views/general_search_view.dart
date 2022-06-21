@@ -7,6 +7,7 @@ import 'package:flutter_share/flutter_share.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../global_widgets/dropdown_widget_small.dart';
 import '../controllers/institute_search_controller.dart';
 
@@ -344,11 +345,15 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             ),
                                             GestureDetector(
                                               onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
-                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
-                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                }
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
+
+                                                // if(controller.instituteListSummaryBased.value.api_info!.length>0){
+                                                //   //displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                //   //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
+                                                // }
                                               },
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
@@ -373,11 +378,10 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                                             GestureDetector(
                                               onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
-                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
-                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                }
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
                                               },
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
@@ -401,11 +405,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             ),
                                             GestureDetector(
                                               onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
-                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
-                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                }
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
                                               },
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
@@ -429,11 +432,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             ),
                                             GestureDetector(
                                               onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
                                                 controller.instituteListSumaryBased('no_electricity');
-                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
-                                                  displayDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                }
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
                                               },
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
@@ -456,11 +458,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             ),
                                             GestureDetector(
                                               onTap: (){
-                                                controller.instituteListSumaryBased('no_electricity');
-                                                if(controller.instituteListSummaryBased.value.api_info!.length>0){
-                                                  displayDialog(context, 'ইন্টারনেট আছে প্রতিষ্ঠান');
-                                                  //showMaterialDialog(context, 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান');
-                                                }
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'ইন্টারনেট আছে শিক্ষা প্রতিষ্ঠান';
+                                                controller.instituteListSumaryBased('yes_internet');
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
                                               },
                                               child:Padding(
                                                 padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
@@ -482,13 +483,22 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.no_internet.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'ইন্টারনেট নাই প্রতিষ্ঠান';
+                                                controller.instituteListSumaryBased('no_internet');
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.no_internet.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
                                             )
+
                                           ]),
 
                                       TableRow(
@@ -500,13 +510,24 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.total_electricity_facility.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'ইলেক্ট্রিসিটি আছে প্রতিষ্ঠান';
+                                                controller.instituteListSumaryBased('yes_electricity');
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.total_electricity_facility.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
+
                                             )
+
                                           ]),
 
                                       TableRow(
@@ -518,13 +539,22 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                              child: Text(controller.instituteSummary.value.api_info!.no_electricity.toString(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 15),
-                                              ),
+                                            GestureDetector(
+                                              onTap: (){
+                                                controller.placeLoaded.value = false;
+                                                controller.instituteListTitle.value = 'ইলেক্ট্রিসিটি নাই প্রতিষ্ঠান';
+                                                controller.instituteListSumaryBased('no_electricity');
+                                                Get.toNamed(Routes.INSTITUTE_LIST);
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                child: Text(controller.instituteSummary.value.api_info!.no_electricity.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                              )
                                             )
+
                                           ]),
 
 
@@ -949,7 +979,6 @@ class general_search_view extends GetView<InstituteSearchController> {
                   ),
 
                 ],
-
             ),
           ),
         );
@@ -1019,6 +1048,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                   ),
                   Expanded(
                     child: ListView.builder(
+                      shrinkWrap: true,
                         itemCount: controller.instituteListSummaryBased.value.api_info!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Column(

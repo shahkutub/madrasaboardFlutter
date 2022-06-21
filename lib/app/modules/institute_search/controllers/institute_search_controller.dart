@@ -71,6 +71,7 @@ class InstituteSearchController extends GetxController {
   var searchPdfPath = ''.obs;
 
   var districtName = ''.obs;
+  var instituteListTitle = ''.obs;
 
   var upzilaName = ''.obs;
   @override
@@ -302,7 +303,7 @@ class InstituteSearchController extends GetxController {
       //  allStudentData.value = resp;
       instituteListSummaryBased.value = resp;
       print('nointernet'+instituteListSummaryBased.value.api_info![0].name.toString());
-
+      placeLoaded.value = true;
       // print('nointernet'+instituteSummary.value.api_info!.no_internet.toString());
       // print('noelectricity'+instituteSummary.value.api_info!.no_electricity.toString());
       //placeLoaded.value = true;

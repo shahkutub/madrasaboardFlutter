@@ -1,3 +1,4 @@
+import 'package:brac_arna/app/modules/institute_search/views/institute_list_view.dart';
 import 'package:brac_arna/app/modules/login/views/after_login_view.dart';
 import 'package:brac_arna/app/modules/provided_data_list/views/inspection_report_pdf_view.dart';
 import 'package:brac_arna/app/modules/provided_data_list/views/single_inspection_form_view.dart';
@@ -17,6 +18,7 @@ import 'package:brac_arna/app/modules/splashscreen/views/splashscreen_view.dart'
 import '../modules/geo_location/bindings/geo_location_binding.dart';
 import '../modules/geo_location/views/geo_location_view.dart';
 import '../modules/institute_search/bindings/general_search_binding.dart';
+import '../modules/institute_search/bindings/institute_list_binding.dart';
 import '../modules/institute_search/bindings/institute_search_binding.dart';
 import '../modules/institute_search/views/general_search_view.dart';
 import '../modules/institute_search/views/institute_search_list_view.dart';
@@ -93,6 +95,12 @@ class AppPages {
       name: _Paths.GEO_LOCATION,
       page: () => GeoLocationView(),
       binding: GeoLocationBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.INSTITUTE_LIST,
+      page: () => InstituteListView(),
+      binding: Institute_list_binding(),
     ),
 
   ];
