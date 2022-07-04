@@ -3,9 +3,12 @@ import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
 import 'package:brac_arna/app/routes/app_pages.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:brac_arna/common/ui.dart';
+import 'package:date_time_picker/date_time_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../global_widgets/dropdown_widget.dart';
 import '../../global_widgets/dropdown_widget_small.dart';
@@ -199,39 +202,124 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                 ],
               ),
 
-              dropdown_widget_small(
-                labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
-                hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
-                initialValue: '',
-                iconData: Icons.phone_android,
-                data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
-                onChanged: (input) {
+              Container(
+                margin: EdgeInsets.only(top: 0,left: 20,right: 20),
+                child: dropdown_widget_small(
+                  labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
+                  hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
+                  initialValue: '',
+                  iconData: Icons.phone_android,
+                  data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
+                  onChanged: (input) {
 
-                  for (var item in controller.instituteData.value.institute_list!) {
-                    if (item.name == input) {
-                      controller.instituteID.value = item.id!.toString();
-                      //controller.inspectionData.value.institute_id = item.id;
+                    for (var item in controller.instituteData.value.institute_list!) {
+                      if (item.name == input) {
+                        controller.instituteID.value = item.id!.toString();
+                        //controller.inspectionData.value.institute_id = item.id;
+                      }
                     }
-                  }
 
-                  controller.placeLoaded.value = false;
-                  controller.getInsPectionListInstituteId();
+                    controller.placeLoaded.value = false;
+                    controller.getInsPectionListInstituteId();
 
-                  // for (var item in controller.allStudentData.value.students!) {
-                  //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-                  //     controller.totalStudent.value = item.total! as int;
-                  //     controller.totalFemaleStudent.value = item.total_girls! as int;
-                  //   }
-                  // }
+                    // for (var item in controller.allStudentData.value.students!) {
+                    //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
+                    //     controller.totalStudent.value = item.total! as int;
+                    //     controller.totalFemaleStudent.value = item.total_girls! as int;
+                    //   }
+                    // }
 
-                  //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
+                    //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
 
-                  // controller.getLocationData();
-                  // print('union_ id: ${controller.victimUnion.value}');
-                },
-                isFirst: true,
-                isLast: false,
+                    // controller.getLocationData();
+                    // print('union_ id: ${controller.victimUnion.value}');
+                  },
+                  isFirst: true,
+                  isLast: false,
+                ),
               ),
+
+
+              // Container(
+              //   margin: EdgeInsets.only(top: 10,left: 20,right: 20),
+              //   child: Row(
+              //     children: [
+              //       Container(width: 180,child: Text('From date')),
+              //       SizedBox(width: 10,),
+              //       Container(width: 180,child: Text('To date'))
+              //     ],
+              //   ),
+              // ),
+
+              Container(
+                margin: EdgeInsets.only(top:10,left: 20,right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Column(
+                      children: [
+                        Text("তারিখ হইতে"),
+                        GestureDetector(
+                            onTap: (){
+                              controller.chooseDate('from');
+                            },
+                            child:Container(
+                              width: Get.width/2.6,
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1.0
+                                ),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0) //                 <--- border radius here
+                                ),
+
+                              ),
+                              child: Text(controller.fromDate.value,style: TextStyle(fontSize: 15),
+
+                              ),
+                            )
+
+                        ),
+                      ],
+                    ),
+
+                    flex: 1,),
+
+
+                    Flexible(child: Column(
+                      children: [
+                        Text("তারিখ পর্যন্ত"),
+                        GestureDetector(
+                            onTap: (){
+                              controller.chooseDate('to');
+                            },
+                            child:Container(
+                              width: Get.width/2.6,
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1.0
+                                ),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0) //                 <--- border radius here
+                                ),
+
+                              ),
+                              child: Text(controller.toDate.value,style: TextStyle(fontSize: 15),),
+                            )
+
+                        ),
+                      ],
+                    ),flex: 1,)
+
+                  ],
+                ),
+              ),
+
 
               SizedBox(
                 height: 20.0,

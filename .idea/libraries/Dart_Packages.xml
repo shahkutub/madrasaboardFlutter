@@ -240,6 +240,13 @@
             </list>
           </value>
         </entry>
+        <entry key="date_time_picker">
+          <value>
+            <list>
+              <option value="G:/flutter/.pub-cache/hosted/pub.dartlang.org/date_time_picker-2.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="dbus">
           <value>
             <list>
@@ -1173,6 +1180,7 @@
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/dart_style-2.2.3/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/date_format-2.0.6/lib" />
+      <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/date_time_picker-2.1.0/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/dbus-0.7.3/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/downloads_path_provider_28-0.1.2/lib" />
       <root url="file://G:/flutter/.pub-cache/hosted/pub.dartlang.org/dropdown_plus-0.0.9/lib" />

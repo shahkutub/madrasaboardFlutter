@@ -2,6 +2,7 @@
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
@@ -44,6 +45,13 @@ class ProvidedDataListController extends GetxController {
 
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
+  var selectedDate = DateTime.now().obs;
+  final fromDate = 'তারিখ হইতে'.obs;
+  final toDate = 'তারিখ পর্যন্ত'.obs;
+
+  var fromDateEditController = TextEditingController().obs;
+  var toDateEditController = TextEditingController().obs;
+
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
@@ -213,6 +221,32 @@ class ProvidedDataListController extends GetxController {
   }
 
 
+  getInsPectionListDateRange() async {
+
+    Map data = {
+      // "division_id": victimDivision.value.toString(),
+      // "district_id": victimDistrict.value.toString(),
+      // "thana_id": instituteUpazila.value.toString(),
+      // "institute_type": instituteTypeId.value.toString(),
+      "date_range": fromDate.value+'-'+toDate.value,
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+
+      reversedList.clear();
+
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+    });
+  }
+
   getInsPectionListAll() async {
 
     InformationRepository().getInspectionListAll().then((resp) {
@@ -277,5 +311,52 @@ class ProvidedDataListController extends GetxController {
   //
   //   return filePath;
   // }
+
+  chooseDate(String s) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: Get.context!,
+        initialDate: selectedDate.value,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2024),
+        //initialEntryMode: DatePickerEntryMode.input,
+         initialDatePickerMode: DatePickerMode.day,
+        //helpText: 'Select DOB',
+        cancelText: 'Close',
+        confirmText: 'Confirm',
+        errorFormatText: 'Enter valid date',
+        errorInvalidText: 'Enter valid date range',
+       // fieldLabelText: 'DOB',
+        fieldHintText: 'Month/Date/Year',
+        selectableDayPredicate: disableDate);
+    if (pickedDate != null && pickedDate != selectedDate.value) {
+      selectedDate.value = pickedDate;
+
+      if(s == 'from'){
+        fromDate.value =  DateFormat("dd/MM/yyyy")
+            .format(selectedDate.value).toString();
+      }
+
+      if(s == 'to'){
+        toDate.value =  DateFormat("dd/MM/yyyy")
+            .format(selectedDate.value).toString();
+
+        getInsPectionListDateRange();
+      }
+
+
+
+
+      //toDateEditController.value.text = selectedDate.value.toString();
+    }
+  }
+
+  bool disableDate(DateTime day) {
+    if ((day.isAfter(DateTime.now().subtract(Duration(days: 1))) &&
+        day.isBefore(DateTime.now().add(Duration(days: 31))))) {
+      return true;
+    }
+    return false;
+  }
+
 
 }

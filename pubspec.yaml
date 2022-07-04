@@ -45,6 +45,7 @@ dependencies:
   downloads_path_provider_28: ^0.1.2
   dropdown_plus: ^0.0.9
   basic_utils: ^4.2.2
+  date_time_picker: ^2.1.0
 
 
 dev_dependencies:
