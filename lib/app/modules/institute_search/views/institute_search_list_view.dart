@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../global_widgets/dropdown_widget.dart';
 import '../../global_widgets/dropdown_widget_small.dart';
 import '../controllers/institute_search_controller.dart';
 

@@ -222,13 +222,13 @@ class ProvidedDataListController extends GetxController {
 
 
   getInsPectionListDateRange() async {
-
+    reversedList.clear();
     Map data = {
       // "division_id": victimDivision.value.toString(),
       // "district_id": victimDistrict.value.toString(),
       // "thana_id": instituteUpazila.value.toString(),
       // "institute_type": instituteTypeId.value.toString(),
-      "date_range": fromDate.value+'-'+toDate.value,
+      "date_range": fromDate.value+'~'+toDate.value,
 
       // "division":victimDivision.value,
     };
@@ -238,7 +238,6 @@ class ProvidedDataListController extends GetxController {
       inspectionListData.value = resp;
       placeLoaded.value = true;
 
-      reversedList.clear();
 
       if(inspectionListData.value.inspection_list!.length > 0){
         reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
@@ -317,8 +316,8 @@ class ProvidedDataListController extends GetxController {
         context: Get.context!,
         initialDate: selectedDate.value,
         firstDate: DateTime(2000),
-        lastDate: DateTime(2024),
-        //initialEntryMode: DatePickerEntryMode.input,
+        lastDate: DateTime(2050),
+        initialEntryMode: DatePickerEntryMode.calendarOnly,
          initialDatePickerMode: DatePickerMode.day,
         //helpText: 'Select DOB',
         cancelText: 'Close',
@@ -327,7 +326,9 @@ class ProvidedDataListController extends GetxController {
         errorInvalidText: 'Enter valid date range',
        // fieldLabelText: 'DOB',
         fieldHintText: 'Month/Date/Year',
-        selectableDayPredicate: disableDate);
+        //selectableDayPredicate: disableDate
+
+    );
     if (pickedDate != null && pickedDate != selectedDate.value) {
       selectedDate.value = pickedDate;
 
@@ -357,6 +358,9 @@ class ProvidedDataListController extends GetxController {
     }
     return false;
   }
+
+
+
 
 
 }

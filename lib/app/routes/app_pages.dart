@@ -91,6 +91,12 @@ class AppPages {
       binding: general_search_binding(),
     ),
 
+    // GetPage(
+    //   name: _Paths.TECH_GENERAL_SEARCH,
+    //   page: () => tech_general_search_view(),
+    //   binding: technical_institute_search_binding(),
+    // ),
+
     GetPage(
       name: _Paths.GEO_LOCATION,
       page: () => GeoLocationView(),
@@ -102,6 +108,13 @@ class AppPages {
       page: () => InstituteListView(),
       binding: Institute_list_binding(),
     ),
+    // GetPage(
+    //   name: _Paths.TECH_INSTITUTE_LIST,
+    //   page: () => TechInstituteListView(),
+    //   binding: technical_institute_list_binding(),
+    // ),
+
+
 
   ];
 }

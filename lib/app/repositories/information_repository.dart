@@ -373,9 +373,10 @@ class InformationRepository {
     }
   }
 
-  Future instituteSumary(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+  Future instituteSumary(String education_id,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
 
     Map param = {
+      'education_id': education_id,
       'division_id': division_id,
       'district_id': district_id,
       'thana_id': thana_id,
@@ -410,9 +411,10 @@ class InformationRepository {
     }
   }
 
-  Future instituteListSumaryBased(String url_last,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+  Future instituteListSumaryBased(String url_last,String education_id,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
 
     Map param = {
+      'education_id': education_id,
       'division_id': division_id,
       'district_id': district_id,
       'thana_id': thana_id,
@@ -449,9 +451,10 @@ class InformationRepository {
 
 
 
-  Future instituteSumaryPdf(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+  Future instituteSumaryPdf(String education_id,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
 
     Map param = {
+      'education_id': education_id,
       'division_id': division_id,
       'district_id': district_id,
       'thana_id': thana_id,
@@ -483,5 +486,44 @@ class InformationRepository {
       return 'Unauthorised';
     }
   }
+
+
+
+  Future instituteListPdf(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id,String urlLast) async {
+
+    Map param = {
+      'division_id': division_id,
+      'district_id': district_id,
+      'thana_id': thana_id,
+      'institute_type': institute_type_id,
+      'institute_id': institute_id,
+    };
+
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.postAPICallbodyheader('http://nanoit.biz/project/ei/api/institute-summary-details/pdf/'+urlLast,param,headers);
+      print('response: ${response}');
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
+      if (response != null) {
+        // instituteSummary.value = response;
+        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
+        return response;
+      } else {
+        return 'Unauthorised';
+      }
+    } catch (e) {
+      print('error:$e');
+      return 'Unauthorised';
+    }
+  }
+
+
 
 }

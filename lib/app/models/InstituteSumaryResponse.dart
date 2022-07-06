@@ -44,8 +44,9 @@ class ApiInfo {
     int? total_recognized;
     int? total_students;
     int? total_teacher;
+    int? total_institutions;
 
-    ApiInfo({this.no_electricity, this.no_internet, this.recognized_without_mpo, this.total_digital_lab,this.no_digital_lab, this.total_electricity_facility, this.total_examinees, this.total_female_teacher, this.total_girls_students, this.total_internet_facility, this.total_male_students, this.total_male_teachers, this.total_mpo, this.total_multimedia_class_rooms, this.no_multimedia,this.total_passed, this.total_recognized, this.total_students, this.total_teacher});
+    ApiInfo({this.no_electricity, this.no_internet, this.recognized_without_mpo, this.total_digital_lab,this.no_digital_lab, this.total_electricity_facility, this.total_examinees, this.total_female_teacher, this.total_girls_students, this.total_internet_facility, this.total_male_students, this.total_male_teachers, this.total_mpo, this.total_multimedia_class_rooms, this.no_multimedia,this.total_passed, this.total_recognized, this.total_students, this.total_teacher,this.total_institutions});
 
     factory ApiInfo.fromJson(Map<String, dynamic> json) {
         return ApiInfo(
@@ -68,6 +69,7 @@ class ApiInfo {
             total_recognized: json['total_recognized'],
             total_students: json['total_students'],
             total_teacher: json['total_teacher'],
+            total_institutions: json['total_institutions'],
         );
     }
 
@@ -90,6 +92,7 @@ class ApiInfo {
         data['total_recognized'] = this.total_recognized;
         data['total_students'] = this.total_students;
         data['total_teacher'] = this.total_teacher;
+        data['total_institutions'] = this.total_institutions;
         return data;
     }
 }

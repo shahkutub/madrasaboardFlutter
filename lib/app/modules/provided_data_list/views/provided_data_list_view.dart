@@ -261,7 +261,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                       fit: FlexFit.tight,
                       child: Column(
                       children: [
-                        Text("তারিখ হইতে"),
+                        Text("তারিখ হইতে",style: TextStyle(color: Colors.teal),),
                         GestureDetector(
                             onTap: (){
                               controller.chooseDate('from');
@@ -292,7 +292,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
                     Flexible(child: Column(
                       children: [
-                        Text("তারিখ পর্যন্ত"),
+                        Text("তারিখ পর্যন্ত",style: TextStyle(color: Colors.teal),),
                         GestureDetector(
                             onTap: (){
                               controller.chooseDate('to');

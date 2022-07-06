@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:brac_arna/app/FileProcess.dart';
 import 'package:brac_arna/app/api_providers/api_manager.dart';
 import 'package:brac_arna/app/api_providers/api_url.dart';
+import 'package:brac_arna/app/models/AllProdResponse.dart';
 import 'package:brac_arna/app/models/InspectionListREsponse.dart';
 import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/InstitutionListResponse.dart';
@@ -21,13 +22,16 @@ import 'package:path_provider/path_provider.dart';
 import 'package:super_easy_permissions/super_easy_permissions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../common/ui.dart';
 import '../../../models/District.dart';
 import '../../../models/Inspection.dart';
+import '../../../models/InstituteTypeByEducationResponse.dart';
 import '../../../models/InstituteTypeModel.dart';
 import '../../../models/InstitutionDataModel.dart';
 import '../../../models/Thana.dart';
 import '../../../models/all_division_dis_thanan_model.dart';
 import '../../../repositories/information_repository.dart';
+import '../../../routes/app_pages.dart';
 
 class InstituteSearchController extends GetxController {
   //TODO: Implement ProvidedDataListController
@@ -43,11 +47,13 @@ class InstituteSearchController extends GetxController {
   var  inspectListPos = 0.obs;
 
   final allDivDisTana = all_division_dis_thanan_model().obs;
+  final eduSyatem = ['মাদ্রাসা','কারিগরি'];
   final allInstype = InstituteTypeModel().obs;
   final instituteData = InstitutionDataModel().obs;
 
   final pdfUrl = ''.obs;
   //var url_last = ''.obs;
+  final education_id = '1'.obs;
   final victimDivision = ''.obs;
   final victimDivisionName = ''.obs;
   final victimDistrict = ''.obs;
@@ -62,12 +68,14 @@ class InstituteSearchController extends GetxController {
 
 
 
-  //List<District> districtList = <District>[].obs;
+
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
   var instituteSummary = InstituteSumaryResponse().obs;
   var instituteListSummaryBased = InstitutionListResponse().obs;
   var instituteSummaryPdf = SummaryPdf().obs;
+  var instituteTypeResponse = InstituteTypeByEducationResponse().obs;
+  var instituteListPdf = ''.obs;
   var searchPdfPath = ''.obs;
 
   var districtName = ''.obs;
@@ -284,7 +292,7 @@ class InstituteSearchController extends GetxController {
   }
 
   Future instituteSumary() async {
-    InformationRepository().instituteSumary(victimDivision.value,victimDistrict.value,
+    InformationRepository().instituteSumary(education_id.value,victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
       //  allStudentData.value = resp;
       instituteSummary.value = resp;
@@ -298,40 +306,114 @@ class InstituteSearchController extends GetxController {
   }
 
   Future instituteListSumaryBased(String url_last) async {
-    InformationRepository().instituteListSumaryBased(url_last,victimDivision.value,victimDistrict.value,
+    InformationRepository().instituteListSumaryBased(url_last,education_id.value,victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
       //  allStudentData.value = resp;
       instituteListSummaryBased.value = resp;
       print('nointernet'+instituteListSummaryBased.value.api_info![0].name.toString());
       placeLoaded.value = true;
-      // print('nointernet'+instituteSummary.value.api_info!.no_internet.toString());
-      // print('noelectricity'+instituteSummary.value.api_info!.no_electricity.toString());
-      //placeLoaded.value = true;
-
-      //instituteSumaryPdf();
+      //instituteListPDFSumaryBased(url_last);
     });
   }
 
+
+Future instituteListPDFSumaryBased(String url_last) async {
+  SumaryBasedinstituteListPdf(victimDivision.value,victimDistrict.value,
+        instituteUpazila.value,instituteTypeId.value,instituteID.value,url_last);
+
+    //     .then((resp) {
+    //   createInstituteListFileFromString(resp);
+    //      print('institutebase64'+resp);
+    //       // instituteListPdf.value = resp;
+    //   placeLoaded.value = true;
+    //
+    // });
+  }
+
+  Future SumaryBasedinstituteListPdf(String division_id,String district_id,String thana_id,String institute_type_id,String institute_id,String urlLast) async {
+
+    Map param = {
+      'division_id': division_id,
+      'district_id': district_id,
+      'thana_id': thana_id,
+      'institute_type': institute_type_id,
+      'institute_id': institute_id,
+    };
+
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.postAPICallbodyheader('http://nanoit.biz/project/ei/api/institute-summary-details/pdf/'+urlLast,param,headers);
+      print('response: ${response}');
+      createInstituteListFileFromString(response.toString());
+
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
+      if (response != null) {
+        // instituteSummary.value = response;
+        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
+        return response;
+      } else {
+        return 'Unauthorised';
+      }
+    } catch (e) {
+      print('error:$e');
+      return 'Unauthorised';
+    }
+  }
+
+
+  getInstituteByEduId(String education_id) async {
+
+    Map param = {
+      'education_id': education_id
+    };
+
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.postAPICallbodyheader('http://nanoit.biz/project/ei/api/institute_type_by_education',param,headers);
+      print('response: ${response}');
+
+      instituteTypeResponse.value = InstituteTypeByEducationResponse.fromJson(response);
+
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
+      if (response != null) {
+        // instituteSummary.value = response;
+        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
+        return response;
+      } else {
+        return 'Unauthorised';
+      }
+    } catch (e) {
+      print('error:$e');
+      return 'Unauthorised';
+    }
+  }
+
+
+
   Future instituteSumaryPdf() async {
 
-    InformationRepository().instituteSumaryPdf(victimDivision.value,victimDistrict.value,
+    InformationRepository().instituteSumaryPdf(education_id.value,victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) async {
       instituteSummaryPdf.value = resp;
      print(''+instituteSummaryPdf.value.api_info!.toString());
       placeLoaded.value = true;
 
-      //FileProcess.createFile(instituteSummaryPdf.value.api_info!.toString());
-
-
-
-
       createFileFromString();
 
-      // Directory tempDir = await getTemporaryDirectory();
-      // String tempPath = tempDir.path;
-      // File file = new File('summary.png');
-      // await file.writeAsBytes(resp.bodyBytes);
-      //displayImage(file);
     });
   }
 
@@ -358,6 +440,7 @@ class InstituteSearchController extends GetxController {
   }
 
 
+
   Future<String> createFileFromString() async {
 
     // Convert to UriData
@@ -370,6 +453,28 @@ class InstituteSearchController extends GetxController {
     Uint8List myImage = data.contentAsBytes();
 
     writeFile(myImage, "institution_summary.pdf");
+    final encodedStr = instituteSummaryPdf.value.api_info;
+    //Uint8List bytes = base64.decode(encodedStr!);
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    File file = File(
+        "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".pdf");
+    await file.writeAsBytes(myImage);
+    print(file.path);
+    return file.path;
+  }
+
+  Future<String> createInstituteListFileFromString(String value) async {
+
+    // Convert to UriData
+    var  data = Uri.parse(value).data;
+
+// You can check if data is normal base64 - should return true
+    print(data!.isBase64);
+
+// Will returns your image as Uint8List
+    Uint8List myImage = data.contentAsBytes();
+
+    writeFile(myImage, "institution_list.pdf");
     final encodedStr = instituteSummaryPdf.value.api_info;
     //Uint8List bytes = base64.decode(encodedStr!);
     String dir = (await getApplicationDocumentsDirectory()).path;

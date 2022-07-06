@@ -198,15 +198,15 @@ class GeoLocationView extends GetView<GeoLocationController> {
                                           hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
                                           initialValue: '',
                                           iconData: Icons.phone_android,
-                                          data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
+                                          //data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
                                           onChanged: (input) {
-                                            for (var item in controller.allInstype.value.institute__type_list!) {
-                                              if (item.name == input) {
-                                                controller.instituteTypeId.value = item.id!.toString();
-                                                // controller.inspectionData.value.institute_type = item.id;
-
-                                              }
-                                            }
+                                            // for (var item in controller.allInstype.value.institute__type_list!) {
+                                            //   if (item.name == input) {
+                                            //     controller.instituteTypeId.value = item.id!.toString();
+                                            //     // controller.inspectionData.value.institute_type = item.id;
+                                            //
+                                            //   }
+                                            // }
                                             //controller.getLocationData();
                                             //print('union_ id: ${controller.victimUnion.value}');
                                             controller.placeLoaded.value = true;
@@ -460,15 +460,15 @@ class GeoLocationView extends GetView<GeoLocationController> {
                                           hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
                                           initialValue: '',
                                           iconData: Icons.phone_android,
-                                          data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
+                                          //data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
                                           onChanged: (input) {
-                                            for (var item in controller.allInstype.value.institute__type_list!) {
-                                              if (item.name == input) {
-                                                controller.instituteTypeId.value = item.id!.toString();
-                                                // controller.inspectionData.value.institute_type = item.id;
-
-                                              }
-                                            }
+                                            // for (var item in controller.allInstype.value.institute__type_list!) {
+                                            //   if (item.name == input) {
+                                            //     controller.instituteTypeId.value = item.id!.toString();
+                                            //     // controller.inspectionData.value.institute_type = item.id;
+                                            //
+                                            //   }
+                                            // }
                                             //controller.getLocationData();
                                             //print('union_ id: ${controller.victimUnion.value}');
                                             //controller.getInstitute();
