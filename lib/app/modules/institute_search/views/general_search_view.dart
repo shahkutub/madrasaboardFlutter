@@ -210,107 +210,132 @@ class general_search_view extends GetView<InstituteSearchController> {
                 ],
               ),
 
+              dropdown_widget_small(
+                labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
+                hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
+                initialValue: '',
+                iconData: Icons.phone_android,
+                data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
+                onChanged: (input) {
+                  for (var item in controller.allInstype.value.institute__type_list!) {
+                    if (item.name == input) {
+                      controller.instituteTypeId.value = item.id!.toString();
+                      // controller.inspectionData.value.institute_type = item.id;
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
-                crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
-                children: [
-
-                  Container(
-                    width: Get.width/1.5,
-                    child: dropdown_widget_small(
-                      labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                      hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
-                      initialValue: '',
-                      iconData: Icons.phone_android,
-                      data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
-                      onChanged: (input) {
-                        for (var item in controller.allInstype.value.institute__type_list!) {
-                          if (item.name == input) {
-                            controller.instituteTypeId.value = item.id!.toString();
-                            // controller.inspectionData.value.institute_type = item.id;
-
-                          }
-                        }
-                        //controller.getLocationData();
-                        //print('union_ id: ${controller.victimUnion.value}');
-                        //controller.getInstitute();
-                        controller.placeLoaded.value = false;
-                        // controller.getInsPectionListType();
-                        controller.instituteSumary();
-                        controller.getInstitute();
-                      },
-                      isFirst: true,
-                      isLast: false,
-                    ),
-                  ),
-
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                   // width: 180,
-                    child: GestureDetector(
-                        onTap: (){
-                          //controller.chooseDate('to');
-                        },
-                        child:Container(
-
-                          alignment: Alignment.center,
-
-                          padding: EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.teal,
-                            // border: Border.all(
-                            //     width: 1.0
-                            // ),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(10.0) //                 <--- border radius here
-                            ),
-
-                          ),
-                          child: Text('অনুসন্ধান',style: TextStyle(fontSize: 15,color: Colors.white),),
-                        )
-
-                    ),
-
-                  ),
-
-                ],
+                    }
+                  }
+                  //controller.getLocationData();
+                  //print('union_ id: ${controller.victimUnion.value}');
+                  //controller.getInstitute();
+                  controller.placeLoaded.value = false;
+                  // controller.getInsPectionListType();
+                  controller.instituteSumary();
+                  controller.getInstitute();
+                },
+                isFirst: true,
+                isLast: false,
               ),
 
-              // dropdown_widget_small(
-              //   labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
-              //   hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
-              //   initialValue: '',
-              //   iconData: Icons.phone_android,
-              //   data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
-              //   onChanged: (input) {
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+              //   crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+              //   children: [
               //
-              //     for (var item in controller.instituteData.value.institute_list!) {
-              //       if (item.name == input) {
-              //         controller.instituteID.value = item.id!.toString();
-              //         print('insID:'+controller.instituteID.value);
-              //         //controller.inspectionData.value.institute_id = item.id;
-              //       }
-              //     }
+              //     Container(
+              //       width: Get.width/1.5,
+              //       child: dropdown_widget_small(
+              //         labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
+              //         hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
+              //         initialValue: '',
+              //         iconData: Icons.phone_android,
+              //         data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
+              //         onChanged: (input) {
+              //           for (var item in controller.allInstype.value.institute__type_list!) {
+              //             if (item.name == input) {
+              //               controller.instituteTypeId.value = item.id!.toString();
+              //               // controller.inspectionData.value.institute_type = item.id;
               //
-              //     controller.placeLoaded.value = false;
-              //     controller.instituteSumary();
+              //             }
+              //           }
+              //           //controller.getLocationData();
+              //           //print('union_ id: ${controller.victimUnion.value}');
+              //           //controller.getInstitute();
+              //           controller.placeLoaded.value = false;
+              //           // controller.getInsPectionListType();
+              //           controller.instituteSumary();
+              //           controller.getInstitute();
+              //         },
+              //         isFirst: true,
+              //         isLast: false,
+              //       ),
+              //     ),
               //
-              //     // for (var item in controller.allStudentData.value.students!) {
-              //     //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-              //     //     controller.totalStudent.value = item.total! as int;
-              //     //     controller.totalFemaleStudent.value = item.total_girls! as int;
-              //     //   }
-              //     // }
+              //     // Container(
+              //     //   margin: EdgeInsets.only(top: 10),
+              //     //  // width: 180,
+              //     //   child: GestureDetector(
+              //     //       onTap: (){
+              //     //         //controller.chooseDate('to');
+              //     //       },
+              //     //       child:Container(
+              //     //
+              //     //         alignment: Alignment.center,
+              //     //
+              //     //         padding: EdgeInsets.all(12),
+              //     //         decoration: BoxDecoration(
+              //     //           color: Colors.teal,
+              //     //           // border: Border.all(
+              //     //           //     width: 1.0
+              //     //           // ),
+              //     //           borderRadius: BorderRadius.all(
+              //     //               Radius.circular(10.0) //                 <--- border radius here
+              //     //           ),
+              //     //
+              //     //         ),
+              //     //         child: Text('অনুসন্ধান',style: TextStyle(fontSize: 15,color: Colors.white),),
+              //     //       )
+              //     //
+              //     //   ),
+              //     //
+              //     // ),
               //
-              //     //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
-              //
-              //     // controller.getLocationData();
-              //     // print('union_ id: ${controller.victimUnion.value}');
-              //   },
-              //   isFirst: true,
-              //   isLast: false,
+              //   ],
               // ),
+
+              dropdown_widget_small(
+                labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
+                hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
+                initialValue: '',
+                iconData: Icons.phone_android,
+                data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
+                onChanged: (input) {
+
+                  for (var item in controller.instituteData.value.institute_list!) {
+                    if (item.name == input) {
+                      controller.instituteID.value = item.id!.toString();
+                      print('insID:'+controller.instituteID.value);
+                      //controller.inspectionData.value.institute_id = item.id;
+                    }
+                  }
+
+                  controller.placeLoaded.value = false;
+                  controller.instituteSumary();
+
+                  // for (var item in controller.allStudentData.value.students!) {
+                  //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
+                  //     controller.totalStudent.value = item.total! as int;
+                  //     controller.totalFemaleStudent.value = item.total_girls! as int;
+                  //   }
+                  // }
+
+                  //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
+
+                  // controller.getLocationData();
+                  // print('union_ id: ${controller.victimUnion.value}');
+                },
+                isFirst: true,
+                isLast: false,
+              ),
 
               SizedBox(
                 height: 10.0,
@@ -436,7 +461,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),

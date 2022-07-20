@@ -2,6 +2,7 @@ import 'package:brac_arna/app/modules/global_widgets/cliper.dart';
 import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
 import 'package:brac_arna/app/routes/app_pages.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
+import 'package:brac_arna/common/custom_date_range_picker.dart';
 import 'package:brac_arna/common/ui.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +19,10 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
   final _size = Get.size;
   @override
   Widget build(BuildContext context) {
+
+    DateTime? startDate;
+    DateTime? endDate;
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
@@ -265,6 +270,27 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                         GestureDetector(
                             onTap: (){
                               controller.chooseDate('from');
+
+                              // showCustomDateRangePicker(
+                              //   context,
+                              //   dismissible: true,
+                              //   minimumDate: DateTime.now(),
+                              //   maximumDate: DateTime.now().add(const Duration(days: 30)),
+                              //   endDate: endDate,
+                              //   startDate: startDate,
+                              //   onApplyClick: (start, end) {
+                              //    // setState(() {
+                              //       endDate = end;
+                              //       startDate = start;
+                              //     //});
+                              //   },
+                              //   onCancelClick: () {
+                              //     //setState(() {
+                              //       endDate = null;
+                              //       startDate = null;
+                              //     //});
+                              //   },
+                              // );
                             },
                             child:Container(
                               width: Get.width/2.6,
@@ -320,6 +346,43 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                 ),
               ),
 
+
+              Container(
+                margin: EdgeInsets.only(top: 0,left: 20,right: 20),
+                child: dropdown_widget_small(
+                  labelText: "পরিদর্শকের নাম",
+                  hintText: "পরিদর্শকের নাম নির্বাচন করুন",
+                  initialValue: '',
+                  iconData: Icons.phone_android,
+                  //data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
+                  onChanged: (input) {
+
+                    for (var item in controller.instituteData.value.institute_list!) {
+                      if (item.name == input) {
+                        controller.instituteID.value = item.id!.toString();
+                        //controller.inspectionData.value.institute_id = item.id;
+                      }
+                    }
+
+                    controller.placeLoaded.value = false;
+                    controller.getInsPectionListInstituteId();
+
+                    // for (var item in controller.allStudentData.value.students!) {
+                    //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
+                    //     controller.totalStudent.value = item.total! as int;
+                    //     controller.totalFemaleStudent.value = item.total_girls! as int;
+                    //   }
+                    // }
+
+                    //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
+
+                    // controller.getLocationData();
+                    // print('union_ id: ${controller.victimUnion.value}');
+                  },
+                  isFirst: true,
+                  isLast: false,
+                ),
+              ),
 
               SizedBox(
                 height: 20.0,
