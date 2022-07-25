@@ -1384,6 +1384,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
+
                             TextFieldWidgetSmall(
                               labelText: "কোভিড ১৯ ভ্যাকসিন গ্রহণকারী শিক্ষার্থীর সংখ্যা",
                               hintText: "",
