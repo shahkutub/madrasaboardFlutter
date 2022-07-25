@@ -132,17 +132,33 @@ class InformationFormView extends GetView<InformationFormController> {
                           children: [
 
 
-                            // Container(
-                            //
-                            //   //color: Colors.blue[800],
-                            //   width: double.maxFinite,
-                            //   alignment: Alignment.center,
-                            //   padding: EdgeInsets.symmetric(vertical: 10),
-                            //   child: Text(
-                            //     'শিক্ষা প্রতিঠান পরিদর্শন',
-                            //     style: TextStyle(fontSize: 20, color: Colors.white),
-                            //   ),
-                            // ),
+                            TextFieldWidgetSmall(
+                              labelText: "প্রতিষ্ঠানের ই আই এন (EIN)",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "প্রতিষ্ঠানের নাম",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
 
                             DropDownWidget(
                               labelText: "বিভাগ",
@@ -224,8 +240,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
                             DropDownWidget(
-                              labelText: "উপজেলা",
-                              hintText: "উপজেলা নির্বাচন করুন",
+                              labelText: "থানা",
+                              hintText: "থানা নির্বাচন করুন",
                               initialValue: '',
                               iconData: Icons.phone_android,
                               data: controller.thanaList?.map((item) => item.name!).toList(),
@@ -295,95 +311,91 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                            // TextFieldWidgetSmall(
-                            //   labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                            //   hintText: "",
-                            //   initialValue: 'ebtedayee',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   //iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-
-                            // TextFieldWidgetSmall(
-                            //   labelText: "অনুমোদন এর তারিখ",
-                            //   hintText: "",
-                            //   initialValue: '',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-                            // TextFieldWidgetSmall(
-                            //   labelText: "এমপিওভুক্তির তারিখ",
-                            //   hintText: "",
-                            //   initialValue: '',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-                            // TextFieldWidgetSmall(
-                            //   labelText: "মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা",
-                            //   hintText: "",
-                            //   initialValue: '10',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-
-                            // TextFieldWidget(
-                            //   labelText: "মোট স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা",
-                            //   hintText: "",
-                            //   initialValue: '10',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-
-
-                            // TextFieldWidget(
-                            //   labelText: "এমপিওভুক্ত নয় কিন্তু স্বীকৃতিপ্রাপ্ত এমন শিক্ষা প্রতিষ্ঠানের সংখ্যা",
-                            //   hintText: "",
-                            //   initialValue: '60',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
                             TextFieldWidgetSmall(
-                              labelText: "শিক্ষা প্রতিষ্ঠান প্রধানের নাম",
+                              labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            TextFieldWidgetSmall(
+                              labelText: "পরিদর্শনকারী কর্মকর্তাদের নাম",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "পদবি",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+
+                              },
+
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "মোবাইল",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                //controller.victimAddress = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            TextFieldWidget(
+                              labelText: "ইমেইল",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                //controller.victimAddress = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+
+                            TextFieldWidget(
+                              labelText: "পরিদর্শনের তারিখ",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                //controller.victimAddress = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            TextFieldWidgetSmall(
+                              labelText: "প্রতিষ্ঠান প্রধানের নাম",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
@@ -398,7 +410,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
                             TextFieldWidgetSmall(
-                              labelText: "শিক্ষা প্রতিষ্ঠান প্রধানের মোবাইল নম্বর",
+                              labelText: "মোবাইল নম্বর",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
@@ -414,7 +426,57 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: "মোট শিক্ষক-শিক্ষিকার সংখ্যা",
+                              labelText: "পদবি",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                //controller.instiruteHeadMobile = input;
+                                controller.inspectionData.value.headmaster_mobile_no = input;
+                              },
+                              keyboardType: TextInputType.phone,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "মোবাইল",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                //controller.instiruteHeadMobile = input;
+                                controller.inspectionData.value.headmaster_mobile_no = input;
+                              },
+                              keyboardType: TextInputType.phone,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "প্রতিষ্ঠানের মোট অনুমোদিত পদ",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                //controller.instiruteHeadMobile = input;
+                                controller.inspectionData.value.headmaster_mobile_no = input;
+                              },
+                              keyboardType: TextInputType.phone,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+
+                            TextFieldWidgetSmall(
+                              labelText: "কর্মরত মোট শিক্ষক সংখ্যা",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
@@ -430,7 +492,7 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: "মোট শিক্ষিকার সংখ্যা",
+                              labelText: "কর্মরত মোট শিক্ষিকার সংখ্যা",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
@@ -445,6 +507,146 @@ class InformationFormView extends GetView<InformationFormController> {
                               isFirst: true,
                               isLast: false,
                             ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "সংযুক্ত শিক্ষক সংখ্যা",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                controller.femaleteacherCount = input;
+                                controller.inspectionData.value.total_women_teachers = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "শূন্য পদ সংখ্যা",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                controller.femaleteacherCount = input;
+                                controller.inspectionData.value.total_women_teachers = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            TextFieldWidgetSmall(
+                              labelText: "উপস্থিত শিক্ষক/কর্মচারীর সংখ্যা",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                controller.femaleteacherCount = input;
+                                controller.inspectionData.value.total_women_teachers = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "অনুপস্থিত শিক্ষক/কর্মচারীর সংখ্যা",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                controller.femaleteacherCount = input;
+                                controller.inspectionData.value.total_women_teachers = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "শিক্ষক/শিক্ষিকা ফর্মাল পোশাকে আছে কি না?",
+                              hintText: "শিক্ষক/শিক্ষিকা ফর্মাল পোশাকে আছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //  controller.IsTecherTraining.value = input!;
+
+
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.teacher_training = 1;
+                                }else{
+                                  controller.inspectionData.value.teacher_training = 0;
+                                }
+                                //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
+
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidgetMenu(
+                              labelText: "শিক্ষকদের আইসিটি প্রশিক্ষণ আছে কি না?",
+                              hintText: "শিক্ষকদের আইসিটি প্রশিক্ষণ আছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //  controller.IsTecherTraining.value = input!;
+
+
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.teacher_training = 1;
+                                }else{
+                                  controller.inspectionData.value.teacher_training = 0;
+                                }
+                                //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
+
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+
+                            DropDownWidgetMenu(
+                              labelText: "শিক্ষকদের অন্যান্য প্রশিক্ষণ আছে কি না?",
+                              hintText: "শিক্ষকদের অন্যান্য প্রশিক্ষণ আছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //  controller.IsTecherTraining.value = input!;
+
+
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.teacher_training = 1;
+                                }else{
+                                  controller.inspectionData.value.teacher_training = 0;
+                                }
+                                //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
+
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+
 
                             TextFieldWidgetSmall(
                               labelText: "মোট ছাত্র-ছাত্রীর সংখ্যা",
@@ -482,33 +684,15 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: 'শ্রেণী কার্যক্রম পর্যবেক্ষণ',
+                              labelText: "বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী থাকলে তাদের সংখ্যা",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.class_inspection = input;
-                                print('class_inspection: ${controller.inspectionData.value.class_inspection}');
+                               // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.total_girls_students = input;
+                                print('total_girls_students: ${controller.inspectionData.value.total_girls_students}');
                               },
-                              keyboardType: TextInputType.text,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-                            TextFieldWidgetSmall(
-                              labelText: 'পাঠের মান  উন্নয়নে পর্যবেক্ষকের পরামর্শ ',
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.class_upgradation_suggestion = input;
-                                print('class_upgradation_suggestion: ${controller.inspectionData.value.class_upgradation_suggestion}');
-                              },
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
                               //iconData: Icons.phone_android,
@@ -517,30 +701,13 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: 'সার্বিক মূল্যায়নে বিদ্যায়লয়ের মান',
+                              labelText: "বৃত্তি প্রাপ্ত শিক্ষার্থীর সংখ্যা",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
                                 // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.overall_status = input;
-                                print('overall_status: ${controller.inspectionData.value.overall_status}');
-                              },
-                              keyboardType: TextInputType.text,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-                            TextFieldWidgetSmall(
-                              labelText: 'মোট পরীক্ষার্থীর সংখ্যা',
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.total_examinees = input;
-                                print('total_examinees: ${controller.inspectionData.value.total_examinees}');
+                                controller.inspectionData.value.total_girls_students = input;
+                                print('total_girls_students: ${controller.inspectionData.value.total_girls_students}');
                               },
                               keyboardType: TextInputType.number,
                               // limit: 255,
@@ -551,465 +718,543 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
 
-                            TextFieldWidgetSmall(
-                              labelText: 'মোট পাশের সংখ্যা',
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.total_passed = input;
-                                print('total_passed: ${controller.inspectionData.value.total_passed}');
-                              },
-                              keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
+
+
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                width: Get.size.width,
+                                decoration: Ui.getBoxDecoration(color: Colors.white, radius: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        'মোট পরীক্ষার্থীর সংখ্যা',
+                                        style: TextStyle(fontSize: 20,color: Colors.teal),
+                                      ),
+
+                                    ),
+
+                                    Padding(
+                                      padding: const EdgeInsets.all(20),
+                                      child: Table(
+                                        columnWidths: const {
+                                          0: FlexColumnWidth(70),
+                                          1: FlexColumnWidth(30)
+                                        },
+                                        children: [
+
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('দাখিল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "0",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.dakhilexmineeCount = text.toString();
+
+                                                      print('dakhilexmineeCount: ${controller.dakhilexmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('আলিম',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('ফাজিল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+
+                                                    onChanged: (text){
+                                                      controller.fazilexmineeCount = text.toString();
+
+                                                      print('fazilexmineeCount: ${controller.fazilexmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('কামিল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+
+                                                    onChanged: (text){
+                                                      controller.vocexmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.vocexmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('এস এস সি (ভোক)',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('এস এস সি (ভোক)/এইচ এস সি (বিএমটি)',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('ডিপ্লোমা ইঞ্জিনিয়ারিং ফাইনাল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('শর্ট কোর্স',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                        ],
+                                        border: TableBorder.all(width: 1, color: Colors.black),
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                              ),
                             ),
 
-                            // Padding(
-                            //   padding: const EdgeInsets.all(10.0),
-                            //   child: Container(
-                            //     width: Get.size.width,
-                            //     decoration: Ui.getBoxDecoration(color: Colors.white, radius: 5),
-                            //     child: Column(
-                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //
-                            //         Padding(
-                            //           padding: const EdgeInsets.all(10.0),
-                            //           child: Text(
-                            //             'মোট পরীক্ষার্থীর সংখ্যা',
-                            //             style: TextStyle(fontSize: 20,color: Colors.teal),
-                            //           ),
-                            //
-                            //         ),
-                            //
-                            //         Padding(
-                            //           padding: const EdgeInsets.all(20),
-                            //           child: Table(
-                            //             columnWidths: const {
-                            //               0: FlexColumnWidth(70),
-                            //               1: FlexColumnWidth(30)
-                            //             },
-                            //             children: [
-                            //
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('দাখিল',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "0",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //                         onChanged: (text){
-                            //                           controller.dakhilexmineeCount = text.toString();
-                            //
-                            //                           print('dakhilexmineeCount: ${controller.dakhilexmineeCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('আলিম',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('ফাজিল',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //
-                            //                         onChanged: (text){
-                            //                           controller.fazilexmineeCount = text.toString();
-                            //
-                            //                           print('fazilexmineeCount: ${controller.fazilexmineeCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('ভোকেশনাল',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //
-                            //                         onChanged: (text){
-                            //                           controller.vocexmineeCount = text.toString();
-                            //
-                            //                           print('vocexmineeCount: ${controller.vocexmineeCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('বিএম',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //                         onChanged: (text){
-                            //                           controller.bmExmineeCount = text.toString();
-                            //
-                            //                           print('vocexmineeCount: ${controller.bmExmineeCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //             ],
-                            //             border: TableBorder.all(width: 1, color: Colors.black),
-                            //           ),
-                            //         )
-                            //
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
-                            //
-                            // Padding(
-                            //   padding: const EdgeInsets.all(10.0),
-                            //   child: Container(
-                            //     width: Get.size.width,
-                            //     decoration: Ui.getBoxDecoration(color: Colors.white, radius: 5),
-                            //     child: Column(
-                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //
-                            //         Padding(
-                            //           padding: const EdgeInsets.all(10.0),
-                            //           child: Text(
-                            //             'মোট পাশের সংখ্যা',
-                            //             style: TextStyle(fontSize: 18,color: Colors.teal),
-                            //           ),
-                            //
-                            //         ),
-                            //
-                            //         Padding(
-                            //           padding: const EdgeInsets.all(20),
-                            //           child: Table(
-                            //             columnWidths: const {
-                            //               0: FlexColumnWidth(70),
-                            //               1: FlexColumnWidth(30)
-                            //             },
-                            //             children:  [
-                            //
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                 Padding(
-                            //                   padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                   child:
-                            //                   Text('দাখিল',
-                            //                     //textAlign: TextAlign.center,
-                            //                   ),
-                            //                 ),
-                            //                 Padding(
-                            //                   padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                   child: TextField(
-                            //                     //controller: "",
-                            //                     obscureText: false,
-                            //                     decoration: InputDecoration(
-                            //                       border: InputBorder.none,
-                            //                      // labelText: '60',
-                            //                       hintText: "",
-                            //                       //hintStyle:
-                            //
-                            //                     ),
-                            //
-                            //                     onChanged: (text){
-                            //                       controller.dakhilPassCount = text.toString();
-                            //
-                            //                       print('dakhilPassCount: ${controller.dakhilPassCount}');
-                            //                     },
-                            //                   ),
-                            //                 )
-                            //               ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('আলিম',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //                         onChanged: (text){
-                            //                           controller.alimPassCount = text.toString();
-                            //
-                            //                           print('alimPassCount: ${controller.alimPassCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('ফাজিল',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //
-                            //                         onChanged: (text){
-                            //                           controller.fazilPassCount = text.toString();
-                            //
-                            //                           print('fazilPassCount: ${controller.fazilPassCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('ভোকেশনাল',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //
-                            //                         onChanged: (text){
-                            //                           controller.vocPassCount = text.toString();
-                            //
-                            //                           print('vocPassCount: ${controller.vocPassCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //               TableRow(
-                            //
-                            //                   children: [
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
-                            //                       child:
-                            //                       Text('বিএম',
-                            //                         //textAlign: TextAlign.center,
-                            //                       ),
-                            //                     ),
-                            //                     Padding(
-                            //                       padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
-                            //                       child: TextField(
-                            //                         obscureText: false,
-                            //                         decoration: InputDecoration(
-                            //                           border: InputBorder.none,
-                            //                           // labelText: '60',
-                            //                           hintText: "",
-                            //                           //hintStyle:
-                            //
-                            //                         ),
-                            //
-                            //                         onChanged: (text){
-                            //                           controller.bmPassCount = text.toString();
-                            //
-                            //                           print('bmPassCount: ${controller.bmPassCount}');
-                            //                         },
-                            //                       ),
-                            //                     )
-                            //                   ]),
-                            //
-                            //             ],
-                            //             border: TableBorder.all(width: 1, color: Colors.black),
-                            //           ),
-                            //         )
-                            //
-                            //
-                            //         // TextFieldWidgetSmall(
-                            //         //   labelText: "দাখিল",
-                            //         //   hintText: "",
-                            //         //   initialValue: '5',
-                            //         //   onChanged: (input) {
-                            //         //     controller.victimAddress = input;
-                            //         //   },
-                            //         //   // limit: 255,
-                            //         //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //         //   //iconData: Icons.phone_android,
-                            //         //   isFirst: true,
-                            //         //   isLast: false,
-                            //         // ),
-                            //         //
-                            //         // TextFieldWidgetSmall(
-                            //         //   labelText: "আলিম",
-                            //         //   hintText: "",
-                            //         //   initialValue: '5',
-                            //         //   onChanged: (input) {
-                            //         //     controller.victimAddress = input;
-                            //         //   },
-                            //         //   // limit: 255,
-                            //         //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //         //   //iconData: Icons.phone_android,
-                            //         //   isFirst: true,
-                            //         //   isLast: false,
-                            //         // ),
-                            //         //
-                            //         // TextFieldWidgetSmall(
-                            //         //   labelText: "ফাজিল",
-                            //         //   hintText: "",
-                            //         //   initialValue: '5',
-                            //         //   onChanged: (input) {
-                            //         //     controller.victimAddress = input;
-                            //         //   },
-                            //         //   // limit: 255,
-                            //         //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //         //   //iconData: Icons.phone_android,
-                            //         //   isFirst: true,
-                            //         //   isLast: false,
-                            //         // ),
-                            //         //
-                            //         // TextFieldWidgetSmall(
-                            //         //   labelText: "ভোকেশনাল",
-                            //         //   hintText: "",
-                            //         //   initialValue: '5',
-                            //         //   onChanged: (input) {
-                            //         //     controller.victimAddress = input;
-                            //         //   },
-                            //         //   // limit: 255,
-                            //         //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //         //   //iconData: Icons.phone_android,
-                            //         //   isFirst: true,
-                            //         //   isLast: false,
-                            //         // ),
-                            //         //
-                            //         // TextFieldWidgetSmall(
-                            //         //   labelText: "বিএম",
-                            //         //   hintText: "",
-                            //         //   initialValue: '5',
-                            //         //   onChanged: (input) {
-                            //         //     controller.victimAddress = input;
-                            //         //   },
-                            //         //   // limit: 255,
-                            //         //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //         //   //iconData: Icons.phone_android,
-                            //         //   isFirst: true,
-                            //         //   isLast: false,
-                            //         // ),
-                            //
-                            //
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                width: Get.size.width,
+                                decoration: Ui.getBoxDecoration(color: Colors.white, radius: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
 
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        'মোট পাশের সংখ্যা',
+                                        style: TextStyle(fontSize: 20,color: Colors.teal),
+                                      ),
+
+                                    ),
+
+                                    Padding(
+                                      padding: const EdgeInsets.all(20),
+                                      child: Table(
+                                        columnWidths: const {
+                                          0: FlexColumnWidth(70),
+                                          1: FlexColumnWidth(30)
+                                        },
+                                        children: [
+
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('দাখিল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "0",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.dakhilexmineeCount = text.toString();
+
+                                                      print('dakhilexmineeCount: ${controller.dakhilexmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('আলিম',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('ফাজিল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+
+                                                    onChanged: (text){
+                                                      controller.fazilexmineeCount = text.toString();
+
+                                                      print('fazilexmineeCount: ${controller.fazilexmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('কামিল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+
+                                                    onChanged: (text){
+                                                      controller.vocexmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.vocexmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('এস এস সি (ভোক)',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('এস এস সি (ভোক)/এইচ এস সি (বিএমটি)',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('ডিপ্লোমা ইঞ্জিনিয়ারিং ফাইনাল',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                          TableRow(
+
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
+                                                  child:
+                                                  Text('শর্ট কোর্স',
+                                                    //textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10,top: 0.0,right: 5,bottom: 0.0),
+                                                  child: TextField(
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      // labelText: '60',
+                                                      hintText: "",
+                                                      //hintStyle:
+
+                                                    ),
+                                                    onChanged: (text){
+                                                      controller.bmExmineeCount = text.toString();
+
+                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                    },
+                                                  ),
+                                                )
+                                              ]),
+                                        ],
+                                        border: TableBorder.all(width: 1, color: Colors.black),
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+                              ),
+                            ),
 
                             TextFieldWidgetSmall(
-                              labelText: "মাল্টিমিডিয়া ক্লাসরুমের সংখ্যা",
+                              labelText: "স্বীকৃতি প্রাপ্তির তারিখ",
                               hintText: "",
                               initialValue: "",
                               onChanged: (input) {
@@ -1026,7 +1271,104 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: "শেখ রাসেল ডিজিটাল ল্যাব এর সংখ্যা",
+                              labelText: "এমপিওভুক্তির তারিখ",
+                              hintText: "",
+                              initialValue: "",
+                              onChanged: (input) {
+                                controller.multimediaRoomCount.value = input;
+                                controller.inspectionData.value.total_multimedia_classroom = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "বিদ্যুৎ সুবিধা",
+                              hintText: "বিদ্যুৎ সুবিধা",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                // controller.IsElectricity.value = input!;
+                                // print(controller.IsElectricity);
+
+                                if(input == 'হ্যাঁ'){
+                                  controller.IsElectricity.value = 1;
+                                }else{
+                                  controller.IsElectricity.value = 0;
+                                }
+                                controller.inspectionData.value.electricity_facility = controller.IsElectricity.value as int;
+
+
+                              },
+                              // iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "ইন্টারনেট সুবিধা",
+                              hintText: "ইন্টারনেট সুবিধা",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'হ্যাঁ'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "মাল্টিমিডিয়া শ্রেণীকক্ষের সংখ্যা ",
+                              hintText: "",
+                              initialValue: "",
+                              onChanged: (input) {
+                                controller.multimediaRoomCount.value = input;
+                                controller.inspectionData.value.total_multimedia_classroom = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+
+                            TextFieldWidgetSmall(
+                              labelText: "ডিজিটাল ল্যাব এর সংখ্যা",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                controller.skRaselLabCount.value = input;
+                                controller.inspectionData.value.total_digital_lab = input;
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              // iconData: Icons.person,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "শেখ রাসেল ল্যাব এর সংখ্যা",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
@@ -1059,74 +1401,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                            DropDownWidgetMenu(
-                              labelText: "ইন্টারনেট আছে কি নেই",
-                              hintText: "ইন্টারনেট আছে কি নেই",
-                              initialValue: 'না',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                if(input == 'হ্যাঁ'){
-                                  controller.IsInternet.value = 1;
-                                }else{
-                                  controller.IsInternet.value = 0;
-                                }
 
-                                // print(controller.IsStatePlaintiffCase);
-                                 controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
-                              },
-                              //  iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-                            DropDownWidgetMenu(
-                              labelText: "ইলেক্ট্রিসিটি আছে কি নেই",
-                              hintText: "ইলেক্ট্রিসিটি আছে কি নেই",
-                              initialValue: 'না',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                 // controller.IsElectricity.value = input!;
-                                 // print(controller.IsElectricity);
-
-                                 if(input == 'হ্যাঁ'){
-                                   controller.IsElectricity.value = 1;
-                                 }else{
-                                   controller.IsElectricity.value = 0;
-                                 }
-                                 controller.inspectionData.value.electricity_facility = controller.IsElectricity.value as int;
-
-
-                              },
-                              // iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-
-                            DropDownWidgetMenu(
-                              labelText: "শিক্ষকদের কোন প্রশিক্ষণ আছে কি না?",
-                              hintText: "শিক্ষকদের কোন প্রশিক্ষণ আছে কি না?",
-                              initialValue: 'না',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                              //  controller.IsTecherTraining.value = input!;
-
-
-                                if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.teacher_training = 1;
-                                }else{
-                                  controller.inspectionData.value.teacher_training = 0;
-                                }
-                                //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
-
-
-                              },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
 
                             // DropDownWidget(
                             //   labelText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
@@ -1449,6 +1724,58 @@ class InformationFormView extends GetView<InformationFormController> {
                               isFirst: true,
                               isLast: false,
                             ),
+                            TextFieldWidgetSmall(
+                              labelText: 'শ্রেণী কার্যক্রম পর্যবেক্ষণ',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.class_inspection = input;
+                                print('class_inspection: ${controller.inspectionData.value.class_inspection}');
+                              },
+                              keyboardType: TextInputType.text,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            TextFieldWidgetSmall(
+                              labelText: 'পাঠের মান  উন্নয়নে পর্যবেক্ষকের পরামর্শ ',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.class_upgradation_suggestion = input;
+                                print('class_upgradation_suggestion: ${controller.inspectionData.value.class_upgradation_suggestion}');
+                              },
+                              keyboardType: TextInputType.text,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: 'সার্বিক মূল্যায়নে বিদ্যায়লয়ের মান',
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                // controller.totalFemaleStudent.value = input as int;
+                                controller.inspectionData.value.overall_status = input;
+                                print('overall_status: ${controller.inspectionData.value.overall_status}');
+                              },
+                              keyboardType: TextInputType.text,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
 
 
                             TextFieldWidgetSmall(
