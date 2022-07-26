@@ -1367,113 +1367,156 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                            TextFieldWidgetSmall(
-                              labelText: "শেখ রাসেল ল্যাব এর সংখ্যা",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                controller.skRaselLabCount.value = input;
-                                controller.inspectionData.value.total_digital_lab = input;
-
-                              },
-                              keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-                            TextFieldWidgetSmall(
-                              labelText: "কোভিড ১৯ ভ্যাকসিন গ্রহণকারী শিক্ষার্থীর সংখ্যা",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                controller.covidVacCount.value = input;
-                                controller.inspectionData.value.covid19_vaccinated = input ;
-
-                              },
-                              keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-
-                            // DropDownWidget(
-                            //   labelText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
-                            //   hintText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার পদক্ষেপ গ্রহণ করা হয়েছে?",
-                            //   initialValue: '',
-                            //   data: ['হ্যাঁ', 'না'],
-                            //   onChanged: (input) {
-                            //      //controller.IsCleanActivity.value = input!;
-                            //
-                            //      if(input == 'হ্যাঁ'){
-                            //        controller.IsCleanActivity.value = 1;
-                            //      }else{
-                            //        controller.IsCleanActivity.value = 0;
-                            //      }
-                            //      controller.inspectionData.value.cleaning_steps = controller.IsTecherTraining.toString();
-                            //
-                            //   },
-                            //   //iconData: Icons.merge_type,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-                            TextFieldWidgetSmall(
-                              labelText: "প্রতিষ্ঠানের পরিষ্কার-পরিচ্ছন্নতার বিষয়ে কি পদক্ষেপ গ্রহণ করা হয়েছে?",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                controller.cleanActivity = input;
-                                controller.inspectionData.value.cleaning_steps = input;
-
-                              },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-                            TextFieldWidgetSmall(
-                              labelText: "শিক্ষকদের আইসিটি সংক্রান্ত কী কী প্রশিক্ষণ রয়েছে?",
-                              hintText: "",
-                              initialValue: '',
-                              keyboardType: TextInputType.multiline,
-                              onChanged: (input) {
-                                controller.techerIctTraining = input;
-                                controller.inspectionData.value.ict_training = input;
-                              },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-                            // DropDownWidgetMenu(
-                            //   labelText: "শিক্ষকদের আইসিটি সংক্রান্ত কী কী প্রশিক্ষণ রয়েছে?",
-                            //   hintText: "শিক্ষকদের আইসিটি সংক্রান্ত কী কী প্রশিক্ষণ রয়েছে?",
-                            //   initialValue: '',
-                            //   data: ['হ্যাঁ', 'না'],
-                            //   onChanged: (input) {
-                            //     controller.IsStatePlaintiffCase.value = input!;
-                            //     print(controller.IsStatePlaintiffCase);
-                            //   },
-                            //   //iconData: Icons.merge_type,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
 
                             DropDownWidgetMenu(
-                              labelText: "অভিভাবক সমাবেশ হয়েছে কি না?",
-                              hintText: "অভিভাবক সমাবেশ হয়েছে কি না?",
+                              labelText: "শেখ রাসেল ল্যাব",
+                              hintText: "শেখ রাসেল ল্যাব",
+                              initialValue: 'নাই',
+                              data: ['আছে', 'নাই'],
+                              onChanged: (input) {
+                                if(input == 'নাই'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "অনলাইনে ক্লাস",
+                              hintText: "অনলাইনে ক্লাস",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'না'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            DropDownWidgetMenu(
+                              labelText: "পরিস্কার পরিচ্ছন্নতা",
+                              hintText: "পরিস্কার পরিচ্ছন্নতা",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'না'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "প্রতিষ্ঠানের ক্যাচ ম্যান্ট এলাকার হালনাগাদ ম্যাপ আছে কি না?",
+                              hintText: "প্রতিষ্ঠানের ক্যাচ ম্যান্ট এলাকার হালনাগাদ ম্যাপ আছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'না'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidgetMenu(
+                              labelText: "রেজিস্টার ও রেকর্ড পত্র সঠিক ভাবে ব্যবহার করা হয় কি না ?",
+                              hintText: "রেজিস্টার ও রেকর্ড পত্র সঠিক ভাবে ব্যবহার করা হয় কি না ?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'না'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidgetMenu(
+                              labelText: "শিক্ষার্থীদের নিয়ে সাপ্তাহিক ক্রিয়াকলাপ হয় কি না?",
+                              hintText: "শিক্ষার্থীদের নিয়ে সাপ্তাহিক ক্রিয়াকলাপ হয় কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'না'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidgetMenu(
+                              labelText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
+                              hintText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                if(input == 'না'){
+                                  controller.IsInternet.value = 1;
+                                }else{
+                                  controller.IsInternet.value = 0;
+                                }
+
+                                // print(controller.IsStatePlaintiffCase);
+                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
+
+                              },
+                              //  iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            DropDownWidgetMenu(
+                              labelText: "অভিভাবক সমাবেশ হয় কি না?",
+                              hintText: "অভিভাবক সমাবেশ হয় কি না?",
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
@@ -1490,30 +1533,109 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                      // MultipleSelectionDropDownWidget(
-                      //         labelText: "প্রতিষ্ঠানে কী কী কো-কারিকুলাম কার্যকর রয়েছে?",
-                      //         hintText: "প্রতিষ্ঠানে কী কী কো-কারিকুলাম কার্যকর রয়েছে?",
-                      //         initialValue: '',
-                      //         data: controller.types_of_co_karikulam.map((item) => item['title']!).toList(),
-                      //         onChanged: (input) {
-                      //           for (var item in controller.types_of_co_karikulam) {
-                      //             if (item['title'] == input.toString().trim()) {
-                      //               controller.type_of_co_karikulam.value = item['id']!;
-                      //             }
-                      //           }
-                      //           print('type_of_co_karikulam: ${controller.type_of_co_karikulam}');
-                      //         },
-                      //         iconData: Icons.merge_type,
-                      //         isFirst: true,
-                      //         isLast: false,
-                      //       ),
+                            DropDownWidgetMenu(
+                              labelText: "টয়লেট পরিষ্কার কি না?",
+                              hintText: "টয়লেট পরিষ্কার কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = "1";
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = "0";
+                                }
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "নিরাপদ পানির ব্যবস্থা আছে কি না?",
+                              hintText: "নিরাপদ পানির ব্যবস্থা আছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = "1";
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = "0";
+                                }
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "প্রতিষ্টানটি বৃক্ষ/গাছ দ্বারা পরিবেষ্টিত কী?",
+                              hintText: "প্রতিষ্টানটি বৃক্ষ/গাছ দ্বারা পরিবেষ্টিত কী?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = "1";
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = "0";
+                                }
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            DropDownWidgetMenu(
+                              labelText: "শিক্ষার্থীদের পোশাক পরিচ্ছন্ন কি না?",
+                              hintText: "শিক্ষার্থীদের পোশাক পরিচ্ছন্ন কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = "1";
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = "0";
+                                }
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                             DropDownWidgetMenu(
+                              labelText: "মানসিক স্বাস্থ্য কার্যক্রম হয় কি না?",
+                              hintText: "মানসিক স্বাস্থ্য কার্যক্রম হয় কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = "1";
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = "0";
+                                }
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
 
 
                             TextFieldWidgetSmall(
-                              labelText: "প্রতিষ্ঠানে কী কী কো-কারিকুলাম কার্যকর রয়েছে?",
+                              labelText: "কোভিড-১৯ টিকা নিয়েছে কতজন শিক্ষার্থী?",
                               hintText: "",
                               initialValue: '',
-                              keyboardType: TextInputType.multiline,
+                              keyboardType: TextInputType.number,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
                                 controller.inspectionData.value.cocurricular_activities = input;
@@ -1524,123 +1646,19 @@ class InformationFormView extends GetView<InformationFormController> {
                               isFirst: true,
                               isLast: false,
                             ),
-                            DropDownWidgetMenu(
-                              labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কোন কার্যক্রম গ্রহণ করা হয়েছে কি না? করা হলে সংক্ষিপ্ত বিবরণ",
-                              hintText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কোন কার্যক্রম গ্রহণ করা হয়েছে কি না?",
-                              initialValue: '',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                controller.IsMentalHealthActivity.value = input!;
-                                print('IsMentalHealthActivity: ${controller.IsMentalHealthActivity.value}');
-
-                                if(input == 'হ্যাঁ'){
-                                 // controller.IsMentalHealthActivity.value = input!;
-                                  controller.inspectionData.value.mental_health_activities = "হ্যাঁ";
-                                }else{
-                                  controller.inspectionData.value.mental_health_activities = "0";
-                                }
-
-                                print('IsMentalHealthActivityInspectionData: ${controller.inspectionData.value.mental_health_activities}');
-
-                              },
-                              //iconData: Icons.merge_type,
-                              // isFirst: true,
-                              // isLast: false,
-                            ),
-                            Obx(() {
-                              print('IsMentalHealthActivity: ${controller.IsMentalHealthActivity.value}');
-                     if(controller.IsMentalHealthActivity.value == 'হ্যাঁ'){
-                      return TextFieldWidgetSmall(
-                         labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
-                         hintText: "বিবরণ লিখুন",
-                         initialValue: '',
-                         onChanged: (input) {
-                           controller.inspectionData.value.mental_health_activities = input;
-
-                           print('IsMentalHealthActivityInspectionData: ${controller.inspectionData.value.mental_health_activities}');
-
-                         },
-                         //limit: 255,
-                         //validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                         // iconData: Icons.description,
-                         isFirst: true,
-                         isLast: false,
-                       );
-                     }else{
-                       return SizedBox(
-                         height: 0.0,
-                       );
-                     }
-
-                              // return Column(
-                              //   children: [
-                              //     controller.inspectionData.value.mental_health_activities == 'হ্যাঁ'
-                              //         ? TextFieldWidgetSmall(
-                              //       labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
-                              //       hintText: "বিবরণ লিখুন",
-                              //       initialValue: '',
-                              //       onChanged: (input) {
-                              //         controller.inspectionData.value.mental_health_activities = input;
-                              //       },
-                              //       //limit: 255,
-                              //       validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //       // iconData: Icons.description,
-                              //       isFirst: true,
-                              //       isLast: false,
-                              //     )
-                              //         : Wrap(),
-                              //     TextFieldWidgetSmall(
-                              //       labelText: "ছাত্র-ছাত্রীদের মানসিক স্বাস্থ্য বিকাশে কার্যক্রম",
-                              //       hintText: "বিবরণ লিখুন",
-                              //       initialValue: '',
-                              //       onChanged: (input) {
-                              //         controller.inspectionData.value.mental_health_activities = input;
-                              //       },
-                              //       //limit: 255,
-                              //       validator: (input) => controller.IsMentalHealthActivity.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //       // iconData: Icons.description,
-                              //       isFirst: true,
-                              //       isLast: false,
-                              //     )
-                              //   ],
-                              // );
-                            }),
-
 
                             DropDownWidgetMenu(
-                              labelText: "অনলাইন ক্লাস চলমান আছে কি না?",
-                              hintText: "অনলাইন ক্লাস চলমান আছে কি না?",
+                              labelText: "বার্ষিক পাঠ পরিকল্পনা আছে কি না ?",
+                              hintText: "বার্ষিক পাঠ পরিকল্পনা আছে কি না ?",
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
+                                //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.online_class = 1;
+                                  controller.inspectionData.value.guardian_gathering = "1";
                                 }else{
-                                  controller.inspectionData.value.online_class = 0;
+                                  controller.inspectionData.value.guardian_gathering = "0";
                                 }
-
-                                print('controller.inspectionData.value.online_class: ${controller.inspectionData.value.online_class}');
-                              },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-                            DropDownWidgetMenu(
-                              labelText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে কি না ? থাকলে তার বিবরণ",
-                              hintText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে কি না ?",
-                              initialValue: '',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                controller.IsPichiyePoraJorePora.value = input!;
-                                if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.week_studuents_activities = 'হ্যাঁ';
-                                 // controller.inspectionData.value.online_class = 1;
-                                }else{
-                                  controller.inspectionData.value.week_studuents_activities = "0";
-                                }
-
-                                print('controller.inspectionData.week_studuents_activities: ${controller.inspectionData.value.week_studuents_activities}');
 
                               },
                               //iconData: Icons.merge_type,
@@ -1648,139 +1666,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-
-                            Obx(() {
-                              if(controller.IsPichiyePoraJorePora.value == 'হ্যাঁ'){
-                                return TextFieldWidgetSmall(
-                                  labelText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে,বিবরণ লিখুন",
-                                  hintText: "বিবরণ লিখুন",
-                                  initialValue: '',
-                                  onChanged: (input) {
-                                    controller.inspectionData.value.week_studuents_activities  = input;
-                                    print('controller.inspectionData.week_studuents_activities: ${controller.inspectionData.value.week_studuents_activities}');
-                                  },
-                                  //limit: 255,
-                                  validator: (input) => controller.IsPichiyePoraJorePora.value == 'হ্যাঁ' && input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                                  // iconData: Icons.description,
-                                  isFirst: true,
-                                  isLast: false,
-                                );
-                              }else{
-                                return SizedBox(
-                                  height: 0.0,
-                                );
-                              }
-
-                            }),
-
-
-                            // MultipleSelectionDropDownWidget(
-                            //   labelText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill বিষয়ে কী ধরনের কার্যক্রম গ্রহণ করাহয়েছে তার বিবরণ",
-                            //   hintText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill",
-                            //   initialValue: '',
-                            //   data: controller.types_of_co_karikulam.map((item) => item['title']!).toList(),
-                            //   onChanged: (input) {
-                            //     for (var item in controller.types_of_co_karikulam) {
-                            //       if (item['title'] == input.toString().trim()) {
-                            //         controller.type_of_co_karikulam.value = item['id']!;
-                            //       }
-                            //     }
-                            //     print('union_name: ${controller.type_of_co_karikulam.value}');
-                            //   },
-                            //   iconData: Icons.merge_type,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-
                             TextFieldWidgetSmall(
-                              labelText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill বিষয়ে কী ধরনের কার্যক্রম গ্রহণ করাহয়েছে তার বিবরণ",
-                              hintText: "",
-                              initialValue: '',
-                              keyboardType: TextInputType.multiline,
-                              onChanged: (input) {
-                                //controller.techerIctTraining = input;
-                                controller.inspectionData.value.soft_skill_description = input;
-                              },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-                            TextFieldWidgetSmall(
-                              labelText: "শিক্ষার্থীদের প্রাথমিক স্বাস্থ্য পরিচর্যার বিষয়ে কী ধরনের ব্যবস্থা নেয়া হয়েছে?",
-                              hintText: "",
-                              initialValue: '',
-                              keyboardType: TextInputType.multiline,
-                              onChanged: (input) {
-                                //controller.techerIctTraining = input;
-                                controller.inspectionData.value.first_aid_description = input;
-                              },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-                            TextFieldWidgetSmall(
-                              labelText: 'শ্রেণী কার্যক্রম পর্যবেক্ষণ',
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.class_inspection = input;
-                                print('class_inspection: ${controller.inspectionData.value.class_inspection}');
-                              },
-                              keyboardType: TextInputType.text,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-                            TextFieldWidgetSmall(
-                              labelText: 'পাঠের মান  উন্নয়নে পর্যবেক্ষকের পরামর্শ ',
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.class_upgradation_suggestion = input;
-                                print('class_upgradation_suggestion: ${controller.inspectionData.value.class_upgradation_suggestion}');
-                              },
-                              keyboardType: TextInputType.text,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-                            TextFieldWidgetSmall(
-                              labelText: 'সার্বিক মূল্যায়নে বিদ্যায়লয়ের মান',
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.overall_status = input;
-                                print('overall_status: ${controller.inspectionData.value.overall_status}');
-                              },
-                              keyboardType: TextInputType.text,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-
-
-                            TextFieldWidgetSmall(
-                              labelText: "সার্বিক মন্তব্য",
+                              labelText: "শ্রেণী কার্যক্রম পর্যবেক্ষণ",
                               hintText: "",
                               initialValue: '',
                               keyboardType: TextInputType.multiline,
@@ -1794,6 +1681,75 @@ class InformationFormView extends GetView<InformationFormController> {
                               isFirst: true,
                               isLast: false,
                             ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "ক্লাস আপগ্রেডেশন সাজেশন",
+                              hintText: "ক্লাস আপগ্রেডেশন সাজেশন ",
+                              initialValue: '',
+                              keyboardType: TextInputType.multiline,
+                              onChanged: (input) {
+                                //controller.techerIctTraining = input;
+                                controller.inspectionData.value.comments = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            TextFieldWidgetSmall(
+                              labelText: "পূর্ববর্তী পরিদর্শনের বিবরণ (কর্মকর্তার নাম ,পদবি,তারিখ )",
+                              hintText: "পূর্ববর্তী পরিদর্শনের বিবরণ (কর্মকর্তার নাম ,পদবি,তারিখ )",
+                              initialValue: '',
+                              keyboardType: TextInputType.multiline,
+                              onChanged: (input) {
+                                //controller.techerIctTraining = input;
+                                controller.inspectionData.value.comments = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
+                            DropDownWidgetMenu(
+                              labelText: "পূর্ববর্তী পরিদর্শকের সুপারিশ বাস্তবায়ন হয়েছে কি না?",
+                              hintText: "পূর্ববর্তী পরিদর্শকের সুপারিশ বাস্তবায়ন হয়েছে কি না?",
+                              initialValue: 'না',
+                              data: ['হ্যাঁ', 'না'],
+                              onChanged: (input) {
+                                //controller.IsInternet.value = input!;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.guardian_gathering = "1";
+                                }else{
+                                  controller.inspectionData.value.guardian_gathering = "0";
+                                }
+
+                              },
+                              //iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "সার্বিক মন্তব্য ও সুপারিশ",
+                              hintText: "",
+                              initialValue: '',
+                              keyboardType: TextInputType.multiline,
+                              onChanged: (input) {
+                                //controller.techerIctTraining = input;
+                                controller.inspectionData.value.comments = input;
+                              },
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+
 
 
                             GestureDetector(
