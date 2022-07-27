@@ -19,6 +19,8 @@ class Inspection_model {
   int? electricity_facility;
   String? headmaster_name;
   String? headmaster_mobile_no;
+  String? institute_permited_post;
+  String? headmaster_post;
   String? total_teachers;
   String? total_women_teachers;
   String? total_students;

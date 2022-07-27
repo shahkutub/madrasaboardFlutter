@@ -151,11 +151,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                //controller.
+                                controller.instituteName.value = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.person,
+
                               isFirst: true,
                               isLast: false,
                             ),
@@ -311,39 +309,45 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                            TextFieldWidgetSmall(
+                            // TextFieldWidgetSmall(
+                            //   labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
+                            //   hintText: "",
+                            //   initialValue: '',
+                            //   onChanged: (input) {
+                            //   },
+                            //   // limit: 255,
+                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                            //   //iconData: Icons.person,
+                            //   isFirst: true,
+                            //   isLast: false,
+                            // ),
+
+                            DropDownWidget(
                               labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                              hintText: "",
+                              hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
                               initialValue: '',
+                              //iconData: Icons.phone_android,
+                              data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
                               onChanged: (input) {
-                              },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
-                            ),
+                                for (var item in controller.allInstype.value.institute__type_list!) {
+                                  if (item.name == input) {
+                                    controller.instituteTypeId.value = item.id!.toString();
+                                    // controller.inspectionData.value.institute_type = item.id;
 
+                                  }
+                                }
 
-                            TextFieldWidgetSmall(
-                              labelText: "পরিদর্শনকারী কর্মকর্তাদের নাম",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
                               isFirst: true,
                               isLast: false,
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: "পদবি",
+                              labelText: "পরিদর্শনকারী কর্মকর্তার নাম",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-
+                                controller.inspectorName.value = input;
                               },
 
                               isFirst: true,
@@ -351,30 +355,36 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: "মোবাইল",
+                              labelText: "পরিদর্শনকারী কর্মকর্তার পদবি",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                //controller.victimAddress = input;
+                                controller.inspectorPost.value = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
+
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "পরিদর্শনকারী কর্মকর্তার মোবাইল",
+                              hintText: "",
+                              initialValue: '',
+                              onChanged: (input) {
+                                controller.inspectorMobile.value = input;
+                              },
                               isFirst: true,
                               isLast: false,
                             ),
 
 
                             TextFieldWidget(
-                              labelText: "ইমেইল",
+                              labelText: "পরিদর্শনকারী কর্মকর্তার ইমেইল",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                //controller.victimAddress = input;
+                                controller.inspectorEmil.value = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
                               isFirst: true,
                               isLast: false,
                             ),
@@ -386,11 +396,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                //controller.victimAddress = input;
+                                controller.inspectionDate.value = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
+
                               isFirst: true,
                               isLast: false,
                             ),
@@ -410,7 +418,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
                             TextFieldWidgetSmall(
-                              labelText: "মোবাইল নম্বর",
+                              labelText: "প্রতিষ্ঠান প্রধানের মোবাইল নম্বর",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
@@ -426,14 +434,14 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
-                              labelText: "পদবি",
+                              labelText: "প্রতিষ্ঠান প্রধানের পদবি",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
                                 //controller.instiruteHeadMobile = input;
-                                controller.inspectionData.value.headmaster_mobile_no = input;
+                                controller.inspectionData.value.headmaster_post = input;
                               },
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.text,
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
                               //iconData: Icons.phone_android,
@@ -441,21 +449,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                            TextFieldWidgetSmall(
-                              labelText: "মোবাইল",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                //controller.instiruteHeadMobile = input;
-                                controller.inspectionData.value.headmaster_mobile_no = input;
-                              },
-                              keyboardType: TextInputType.phone,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
-                            ),
+
 
                             TextFieldWidgetSmall(
                               labelText: "প্রতিষ্ঠানের মোট অনুমোদিত পদ",
@@ -463,9 +457,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                 //controller.instiruteHeadMobile = input;
-                                controller.inspectionData.value.headmaster_mobile_no = input;
+                                controller.inspectionData.value.institute_permited_post = input;
                               },
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.number,
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
                               //iconData: Icons.phone_android,

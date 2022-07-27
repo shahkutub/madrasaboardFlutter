@@ -63,6 +63,12 @@ class InformationFormController extends GetxController {
   final instituteUpazila = ''.obs;
   final victimUnion = ''.obs;
   final eiinNumber = ''.obs;
+  final instituteName = ''.obs;
+  final inspectorName = ''.obs;
+  final inspectorPost = ''.obs;
+  final inspectorMobile = ''.obs;
+  final inspectorEmil = ''.obs;
+  final inspectionDate = ''.obs;
   final totalStudent = 0.obs;
   final totalBoyStudent = 0.obs;
   final totalFemaleStudent = 0.obs;
