@@ -46,6 +46,7 @@ dependencies:
   dropdown_plus: ^0.0.9
   basic_utils: ^4.2.2
   date_time_picker: ^2.1.0
+  permission_handler: ^8.3.0
 
 
 dev_dependencies:

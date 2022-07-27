@@ -137,7 +137,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-
+                                controller.eiinNumber.value = input;
                               },
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
@@ -151,7 +151,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-
+                                //controller.
                               },
                               // limit: 255,
                               // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,

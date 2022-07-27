@@ -7,6 +7,7 @@ import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../services/auth_service.dart';
 
@@ -26,8 +27,23 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     loginFormKey = GlobalKey<FormState>();
-    getLocation();
+    requestPermission();
+    //getLocation();
     super.onInit();
+  }
+
+  void requestPermission() async{
+    var status = await Permission.storage.status;
+
+    if(!status.isGranted){
+      await Permission.storage.request();
+    }
+
+    var status1 = await Permission.manageExternalStorage.status;
+
+    if(!status1.isGranted){
+      await Permission.manageExternalStorage.request();
+    }
   }
 
   @override

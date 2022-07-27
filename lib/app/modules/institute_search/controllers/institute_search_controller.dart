@@ -19,6 +19,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:super_easy_permissions/super_easy_permissions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -88,14 +89,16 @@ class InstituteSearchController extends GetxController {
     //addDataInList();
 
     // requesting permission
-    bool result = await SuperEasyPermissions.askPermission(
-        Permissions.storage);
+    // bool result = await SuperEasyPermissions.askPermission(
+    //     Permissions.storage);
+    //
+    // SuperEasyPermissions.isGranted(Permissions.storage).then((result) {
+    //   if (result) {
+    //    // filePermission.value = 'Granted !';
+    //   }
+    // });
 
-    SuperEasyPermissions.isGranted(Permissions.storage).then((result) {
-      if (result) {
-       // filePermission.value = 'Granted !';
-      }
-    });
+    requestPermission();
 
      getAldivDis();
      getAllInstituteType();
@@ -110,6 +113,21 @@ class InstituteSearchController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+  }
+
+
+  void requestPermission() async{
+    var status = await Permission.storage.status;
+
+    if(!status.isGranted){
+      await Permission.storage.request();
+    }
+
+    var status1 = await Permission.manageExternalStorage.status;
+
+    if(!status1.isGranted){
+      await Permission.manageExternalStorage.request();
+    }
   }
 
   addDataInList() {
@@ -429,7 +447,7 @@ Future instituteListPDFSumaryBased(String url_last) async {
     var filePath = tempPath + '/$name';
 
     searchPdfPath.value = filePath;
-    print('path: '+searchPdfPath.value);
+    print('pdf path: '+searchPdfPath.value);
     //
 
     // the data
@@ -441,7 +459,8 @@ Future instituteListPDFSumaryBased(String url_last) async {
 
 
 
-  Future<String> createFileFromString() async {
+  //Future<String> createFileFromString() async {
+  Future createFileFromString() async {
 
     // Convert to UriData
     var  data = Uri.parse(instituteSummaryPdf.value.api_info!).data;
@@ -453,14 +472,14 @@ Future instituteListPDFSumaryBased(String url_last) async {
     Uint8List myImage = data.contentAsBytes();
 
     writeFile(myImage, "institution_summary.pdf");
-    final encodedStr = instituteSummaryPdf.value.api_info;
-    //Uint8List bytes = base64.decode(encodedStr!);
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    File file = File(
-        "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".pdf");
-    await file.writeAsBytes(myImage);
-    print(file.path);
-    return file.path;
+    // final encodedStr = instituteSummaryPdf.value.api_info;
+    // //Uint8List bytes = base64.decode(encodedStr!);
+    // String dir = (await getApplicationDocumentsDirectory()).path;
+    // File file = File(
+    //     "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".pdf");
+    // await file.writeAsBytes(myImage);
+    // print(file.path);
+    // return file.path;
   }
 
   Future<String> createInstituteListFileFromString(String value) async {

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:super_easy_permissions/super_easy_permissions.dart';
 import 'package:uuid/uuid.dart';
 
@@ -37,32 +38,45 @@ class after_login_controller extends GetxController {
     //getLocationPermission();
 
     // requesting permission
-    bool result = await SuperEasyPermissions.askPermission(
-        Permissions.storage);
-
-    SuperEasyPermissions.isGranted(Permissions.storage).then((result) {
-      if (result) {
-        filePermission.value = 'Granted !';
-      }
-    });
-    final pdf = pw.Document();
-
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Center(
-          child: pw.Text('Hello World!'),
-        ),
-      ),
-    );
-
-    final file = File('example.pdf');
-    await file.writeAsBytes(await pdf.save());
-    openFile(file);
+    // bool result = await SuperEasyPermissions.askPermission(
+    //     Permissions.storage);
+    //
+    // SuperEasyPermissions.isGranted(Permissions.storage).then((result) {
+    //   if (result) {
+    //     filePermission.value = 'Granted !';
+    //   }
+    // });
+    // final pdf = pw.Document();
+    //
+    // pdf.addPage(
+    //   pw.Page(
+    //     build: (pw.Context context) => pw.Center(
+    //       child: pw.Text('Hello World!'),
+    //     ),
+    //   ),
+    // );
+    //
+    // final file = File('example.pdf');
+    // await file.writeAsBytes(await pdf.save());
+    // openFile(file);
     //AuthRepository().allProd();
+    requestPermission();
     super.onInit();
   }
 
+  void requestPermission() async{
+    var status = await Permission.storage.status;
 
+    if(!status.isGranted){
+      await Permission.storage.request();
+    }
+
+    var status1 = await Permission.manageExternalStorage.status;
+
+    if(!status1.isGranted){
+      await Permission.manageExternalStorage.request();
+    }
+  }
 
   static Future openFile(File file) async {
     final url = file.path;

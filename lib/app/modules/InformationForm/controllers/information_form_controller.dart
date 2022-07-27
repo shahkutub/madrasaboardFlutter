@@ -412,7 +412,7 @@ class InformationFormController extends GetxController {
     getAldivDis();
     getAllInstituteType();
 
-    getLocation();
+    //getLocation();
     super.onInit();
   }
 

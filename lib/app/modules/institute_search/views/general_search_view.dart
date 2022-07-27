@@ -378,7 +378,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                               text: 'Report pdf',
                                               //text: 'Please click on attach link to show & download pdf',
                                               filePath: controller.searchPdfPath.value,
-                                              //fileType: '*/*'
+                                              fileType: '*/*'
                                               //chooserTitle: 'Please click on attach link to show & download pdf'
                                             );
                                           },
@@ -1322,6 +1322,8 @@ class general_search_view extends GetView<InstituteSearchController> {
           );
         });
   }
+
+
 
 }
 
