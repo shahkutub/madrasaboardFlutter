@@ -429,7 +429,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             Padding(
                                               padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
                                               child:
-                                              Text('মোট শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                              Text('মোট পাঠদানকৃত শিক্ষাপ্রতিষ্ঠানের সংখ্যা',
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -453,6 +453,35 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                   ),
                                                 )
                                             ),
+
+                                          ]),
+
+                                      TableRow(
+
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
+                                              child:
+                                              Text('মোট স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+
+                                            GestureDetector(
+                                                onTap: (){
+                                                  controller.placeLoaded.value = false;
+                                                  controller.instituteListTitle.value = 'স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠান';
+                                                  controller.instituteListSumaryBased('recognize');
+                                                  Get.toNamed(Routes.INSTITUTE_LIST);
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
+                                                  child: Text(controller.instituteSummary.value.api_info!.total_recognized.toString(),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                )
+                                            )
 
                                           ]),
 
@@ -487,34 +516,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                             ),
 
                                           ]),
-                                      TableRow(
 
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5,top: 7.0,right: 5,bottom: 7.0),
-                                              child:
-                                              Text('মোট স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-
-                                            GestureDetector(
-                                                onTap: (){
-                                                  controller.placeLoaded.value = false;
-                                                  controller.instituteListTitle.value = 'স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('recognize');
-                                                  Get.toNamed(Routes.INSTITUTE_LIST);
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(left: 5,top: 15.0,right: 5,bottom: 7.0),
-                                                  child: Text(controller.instituteSummary.value.api_info!.total_recognized.toString(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                )
-                                            )
-
-                                          ]),
 
 
                                       TableRow(
