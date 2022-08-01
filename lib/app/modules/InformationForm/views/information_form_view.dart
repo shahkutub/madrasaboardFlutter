@@ -38,7 +38,7 @@ class InformationFormView extends GetView<InformationFormController> {
           ),
         ),
         body: Obx(() {
-          if (!controller.placeLoaded.isTrue) {
+          if (controller.placeLoaded.isTrue) {
             return SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Form(

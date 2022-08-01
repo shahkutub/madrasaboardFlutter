@@ -165,7 +165,8 @@ class InformationRepository {
   }
 
   Future<PostResponse> postInspection(Inspection_model inspection_model, _connectionStatus) async {
-    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    //String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    String? token = '';
     var year = DateTime.now().year;
 
     Map data = {
