@@ -63,7 +63,6 @@ flutter:
 
   assets:
     - assets/
-    - asset/
     - assets/images/
     - assets/locales/
     - assets/place/

@@ -166,45 +166,95 @@ class InformationRepository {
 
   Future<PostResponse> postInspection(Inspection_model inspection_model, _connectionStatus) async {
     String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var year = DateTime.now().year;
+
     Map data = {
 
-      'thana_id': inspection_model.thana_id.toString(),
-      'district_id': inspection_model.district_id.toString(),
+      'year': ""+year.toString(),
       'division_id': inspection_model.division_id.toString(),
-      'class_inspection': ""+inspection_model.class_inspection.toString(),
-      'class_upgradation_suggestion': ""+inspection_model.class_upgradation_suggestion.toString(),
-      'cleaning_steps': ""+inspection_model.cleaning_steps.toString(),
-      'cocurricular_activities': ""+inspection_model.cocurricular_activities.toString(),
-      'comments': ""+inspection_model.comments.toString(),
-      'covid19_vaccinated': ""+inspection_model.covid19_vaccinated.toString(),
-      'electricity_facility': ""+inspection_model.electricity_facility.toString(),
-      'first_aid_description': ""+inspection_model.first_aid_description.toString(),
-      'guardian_gathering': ""+inspection_model.guardian_gathering.toString(),
-      'headmaster_mobile_no': ""+inspection_model.headmaster_mobile_no.toString(),
+      'district_id': inspection_model.district_id.toString(),
+      'thana_id': inspection_model.thana_id.toString(),
+      'institute_type': ""+inspection_model.institute_type.toString(),
+      'institute_id': ""+inspection_model.institute_id.toString(),
+      '': ""+inspection_model.eiinNumber.toString(),
+
+      '': ""+inspection_model.inspectorName.toString(),
+      '': ""+inspection_model.inspectorPost.toString(),
+      '': ""+inspection_model.inspectorMobile.toString(),
+      '': ""+inspection_model.inspectorEmail.toString(),
+      '': ""+inspection_model.inspectionDate.toString(),
+
+
       'headmaster_name': ""+inspection_model.headmaster_name.toString(),
-      'mental_health_activities': ""+inspection_model.mental_health_activities.toString(),
-      'week_studuents_activities': ""+inspection_model.week_studuents_activities.toString(),
-      'online_class': ""+inspection_model.online_class.toString(),
-      'cleaning_steps': ""+inspection_model.cleaning_steps.toString(),
-      'ict_training': ""+inspection_model.ict_training.toString(),
+      'headmaster_mobile_no': ""+inspection_model.headmaster_mobile_no.toString(),
+      '': ""+inspection_model.institute_permited_post.toString(),
+      '': ""+inspection_model.headmaster_post.toString(),
+      'total_teachers': ""+inspection_model.total_teachers.toString(),
+      'total_women_teachers': ""+inspection_model.total_women_teachers.toString(),
+      '': ""+inspection_model.total_songjukto_teachers.toString(),
+      '': ""+inspection_model.present_teacher.toString(),
+      '': ""+inspection_model.abcent_teacher.toString(),
+      '': ""+inspection_model.isFormalDress.toString(),
+      '': ""+inspection_model.isIctTraining.toString(),
+      '': ""+inspection_model.isOtherTraining.toString(),
+      '': ""+inspection_model.empty_post.toString(),
+      'total_students': ""+inspection_model.total_students.toString(),
+      'total_girls_students': ""+inspection_model.total_girls_students.toString(),
+      '': ""+inspection_model.special_needs_students.toString(),
+      '': ""+inspection_model.cholarship_students.toString(),
+
+
+      '': ""+inspection_model.dakhilExamine_students.toString(),
+      '': ""+inspection_model.alimExamine_students.toString(),
+      '': ""+inspection_model.fazilExamine_students.toString(),
+      '': ""+inspection_model.kamilExamine_students.toString(),
+      '': ""+inspection_model.vokExamine_students.toString(),
+      '': ""+inspection_model.bmetExamine_students.toString(),
+      '': ""+inspection_model.deplomaEngExamine_students.toString(),
+      '': ""+inspection_model.shortExamine_students.toString(),
+
+      '': ""+inspection_model.dakhilPass_students.toString(),
+      '': ""+inspection_model.alimPass_students.toString(),
+      '': ""+inspection_model.fazilPass_students.toString(),
+      '': ""+inspection_model.kamilPass_students.toString(),
+      '': ""+inspection_model.vokPass_students.toString(),
+      '': ""+inspection_model.bmetPass_students.toString(),
+      '': ""+inspection_model.deplomaEngPass_students.toString(),
+      '': ""+inspection_model.shortPass_students.toString(),
+
+
+      '': ""+inspection_model.recognise_date.toString(),
+      '': ""+inspection_model.mpo_date.toString(),
       'electricity_facility': ""+inspection_model.electricity_facility.toString(),
-      'teacher_training': ""+inspection_model.teacher_training.toString(),
       'internet_facility': ""+inspection_model.internet_facility.toString(),
       'total_multimedia_classroom': ""+inspection_model.total_multimedia_classroom.toString(),
       'total_digital_lab': ""+inspection_model.total_digital_lab.toString(),
-      'total_girls_students': ""+inspection_model.total_girls_students.toString(),
-      'total_students': ""+inspection_model.total_students.toString(),
-      'institute_id': ""+inspection_model.institute_id.toString(),
-      'institute_type': ""+inspection_model.institute_type.toString(),
-      'total_teachers': ""+inspection_model.total_teachers.toString(),
-      'total_women_teachers': ""+inspection_model.total_women_teachers.toString(),
-      'total_passed': ""+inspection_model.total_passed.toString(),
-      'total_examinees': ""+inspection_model.total_examinees.toString(),
-      'overall_status': ""+inspection_model.overall_status.toString(),
-      'class_inspection': ""+inspection_model.class_inspection.toString(),
-      'soft_skill_description': ""+inspection_model.soft_skill_description.toString(),
-      'class_upgradation_suggestion': ""+inspection_model.class_upgradation_suggestion.toString(),
-      'year': "2022",
+      '': ""+inspection_model.isSkrLab.toString(),
+      '': ""+inspection_model.isOnlineClass.toString(),
+      '': ""+inspection_model.isCleanness.toString(),
+      '': ""+inspection_model.isCachmant.toString(),
+      '': ""+inspection_model.isRegisok.toString(),
+      '': ""+inspection_model.isWeekWork.toString(),
+      '': ""+inspection_model.isPrymariHealth.toString(),
+      '': ""+inspection_model.guardian_gathering.toString(),
+      '': ""+inspection_model.toiletClean.toString(),
+      '': ""+inspection_model.safeWater.toString(),
+      '': ""+inspection_model.tree.toString(),
+      '': ""+inspection_model.cleanDress.toString(),
+      '': ""+inspection_model.mentalHealthActivity.toString(),
+      '': ""+inspection_model.covid19_vaccinated.toString(),
+      '': ""+inspection_model.yearlyPlan.toString(),
+      '': ""+inspection_model.shreniKarjo.toString(),
+      '': ""+inspection_model.upgradationSuggession.toString(),
+      '': ""+inspection_model.previousInspetion.toString(),
+      '': ""+inspection_model.previousInspetionApply.toString(),
+      '': ""+inspection_model.comments.toString(),
+
+
+
+
+
+
     };
     print(_connectionStatus.toString());
     var response;

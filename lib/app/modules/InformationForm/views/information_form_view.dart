@@ -33,79 +33,12 @@ class InformationFormView extends GetView<InformationFormController> {
             ),
 
             actions: <Widget>[
-              // RaisedButton(
-              //   onPressed: () {
-              //     Get.toNamed(Routes.PROVIDED_DATA_LIST);
-              //   },
-              //   color: Colors.amber,
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10)),
-              //   child: Text("পূর্বের পরিদর্শন",
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              // ),
-              // TextButton(
-              //     onPressed: () {
-              //       Get.toNamed(Routes.PROVIDED_DATA_LIST);
-              //     },
-              //     child: Text("পূর্বের পরিদর্শন",
-              //       style: TextStyle(color: Colors.purple),
-              //     ),
-              //
-              // ),
-              // SizedBox(
-              //   width: 5,
-              // ),
-              // Center(
-              //   child: Container(
-              //     height: 30,
-              //     width: 60,
-              //     child: RawMaterialButton(
-              //       onPressed: () {
-              //         Get.find<AuthService>().removeCurrentUser();
-              //         Get.toNamed(Routes.LOGIN);
-              //       },
-              //       elevation: 2.0,
-              //       fillColor: Colors.red,
-              //       child: Text("লগ আউট",
-              //         style: TextStyle(color: Colors.white,fontSize: 10),
-              //       ),
-              //       padding: EdgeInsets.all(5.0),
-              //       shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(10)),
-              //     ),
-              //   ),
-              // ),
-              //
-              // SizedBox(
-              //   width: 5,
-              // ),
-              // Center(
-              //   child: Container(
-              //     height: 30,
-              //
-              //     child: RawMaterialButton(
-              //       onPressed: () {
-              //         Get.toNamed(Routes.PROVIDED_DATA_LIST);
-              //       },
-              //       elevation: 2.0,
-              //       fillColor: Colors.indigo,
-              //       child: Text("পরিদশন তালিকা",
-              //         style: TextStyle(color: Colors.white,fontSize: 10),
-              //       ),
-              //       padding: EdgeInsets.all(5.0),
-              //       shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(10)),
-              //     ),
-              //   ),
-              // ),
-
 
             ],
           ),
         ),
         body: Obx(() {
-          if (controller.placeLoaded.isTrue) {
+          if (!controller.placeLoaded.isTrue) {
             return SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Form(
@@ -130,33 +63,6 @@ class InformationFormView extends GetView<InformationFormController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-
-                            TextFieldWidgetSmall(
-                              labelText: "প্রতিষ্ঠানের ই আই এন (EIN)",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                controller.eiinNumber.value = input;
-                              },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
-                            ),
-
-                            TextFieldWidgetSmall(
-                              labelText: "প্রতিষ্ঠানের নাম",
-                              hintText: "",
-                              initialValue: '',
-                              onChanged: (input) {
-                                controller.instituteName.value = input;
-                              },
-
-                              isFirst: true,
-                              isLast: false,
-                            ),
 
                             DropDownWidget(
                               labelText: "বিভাগ",
@@ -204,12 +110,6 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: controller.districtList?.map((item) => item.name!).toList(),
 
 
-                              // data: controller.allDivDisTana!.value.district_list!
-                              //     .where((element) => element.division_id == controller.victimDivision.value)
-                              //     .map((item) => item.name!)
-                              //     .toList(),
-                                  // .where((country) => controller.victimU.add(country.toString()))
-                                  // .toList()
 
                               iconData: Icons.phone_android,
                               onChanged: (input) {
@@ -292,54 +192,19 @@ class InformationFormView extends GetView<InformationFormController> {
                                   }
                                 }
 
-
-                                // for (var item in controller.allStudentData.value.students!) {
-                                //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-                                //     controller.totalStudent.value = item.total! as int;
-                                //     controller.totalFemaleStudent.value = item.total_girls! as int;
-                                //   }
-                                // }
-
-                                //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
-
-                                // controller.getLocationData();
-                                // print('union_ id: ${controller.victimUnion.value}');
                               },
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
-                            // TextFieldWidgetSmall(
-                            //   labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                            //   hintText: "",
-                            //   initialValue: '',
-                            //   onChanged: (input) {
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   //iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
 
-                            DropDownWidget(
-                              labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                              hintText: "প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
+                            TextFieldWidgetSmall(
+                              labelText: "প্রতিষ্ঠানের ই আই এন (EIN)",
+                              hintText: "",
                               initialValue: '',
-                              //iconData: Icons.phone_android,
-                              data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
                               onChanged: (input) {
-                                for (var item in controller.allInstype.value.institute__type_list!) {
-                                  if (item.name == input) {
-                                    controller.instituteTypeId.value = item.id!.toString();
-                                    // controller.inspectionData.value.institute_type = item.id;
-
-                                  }
-                                }
-
+                                controller.inspectionData.value.eiinNumber = input;
                               },
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -347,11 +212,10 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.inspectorName.value = input;
+                                //controller.inspectorName.value = input;
+                                controller.inspectionData.value.inspectorName = input;
                               },
 
-                              isFirst: true,
-                              isLast: false,
                             ),
 
                             TextFieldWidgetSmall(
@@ -359,11 +223,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.inspectorPost.value = input;
+                                controller.inspectionData.value.inspectorPost = input;
                               },
 
-                              isFirst: true,
-                              isLast: false,
                             ),
 
                             TextFieldWidgetSmall(
@@ -371,10 +233,10 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.inspectorMobile.value = input;
+                                controller.inspectionData.value.inspectorMobile = input;
                               },
-                              isFirst: true,
-                              isLast: false,
+                              keyboardType:TextInputType.phone,
+
                             ),
 
 
@@ -383,10 +245,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.inspectorEmil.value = input;
+                                controller.inspectionData.value.inspectorEmail = input;
                               },
-                              isFirst: true,
-                              isLast: false,
+                              keyboardType: TextInputType.emailAddress,
                             ),
 
 
@@ -396,26 +257,18 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.inspectionDate.value = input;
+                                controller.inspectionData.value.inspectionDate = input;
                               },
 
-                              isFirst: true,
-                              isLast: false,
                             ),
                             TextFieldWidgetSmall(
                               labelText: "প্রতিষ্ঠান প্রধানের নাম",
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                //controller.instiruteHeadName = input;
                                 controller.inspectionData.value.headmaster_name = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.person,
-                              //iconData: IconData,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
                             TextFieldWidgetSmall(
                               labelText: "প্রতিষ্ঠান প্রধানের মোবাইল নম্বর",
@@ -474,7 +327,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.teacherCount = input;
+                                //controller.teacherCount = input;
                                 controller.inspectionData.value.total_teachers = input;
                               },
                               keyboardType: TextInputType.number,
@@ -490,7 +343,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.femaleteacherCount = input;
+                                //controller.femaleteacherCount = input;
                                 controller.inspectionData.value.total_women_teachers = input;
 
                               },
@@ -507,8 +360,8 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.femaleteacherCount = input;
-                                controller.inspectionData.value.total_women_teachers = input;
+                                //controller.femaleteacherCount = input;
+                                controller.inspectionData.value.total_songjukto_teachers = input;
 
                               },
                               keyboardType: TextInputType.number,
@@ -524,8 +377,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.femaleteacherCount = input;
-                                controller.inspectionData.value.total_women_teachers = input;
+                                controller.inspectionData.value.empty_post = input;
 
                               },
                               keyboardType: TextInputType.number,
@@ -540,8 +392,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.femaleteacherCount = input;
-                                controller.inspectionData.value.total_women_teachers = input;
+                                controller.inspectionData.value.present_teacher = input;
 
                               },
                               keyboardType: TextInputType.number,
@@ -557,14 +408,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.femaleteacherCount = input;
-                                controller.inspectionData.value.total_women_teachers = input;
+                                controller.inspectionData.value.abcent_teacher = input;
 
                               },
                               keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
+
                               isFirst: true,
                               isLast: false,
                             ),
@@ -575,15 +423,12 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                //  controller.IsTecherTraining.value = input!;
-
 
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.teacher_training = 1;
+                                  controller.inspectionData.value.isFormalDress = 1;
                                 }else{
-                                  controller.inspectionData.value.teacher_training = 0;
+                                  controller.inspectionData.value.isFormalDress = 0;
                                 }
-                                //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
 
 
                               },
@@ -597,13 +442,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                //  controller.IsTecherTraining.value = input!;
-
 
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.teacher_training = 1;
+                                  controller.inspectionData.value.isIctTraining = 1;
                                 }else{
-                                  controller.inspectionData.value.teacher_training = 0;
+                                  controller.inspectionData.value.isIctTraining = 0;
                                 }
                                 //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
 
@@ -626,9 +469,9 @@ class InformationFormView extends GetView<InformationFormController> {
 
 
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.teacher_training = 1;
+                                  controller.inspectionData.value.isOtherTraining = 1;
                                 }else{
-                                  controller.inspectionData.value.teacher_training = 0;
+                                  controller.inspectionData.value.isOtherTraining = 0;
                                 }
                                 //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
 
@@ -652,12 +495,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                 print('total_students: ${controller.inspectionData.value.total_students}');
 
                               },
-                              keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -670,11 +508,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                 print('total_girls_students: ${controller.inspectionData.value.total_girls_students}');
                               },
                               keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -683,15 +517,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               onChanged: (input) {
                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.total_girls_students = input;
-                                print('total_girls_students: ${controller.inspectionData.value.total_girls_students}');
+                                controller.inspectionData.value.special_needs_students = input;
+                                print('total_girls_students: ${controller.inspectionData.value.special_needs_students}');
                               },
                               keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -699,16 +529,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                // controller.totalFemaleStudent.value = input as int;
-                                controller.inspectionData.value.total_girls_students = input;
-                                print('total_girls_students: ${controller.inspectionData.value.total_girls_students}');
+                                controller.inspectionData.value.cholarship_students = input;
+                                print('total_girls_students: ${controller.inspectionData.value.cholarship_students}');
                               },
                               keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -727,7 +552,8 @@ class InformationFormView extends GetView<InformationFormController> {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        'মোট পরীক্ষার্থীর সংখ্যা',
+                                       // 'মোট পরীক্ষার্থীর সংখ্যা',
+                                        ' পরীক্ষার্থীর সংখ্যা',
                                         style: TextStyle(fontSize: 20,color: Colors.teal),
                                       ),
 
@@ -764,9 +590,9 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.dakhilexmineeCount = text.toString();
+                                                      controller.inspectionData.value.dakhilExamine_students = text.toString();
 
-                                                      print('dakhilexmineeCount: ${controller.dakhilexmineeCount}');
+                                                      print('dakhilexmineeCount: ${controller.inspectionData.value.dakhilExamine_students}');
                                                     },
                                                   ),
                                                 )
@@ -788,10 +614,15 @@ class InformationFormView extends GetView<InformationFormController> {
                                                     decoration: InputDecoration(
                                                       border: InputBorder.none,
                                                       // labelText: '60',
-                                                      hintText: "",
+                                                      hintText: "0",
                                                       //hintStyle:
 
                                                     ),
+                                                    onChanged: (text){
+                                                      controller.inspectionData.value.alimExamine_students = text.toString();
+
+                                                      print('alimExamine_students: ${controller.inspectionData.value.alimExamine_students}');
+                                                    },
                                                   ),
                                                 )
                                               ]),
@@ -818,9 +649,9 @@ class InformationFormView extends GetView<InformationFormController> {
                                                     ),
 
                                                     onChanged: (text){
-                                                      controller.fazilexmineeCount = text.toString();
+                                                      controller.inspectionData.value.fazilExamine_students = text.toString();
 
-                                                      print('fazilexmineeCount: ${controller.fazilexmineeCount}');
+                                                      print('fazilExamine_students: ${controller.inspectionData.value.fazilExamine_students}');
                                                     },
                                                   ),
                                                 )
@@ -848,15 +679,14 @@ class InformationFormView extends GetView<InformationFormController> {
                                                     ),
 
                                                     onChanged: (text){
-                                                      controller.vocexmineeCount = text.toString();
+                                                      controller.inspectionData.value.kamilExamine_students = text.toString();
 
-                                                      print('vocexmineeCount: ${controller.vocexmineeCount}');
+                                                      print('kamilExamine_students: ${controller.inspectionData.value.kamilExamine_students}');
                                                     },
                                                   ),
                                                 )
                                               ]),
                                           TableRow(
-
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
@@ -877,9 +707,9 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
+                                                      controller.inspectionData.value.vokExamine_students = text.toString();
 
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      print('vokExamine_students: ${controller.inspectionData.value.vokExamine_students}');
                                                     },
                                                   ),
                                                 )
@@ -890,7 +720,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                                 Padding(
                                                   padding: EdgeInsets.only(left: 10,top: 15.0,right: 5,bottom: 0.0),
                                                   child:
-                                                  Text('এস এস সি (ভোক)/এইচ এস সি (বিএমটি)',
+                                                  Text('এএইচ এস সি (ভোক)/এইচ এস সি (বিএমটি)',
                                                     //textAlign: TextAlign.center,
                                                   ),
                                                 ),
@@ -906,9 +736,9 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
+                                                      controller.inspectionData.value.bmetExamine_students = text.toString();
 
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      print('bmetExamine_students: ${controller.inspectionData.value.bmetExamine_students}');
                                                     },
                                                   ),
                                                 )
@@ -935,10 +765,11 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
+                                                      controller.inspectionData.value.deplomaEngExamine_students = text.toString();
 
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      print('deplomaEngExamine_students: ${controller.inspectionData.value.deplomaEngExamine_students}');
                                                     },
+
                                                   ),
                                                 )
                                               ]),
@@ -964,9 +795,9 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
+                                                      controller.inspectionData.value.shortExamine_students = text.toString();
 
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      print('shortExamine_students: ${controller.inspectionData.value.shortExamine_students}');
                                                     },
                                                   ),
                                                 )
@@ -993,7 +824,8 @@ class InformationFormView extends GetView<InformationFormController> {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        'মোট পাশের সংখ্যা',
+                                        //'মোট পাশের সংখ্যা',
+                                        'পাশের সংখ্যা',
                                         style: TextStyle(fontSize: 20,color: Colors.teal),
                                       ),
 
@@ -1030,10 +862,11 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.dakhilexmineeCount = text.toString();
+                                                      controller.inspectionData.value.dakhilPass_students = text.toString();
 
-                                                      print('dakhilexmineeCount: ${controller.dakhilexmineeCount}');
+                                                      print('dakhilPass_students: ${controller.inspectionData.value.dakhilPass_students}');
                                                     },
+
                                                   ),
                                                 )
                                               ]),
@@ -1058,6 +891,11 @@ class InformationFormView extends GetView<InformationFormController> {
                                                       //hintStyle:
 
                                                     ),
+                                                    onChanged: (text){
+                                                      controller.inspectionData.value.alimPass_students = text.toString();
+
+                                                      print('alimPass_students: ${controller.inspectionData.value.alimPass_students}');
+                                                    },
                                                   ),
                                                 )
                                               ]),
@@ -1082,12 +920,11 @@ class InformationFormView extends GetView<InformationFormController> {
                                                       //hintStyle:
 
                                                     ),
-
                                                     onChanged: (text){
-                                                      controller.fazilexmineeCount = text.toString();
-
-                                                      print('fazilexmineeCount: ${controller.fazilexmineeCount}');
+                                                      controller.inspectionData.value.fazilPass_students = text.toString();
+                                                      print('fazilPass_students: ${controller.inspectionData.value.fazilPass_students}');
                                                     },
+
                                                   ),
                                                 )
                                               ]),
@@ -1112,12 +949,10 @@ class InformationFormView extends GetView<InformationFormController> {
                                                       //hintStyle:
 
                                                     ),
-
-                                                    onChanged: (text){
-                                                      controller.vocexmineeCount = text.toString();
-
-                                                      print('vocexmineeCount: ${controller.vocexmineeCount}');
-                                                    },
+                                                      onChanged: (text){
+                                                        controller.inspectionData.value.kamilPass_students = text.toString();
+                                                        print('kamilPass_students: ${controller.inspectionData.value.kamilPass_students}');
+                                                      },
                                                   ),
                                                 )
                                               ]),
@@ -1143,9 +978,8 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
-
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      controller.inspectionData.value.vokPass_students = text.toString();
+                                                      print('vokPass_students: ${controller.inspectionData.value.vokPass_students}');
                                                     },
                                                   ),
                                                 )
@@ -1172,9 +1006,8 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
-
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      controller.inspectionData.value.bmetPass_students = text.toString();
+                                                      print('bmetPass_students: ${controller.inspectionData.value.bmetPass_students}');
                                                     },
                                                   ),
                                                 )
@@ -1201,9 +1034,8 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
-
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      controller.inspectionData.value.deplomaEngPass_students = text.toString();
+                                                      print('deplomaEngPass_students: ${controller.inspectionData.value.deplomaEngPass_students}');
                                                     },
                                                   ),
                                                 )
@@ -1230,9 +1062,8 @@ class InformationFormView extends GetView<InformationFormController> {
 
                                                     ),
                                                     onChanged: (text){
-                                                      controller.bmExmineeCount = text.toString();
-
-                                                      print('vocexmineeCount: ${controller.bmExmineeCount}');
+                                                      controller.inspectionData.value.shortPass_students = text.toString();
+                                                      print('shortPass_students: ${controller.inspectionData.value.shortPass_students}');
                                                     },
                                                   ),
                                                 )
@@ -1252,16 +1083,10 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: "",
                               onChanged: (input) {
-                                controller.multimediaRoomCount.value = input;
-                                controller.inspectionData.value.total_multimedia_classroom = input;
-
+                                controller.inspectionData.value.recognise_date = input;
                               },
-                              keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
+                              keyboardType: TextInputType.datetime,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -1269,16 +1094,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: "",
                               onChanged: (input) {
-                                controller.multimediaRoomCount.value = input;
-                                controller.inspectionData.value.total_multimedia_classroom = input;
+                                controller.inspectionData.value.mpo_date = input;
 
                               },
-                              keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
+                              keyboardType: TextInputType.datetime,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1330,16 +1150,12 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: "",
                               onChanged: (input) {
-                                controller.multimediaRoomCount.value = input;
                                 controller.inspectionData.value.total_multimedia_classroom = input;
 
                               },
                               keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
+
+
                             ),
 
 
@@ -1349,16 +1165,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: '',
                               onChanged: (input) {
-                                controller.skRaselLabCount.value = input;
                                 controller.inspectionData.value.total_digital_lab = input;
 
                               },
                               keyboardType: TextInputType.number,
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              // iconData: Icons.person,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -1369,18 +1180,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: ['আছে', 'নাই'],
                               onChanged: (input) {
                                 if(input == 'নাই'){
-                                  controller.IsInternet.value = 1;
+                                  controller.inspectionData.value.isSkrLab = 1;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isSkrLab = 0;
                                 }
 
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
-                              //  iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1389,19 +1195,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                if(input == 'না'){
-                                  controller.IsInternet.value = 1;
+                                if(input == 'নাই'){
+                                  controller.inspectionData.value.isOnlineClass = 1;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isOnlineClass = 0;
                                 }
-
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
-                              //  iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -1411,15 +1211,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                if(input == 'না'){
-                                  controller.IsInternet.value = 1;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.isCleanness = 0;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isCleanness = 1;
                                 }
-
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
                               //  iconData: Icons.merge_type,
                               isFirst: true,
@@ -1432,15 +1228,11 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                if(input == 'না'){
-                                  controller.IsInternet.value = 1;
+                                if(input == 'হ্যাঁ'){
+                                  controller.inspectionData.value.isCachmant = 1;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isCachmant = 0;
                                 }
-
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
                               //  iconData: Icons.merge_type,
                               isFirst: true,
@@ -1453,18 +1245,12 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 if(input == 'না'){
-                                  controller.IsInternet.value = 1;
+                                  controller.inspectionData.value.isRegisok = 0;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isRegisok = 1;
                                 }
-
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
-                              //  iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
                             DropDownWidgetMenu(
                               labelText: "শিক্ষার্থীদের নিয়ে সাপ্তাহিক ক্রিয়াকলাপ হয় কি না?",
@@ -1473,18 +1259,12 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 if(input == 'না'){
-                                  controller.IsInternet.value = 1;
+                                  controller.inspectionData.value.isWeekWork = 0;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isWeekWork = 1;
                                 }
-
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
-                              //  iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
                             DropDownWidgetMenu(
                               labelText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
@@ -1493,18 +1273,12 @@ class InformationFormView extends GetView<InformationFormController> {
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 if(input == 'না'){
-                                  controller.IsInternet.value = 1;
+                                  controller.inspectionData.value.isPrymariHealth = 0;
                                 }else{
-                                  controller.IsInternet.value = 0;
+                                  controller.inspectionData.value.isPrymariHealth = 1;
                                 }
-
-                                // print(controller.IsStatePlaintiffCase);
-                                controller.inspectionData.value.internet_facility = controller.IsInternet.value as int;
-
                               },
-                              //  iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -1514,7 +1288,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                //controller.IsInternet.value = input!;
+
                                 if(input == 'হ্যাঁ'){
                                   controller.inspectionData.value.guardian_gathering = "1";
                                 }else{
@@ -1522,9 +1296,7 @@ class InformationFormView extends GetView<InformationFormController> {
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1535,15 +1307,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.toiletClean = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.toiletClean = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1554,15 +1324,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.safeWater = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.safeWater = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1573,15 +1341,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.tree = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.tree = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1592,15 +1358,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.cleanDress = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.cleanDress = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -1612,15 +1376,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.mentalHealthActivity = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.mentalHealthActivity = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -1632,13 +1394,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               keyboardType: TextInputType.number,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
-                                controller.inspectionData.value.cocurricular_activities = input;
+                                controller.inspectionData.value.covid19_vaccinated = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             DropDownWidgetMenu(
@@ -1647,17 +1405,14 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: 'না',
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.yearlyPlan = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.yearlyPlan = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -1667,12 +1422,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
-                                controller.inspectionData.value.comments = input;
+                                controller.inspectionData.value.shreniKarjo = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
+
                               isLast: false,
                             ),
 
@@ -1682,14 +1434,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
-                                //controller.techerIctTraining = input;
-                                controller.inspectionData.value.comments = input;
+                                controller.inspectionData.value.upgradationSuggession = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
                             TextFieldWidgetSmall(
                               labelText: "পূর্ববর্তী পরিদর্শনের বিবরণ (কর্মকর্তার নাম ,পদবি,তারিখ )",
@@ -1697,14 +1444,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
-                                //controller.techerIctTraining = input;
-                                controller.inspectionData.value.comments = input;
+                                controller.inspectionData.value.previousInspetion = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
@@ -1716,15 +1458,13 @@ class InformationFormView extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
                                 if(input == 'হ্যাঁ'){
-                                  controller.inspectionData.value.guardian_gathering = "1";
+                                  controller.inspectionData.value.previousInspetionApply = "1";
                                 }else{
-                                  controller.inspectionData.value.guardian_gathering = "0";
+                                  controller.inspectionData.value.previousInspetionApply = "0";
                                 }
 
                               },
-                              //iconData: Icons.merge_type,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
                             TextFieldWidgetSmall(
@@ -1733,14 +1473,9 @@ class InformationFormView extends GetView<InformationFormController> {
                               initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
-                                //controller.techerIctTraining = input;
                                 controller.inspectionData.value.comments = input;
                               },
-                              // limit: 255,
-                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                              //iconData: Icons.phone_android,
-                              isFirst: true,
-                              isLast: false,
+
                             ),
 
 
