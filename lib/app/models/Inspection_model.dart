@@ -28,6 +28,8 @@ class Inspection_model {
   String? empty_post;
   String? total_students;
   String? total_girls_students;
+  String? total_examine;
+  String? total_passed;
   String? special_needs_students;
   String? cholarship_students;
   String? dakhilExamine_students;
@@ -68,6 +70,9 @@ class Inspection_model {
   String? cleanDress;
   String? mentalHealthActivity;
   String? covid19_vaccinated;
+  String? weak_student;
+  String? soft_skill;
+  String? co_caricolum;
   String? yearlyPlan;
   String? shreniKarjo;
   String? upgradationSuggession;

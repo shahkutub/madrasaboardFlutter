@@ -3,7 +3,7 @@ class ApiClient {
   //static String baseUrl = 'https://pvawg.brac.net/';
   //static String baseUrl = 'http://nanoit.biz/project/ei/';
   //static String baseUrl = 'http://nanoit.biz/project/ei/';
-  static String baseUrl = '192.168.68.133/ei/';
+  static String baseUrl = 'http://ei.nanoit.biz/';
 
   static String login = '${baseUrl}api/login';
   static String institutesummary = '${baseUrl}api/institute-summary';

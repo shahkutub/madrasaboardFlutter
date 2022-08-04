@@ -240,7 +240,7 @@ class InformationFormView extends GetView<InformationFormController> {
                             ),
 
 
-                            TextFieldWidget(
+                            TextFieldWidgetSmall(
                               labelText: "পরিদর্শনকারী কর্মকর্তার ইমেইল",
                               hintText: "",
                               initialValue: '',
@@ -252,7 +252,7 @@ class InformationFormView extends GetView<InformationFormController> {
 
 
 
-                            TextFieldWidget(
+                            TextFieldWidgetSmall(
                               labelText: "পরিদর্শনের তারিখ",
                               hintText: "",
                               initialValue: '',

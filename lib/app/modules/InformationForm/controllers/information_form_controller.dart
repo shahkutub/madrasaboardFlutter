@@ -415,8 +415,8 @@ class InformationFormController extends GetxController {
     documentType.value = document_type[0]['name']!;
     //getLocationData();
     //getAllStudent();
-    getAldivDis();
-    getAllInstituteType();
+    // getAldivDis();
+    // getAllInstituteType();
 
     //getLocation();
     super.onInit();

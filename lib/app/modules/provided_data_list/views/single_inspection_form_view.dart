@@ -30,7 +30,7 @@ class single_inspection_form_view extends GetView<ProvidedDataListController> {
             backgroundColor: Colors.green,
             elevation: 0,
             centerTitle: true,
-            title: Text('পরিদর্শন রিপোর্ট',
+            title: Text('পরিদর্শন',
               textAlign: TextAlign.left,
             ),
 
@@ -133,259 +133,139 @@ class single_inspection_form_view extends GetView<ProvidedDataListController> {
                           children: [
 
 
-                            // Container(
-                            //
-                            //   //color: Colors.blue[800],
-                            //   width: double.maxFinite,
-                            //   alignment: Alignment.center,
-                            //   padding: EdgeInsets.symmetric(vertical: 10),
-                            //   child: Text(
-                            //     'শিক্ষা প্রতিঠান পরিদর্শন',
-                            //     style: TextStyle(fontSize: 20, color: Colors.white),
-                            //   ),
-                            // ),
+                            DropDownWidget(
+                              labelText: "বিভাগ",
+                              hintText: "বিভাগ নির্বাচন করুন",
+                              initialValue: '',
 
-                            // DropDownWidget(
-                            //   labelText: "বিভাগ",
-                            //   hintText: "বিভাগ নির্বাচন করুন",
-                            //   initialValue: '',
-                            //
-                            //   //data: controller.places.value.area!.map((item) => item.divisionName!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
-                            //   data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
-                            //   iconData: Icons.phone_android,
-                            //   onChanged: (input) {
-                            //
-                            //    // controller.victimDivisionName.value =input;
-                            //     for (var item in controller.allDivDisTana.value.division_list!) {
-                            //       if (item.name == input) {
-                            //         controller.victimDivision.value = item.id.toString();
-                            //         //controller.districtList.add(item);
-                            //         controller.inspectionData.value.division_id = item.id;
-                            //       }
-                            //     }
-                            //
-                            //
-                            //     //controller.getAldivDis();
-                            //     print('divisionId: ${controller.victimDivision.value}');
-                            //     //print('district: ${controller.districtList[0].name}');
-                            //     controller.districtList.clear();
-                            //     for (var itemd in controller.allDivDisTana.value.district_list!) {
-                            //       //print('divisionId: ${controller.victimDivision.value}');
-                            //       if (itemd.division_id.toString() == controller.victimDivision.value.toString().trim()) {
-                            //         print('divisionIddd: ${controller.victimDivision.value}');
-                            //         //controller.victimDivision.value = item.id.toString();
-                            //         controller.districtList.add(itemd);
-                            //
-                            //       }
-                            //     }
-                            //     //print('district: ${controller.districtList[0].name}');
-                            //   },
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-                            // DropDownWidget(
-                            //   labelText: "জেলা",
-                            //   hintText: "জেলা নির্বাচন করুন",
-                            //   initialValue: '',
-                            //   //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
-                            //   data: controller.districtList?.map((item) => item.name!).toList(),
-                            //
-                            //
-                            //   // data: controller.allDivDisTana!.value.district_list!
-                            //   //     .where((element) => element.division_id == controller.victimDivision.value)
-                            //   //     .map((item) => item.name!)
-                            //   //     .toList(),
-                            //       // .where((country) => controller.victimU.add(country.toString()))
-                            //       // .toList()
-                            //
-                            //   iconData: Icons.phone_android,
-                            //   onChanged: (input) {
-                            //     for (var item in controller.allDivDisTana.value.district_list!) {
-                            //       if (item.name == input) {
-                            //         controller.victimDistrict.value = item.id!.toString();
-                            //         controller.inspectionData.value.district_id = item.id;
-                            //       }
-                            //     }
-                            //
-                            //     controller.thanaList.clear();
-                            //     for (var itemd in controller.allDivDisTana.value.thana_list!) {
-                            //       //print('divisionId: ${controller.victimDivision.value}');
-                            //       if (itemd.district_id.toString() == controller.victimDistrict.value.toString().trim()) {
-                            //         print('districtIddd: ${controller.victimDivision.value}');
-                            //         //controller.victimDivision.value = item.id.toString();
-                            //         controller.thanaList.add(itemd);
-                            //
-                            //       }
-                            //     }
-                            //
-                            //    // controller.getLocationData();
-                            //     print('district: ${controller.victimDistrict.value}');
-                            //   },
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-                            // DropDownWidget(
-                            //   labelText: "উপজেলা",
-                            //   hintText: "উপজেলা নির্বাচন করুন",
-                            //   initialValue: '',
-                            //   iconData: Icons.phone_android,
-                            //   data: controller.thanaList?.map((item) => item.name!).toList(),
-                            //   onChanged: (input) {
-                            //     for (var item in controller.thanaList) {
-                            //       if (item.name == input) {
-                            //         controller.instituteUpazila.value = item.id!.toString();
-                            //         controller.inspectionData.value.thana_id = item.id;
-                            //       }
-                            //     }
-                            //    // controller.getLocationData();
-                            //     print('upazila: ${controller.instituteUpazila.value}');
-                            //   },
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-                            // DropDownWidget(
-                            //   labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                            //   hintText: "শিক্ষা প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
-                            //   initialValue: '',
-                            //   iconData: Icons.phone_android,
-                            //   data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
-                            //   onChanged: (input) {
-                            //     for (var item in controller.allInstype.value.institute__type_list!) {
-                            //       if (item.name == input) {
-                            //         controller.instituteTypeId.value = item.id!.toString();
-                            //         controller.inspectionData.value.institute_type = item.id;
-                            //
-                            //       }
-                            //     }
-                            //     //controller.getLocationData();
-                            //     //print('union_ id: ${controller.victimUnion.value}');
-                            //     controller.getInstitute();
-                            //   },
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-                            // DropDownWidget(
-                            //   labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
-                            //   hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
-                            //   initialValue: '',
-                            //   iconData: Icons.phone_android,
-                            //   data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
-                            //   onChanged: (input) {
-                            //
-                            //     for (var item in controller.instituteData.value.institute_list!) {
-                            //       if (item.name == input) {
-                            //         controller.eiinNumber.value = item.eiin!;
-                            //         controller.inspectionData.value.institute_id = item.id;
-                            //       }
-                            //     }
-                            //
-                            //
-                            //     // for (var item in controller.allStudentData.value.students!) {
-                            //     //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-                            //     //     controller.totalStudent.value = item.total! as int;
-                            //     //     controller.totalFemaleStudent.value = item.total_girls! as int;
-                            //     //   }
-                            //     // }
-                            //
-                            //     //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
-                            //
-                            //     // controller.getLocationData();
-                            //     // print('union_ id: ${controller.victimUnion.value}');
-                            //   },
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
+                              //data: controller.places.value.area!.map((item) => item.divisionName!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
+                              data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
+                              iconData: Icons.phone_android,
+                              onChanged: (input) {
 
-                            // TextFieldWidgetSmall(
-                            //   labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
-                            //   hintText: "",
-                            //   initialValue: 'ebtedayee',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   //iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
+                                // controller.victimDivisionName.value =input;
+                                for (var item in controller.allDivDisTana.value.division_list!) {
+                                  if (item.name == input) {
+                                    controller.victimDivision.value = item.id.toString();
+                                    //controller.districtList.add(item);
+                                    //controller.inspectionData.value.division_id = item.id;
+                                  }
+                                }
 
 
-                            // TextFieldWidgetSmall(
-                            //   labelText: "অনুমোদন এর তারিখ",
-                            //   hintText: "",
-                            //   initialValue: '',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
+                                //controller.getAldivDis();
+                                print('divisionId: ${controller.victimDivision.value}');
+                                //print('district: ${controller.districtList[0].name}');
+                                controller.districtList.clear();
+                                for (var itemd in controller.allDivDisTana.value.district_list!) {
+                                  //print('divisionId: ${controller.victimDivision.value}');
+                                  if (itemd.division_id.toString() == controller.victimDivision.value.toString().trim()) {
+                                    print('divisionIddd: ${controller.victimDivision.value}');
+                                    //controller.victimDivision.value = item.id.toString();
+                                    controller.districtList.add(itemd);
 
-                            // TextFieldWidgetSmall(
-                            //   labelText: "এমপিওভুক্তির তারিখ",
-                            //   hintText: "",
-                            //   initialValue: '',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-                            // TextFieldWidgetSmall(
-                            //   labelText: "মোট এমপিওভুক্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা",
-                            //   hintText: "",
-                            //   initialValue: '10',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
-
-
-                            // TextFieldWidget(
-                            //   labelText: "মোট স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠানের সংখ্যা",
-                            //   hintText: "",
-                            //   initialValue: '10',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
+                                  }
+                                }
+                                //print('district: ${controller.districtList[0].name}');
+                              },
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidget(
+                              labelText: "জেলা",
+                              hintText: "জেলা নির্বাচন করুন",
+                              initialValue: '',
+                              //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
+                              data: controller.districtList?.map((item) => item.name!).toList(),
 
 
 
-                            // TextFieldWidget(
-                            //   labelText: "এমপিওভুক্ত নয় কিন্তু স্বীকৃতিপ্রাপ্ত এমন শিক্ষা প্রতিষ্ঠানের সংখ্যা",
-                            //   hintText: "",
-                            //   initialValue: '60',
-                            //   onChanged: (input) {
-                            //     controller.victimAddress = input;
-                            //   },
-                            //   // limit: 255,
-                            //   // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
-                            //   // iconData: Icons.person,
-                            //   isFirst: true,
-                            //   isLast: false,
-                            // ),
+                              iconData: Icons.phone_android,
+                              onChanged: (input) {
+                                for (var item in controller.allDivDisTana.value.district_list!) {
+                                  if (item.name == input) {
+                                    controller.victimDistrict.value = item.id!.toString();
+                                   // controller.inspectionData.value.district_id = item.id;
+                                  }
+                                }
 
+                                controller.thanaList.clear();
+                                for (var itemd in controller.allDivDisTana.value.thana_list!) {
+                                  //print('divisionId: ${controller.victimDivision.value}');
+                                  if (itemd.district_id.toString() == controller.victimDistrict.value.toString().trim()) {
+                                    print('districtIddd: ${controller.victimDivision.value}');
+                                    //controller.victimDivision.value = item.id.toString();
+                                    controller.thanaList.add(itemd);
+
+                                  }
+                                }
+
+                                // controller.getLocationData();
+                                print('district: ${controller.victimDistrict.value}');
+                              },
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidget(
+                              labelText: "থানা",
+                              hintText: "থানা নির্বাচন করুন",
+                              initialValue: '',
+                              iconData: Icons.phone_android,
+                              data: controller.thanaList?.map((item) => item.name!).toList(),
+                              onChanged: (input) {
+                                for (var item in controller.thanaList) {
+                                  if (item.name == input) {
+                                    controller.instituteUpazila.value = item.id!.toString();
+                                    //controller.inspectionData.value.thana_id = item.id;
+                                  }
+                                }
+                                // controller.getLocationData();
+                                print('upazila: ${controller.instituteUpazila.value}');
+                              },
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidget(
+                              labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
+                              hintText: "শিক্ষা প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
+                              initialValue: '',
+                              iconData: Icons.phone_android,
+                              data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
+                              onChanged: (input) {
+                                for (var item in controller.allInstype.value.institute__type_list!) {
+                                  if (item.name == input) {
+                                    controller.instituteTypeId.value = item.id!.toString();
+                                    //controller.inspectionData.value.institute_type = item.id;
+
+                                  }
+                                }
+                                //controller.getLocationData();
+                                //print('union_ id: ${controller.victimUnion.value}');
+                                controller.getInstitute();
+                              },
+                              isFirst: true,
+                              isLast: false,
+                            ),
+                            DropDownWidget(
+                              labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
+                              hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
+                              initialValue: '',
+                              iconData: Icons.phone_android,
+                              data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
+                              onChanged: (input) {
+
+                                for (var item in controller.instituteData.value.institute_list!) {
+                                  if (item.name == input) {
+                                    controller.eiinNumber.value = item.eiin!;
+                                    //controller.inspectionData.value.institute_id = item.id;
+                                  }
+                                }
+
+                              },
+
+                            ),
                             text_field_widget_small_readonly(
-                              labelText: "শিক্ষা প্রতিষ্ঠানের",
+                              labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
                               hintText: "",
                               initialValue: '${controller.inspectionListData.value.inspection_list![controller.inspectListPos.value-1].institution_name} '+"\n"+" থানা: ${controller.inspectionListData.value.inspection_list![controller.inspectListPos.value-1].thana_name} "+" জেলাঃ "+"${controller.inspectionListData.value.inspection_list![controller.inspectListPos.value-1].district_name}",
                               onChanged: (input) {
@@ -399,6 +279,28 @@ class single_inspection_form_view extends GetView<ProvidedDataListController> {
                               isLast: false,
                             ),
 
+                            TextFieldWidgetSmall(
+                              labelText: "স্বীকৃতি প্রাপ্তির তারিখ",
+                              hintText: "",
+                              initialValue: "",
+                              onChanged: (input) {
+                                //controller.inspectionData.value.recognise_date = input;
+                              },
+                              keyboardType: TextInputType.datetime,
+
+                            ),
+
+                            TextFieldWidgetSmall(
+                              labelText: "এমপিওভুক্তির তারিখ",
+                              hintText: "",
+                              initialValue: "",
+                              onChanged: (input) {
+                                //controller.inspectionData.value.mpo_date = input;
+
+                              },
+                              keyboardType: TextInputType.datetime,
+
+                            ),
                             text_field_widget_small_readonly(
                               labelText: "শিক্ষা প্রতিষ্ঠান প্রধানের নাম",
                               hintText: "",
@@ -476,6 +378,21 @@ class single_inspection_form_view extends GetView<ProvidedDataListController> {
 
                             text_field_widget_small_readonly(
                               labelText: "মোট ছাত্রীর সংখ্যা",
+                              hintText: "",
+                              initialValue: '${controller.inspectionListData.value.inspection_list![controller.inspectListPos.value-1].total_girls_students}',
+                              onChanged: (input) {
+
+                              },
+                              keyboardType: TextInputType.number,
+                              // limit: 255,
+                              // validator: (input) => input!.isEmpty ? "This field Shouldn't be empty".tr : null,
+                              //iconData: Icons.phone_android,
+                              isFirst: true,
+                              isLast: false,
+                            ),
+
+                            text_field_widget_small_readonly(
+                              labelText: "মোট পরীক্ষার্থীর সংখ্যা",
                               hintText: "",
                               initialValue: '${controller.inspectionListData.value.inspection_list![controller.inspectListPos.value-1].total_girls_students}',
                               onChanged: (input) {

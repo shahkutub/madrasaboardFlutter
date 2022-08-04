@@ -15,6 +15,7 @@ import 'package:brac_arna/app/modules/provided_data_list/views/provided_data_lis
 import 'package:brac_arna/app/modules/splashscreen/bindings/splashscreen_binding.dart';
 import 'package:brac_arna/app/modules/splashscreen/views/splashscreen_view.dart';
 
+import '../modules/InformationForm/views/information_form_view_old.dart';
 import '../modules/geo_location/bindings/geo_location_binding.dart';
 import '../modules/geo_location/views/geo_location_view.dart';
 import '../modules/institute_search/bindings/general_search_binding.dart';
@@ -58,7 +59,8 @@ class AppPages {
 
     GetPage(
       name: _Paths.INFORMATION_FORM,
-      page: () => InformationFormView(),
+      page: () => InformationFormViewOld(),
+     // page: () => InformationFormView(),
       binding: InformationFormBinding(),
     ),
     GetPage(
