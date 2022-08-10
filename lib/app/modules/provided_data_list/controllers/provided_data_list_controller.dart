@@ -254,7 +254,7 @@ class ProvidedDataListController extends GetxController {
       placeLoaded.value = true;
       reversedList.clear();
       if(inspectionListData.value.inspection_list!.length > 0){
-        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+        reversedList = new List.from(inspectionListData.value.inspection_list!);
       }
 
     });

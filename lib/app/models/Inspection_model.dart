@@ -9,6 +9,8 @@ class Inspection_model {
   int? institute_id;
   String? eiinNumber;
   String? inspectorName;
+  String? approval_date;
+  String? mpo_date;
   String? inspectorPost;
   String? inspectorMobile;
   String? inspectorEmail;
@@ -29,6 +31,8 @@ class Inspection_model {
   String? total_students;
   String? total_girls_students;
   String? total_examine;
+  String? overall_status;
+  String? cocurricular_activities;
   String? total_passed;
   String? special_needs_students;
   String? cholarship_students;
@@ -51,7 +55,6 @@ class Inspection_model {
   String? shortPass_students;
 
   String? recognise_date;
-  String? mpo_date;
   int? electricity_facility;
   int? internet_facility;
   String? total_multimedia_classroom;
@@ -79,6 +82,7 @@ class Inspection_model {
   String? previousInspetion;
   String? previousInspetionApply;
   String? comments;
+  String? week_studuents_activities;
 
 
 

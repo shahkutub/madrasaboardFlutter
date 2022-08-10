@@ -38,8 +38,9 @@ class InformationFormViewOld extends GetView<InformationFormController> {
           ),
         ),
         body: Obx(() {
-          if (!controller.placeLoaded.isTrue) {
-            return SingleChildScrollView(
+          if (controller.placeLoaded.isTrue) {
+            return
+              SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Form(
                 key: controller.infoFormKey,
@@ -374,6 +375,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               labelText: "মোট ছাত্র-ছাত্রীর সংখ্যা",
                               hintText: "",
                               initialValue: '',
+                              keyboardType: TextInputType.number,
                               onChanged: (input) {
                                 //controller.totalStudent.value = input as int;
                                 controller.inspectionData.value.total_students = input;
@@ -1425,13 +1427,12 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
                             ),
                             TextFieldWidgetSmall(
-                              labelText: "পিছিয়ে পড়া/ঝরে পড়া ছাত্র-ছাত্রীদের বিষয়ে বিশেষ কোন উদ্যোগ গ্রহণ করা হয়েছে",
+                              labelText: "শিক্ষার্থীদের নিয়ে কি কি সাপ্তাহিক ক্রিয়াকলাপ হয়",
                               hintText: "",
                               initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
-                                //controller.techerIctTraining = input;
-                                controller.inspectionData.value.weak_student = input;
+                                controller.inspectionData.value.week_studuents_activities = input;
                               },
 
                               isLast: false,
@@ -1458,7 +1459,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
-                                controller.inspectionData.value.co_caricolum = input;
+                                controller.inspectionData.value.cocurricular_activities = input;
                               },
 
                               isLast: false,
@@ -1555,6 +1556,17 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             // ),
 
                             TextFieldWidgetSmall(
+                              labelText: "প্রতিষ্টানের সামগ্রিক অবস্থা",
+                              hintText: "",
+                              initialValue: '',
+                              keyboardType: TextInputType.multiline,
+                              onChanged: (input) {
+                                controller.inspectionData.value.overall_status = input;
+                              },
+
+                            ),
+
+                            TextFieldWidgetSmall(
                               labelText: "সার্বিক মন্তব্য ও সুপারিশ",
                               hintText: "",
                               initialValue: '',
@@ -1608,7 +1620,8 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                 ),
               ),
             );
-          } else {
+          } 
+          else {
             return Center(child: CircularProgressIndicator());
           }
         }));

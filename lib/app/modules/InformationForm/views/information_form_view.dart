@@ -1083,7 +1083,7 @@ class InformationFormView extends GetView<InformationFormController> {
                               hintText: "",
                               initialValue: "",
                               onChanged: (input) {
-                                controller.inspectionData.value.recognise_date = input;
+                                controller.inspectionData.value.approval_date = input;
                               },
                               keyboardType: TextInputType.datetime,
 
