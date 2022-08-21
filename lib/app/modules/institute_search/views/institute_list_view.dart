@@ -39,6 +39,23 @@ class InstituteListView extends GetView<InstituteSearchController> {
                 height: 10,
               ),
 
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('বিভাগ: '+controller.victimDivisionName.value),
+                  Text('  জেলা: '+controller.districtName.value),
+                ],
+              ),
+
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('  উপজেলা: '+controller.upzilaName.value),
+                ],
+              ),
+
              // Obx(() {
              //  return Text(''+controller.instituteListTitle.value);
              // }),

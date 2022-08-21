@@ -327,9 +327,10 @@ class InstituteSearchController extends GetxController {
     InformationRepository().instituteListSumaryBased(url_last,education_id.value,victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
       //  allStudentData.value = resp;
+      placeLoaded.value = true;
       instituteListSummaryBased.value = resp;
       print('nointernet'+instituteListSummaryBased.value.api_info![0].name.toString());
-      placeLoaded.value = true;
+
       //instituteListPDFSumaryBased(url_last);
     });
   }
