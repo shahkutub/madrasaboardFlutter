@@ -229,6 +229,7 @@ class InformationRepository {
 
 
       'headmaster_name': ""+inspection_model.headmaster_name.toString(),
+      'inspector_name': ""+inspection_model.inspectorName.toString(),
       //'headmaster_mobile_no': ""+inspection_model.headmaster_mobile_no.toString(),
       // '': ""+inspection_model.institute_permited_post.toString(),
       // '': ""+inspection_model.headmaster_post.toString(),

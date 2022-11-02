@@ -66,11 +66,21 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                           children: [
 
                             TextFieldWidgetSmall(
+                              labelText: "পরিদর্শনের তারিখ",
+                              hintText: "",
+                              initialValue: "",
+                              onChanged: (input) {
+                                controller.inspectionData.value.inspectionDate = input;
+                              },
+                              keyboardType: TextInputType.datetime,
+
+                            ),
+                            TextFieldWidgetSmall(
                               labelText: "পরিদর্শনকারীর নাম ও পদবি",
                               hintText: "",
                               initialValue: "",
                               onChanged: (input) {
-                                controller.inspectionData.value.recognise_date = input;
+                                controller.inspectionData.value.inspectorName = input;
                               },
                               keyboardType: TextInputType.multiline,
 
