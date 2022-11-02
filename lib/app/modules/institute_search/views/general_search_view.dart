@@ -80,6 +80,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                       data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
                       iconData: Icons.phone_android,
                       onChanged: (input) {
+
+                        controller.hintextZela.value = 'জেলা নির্বাচন করুন';
+                        controller.hintextThana.value = 'উপজেলা নির্বাচন করুন';
+
                         controller.districtName.value = '';
                         controller.upzilaName.value = '';
                         controller.victimDivisionName.value =input;
@@ -114,8 +118,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                         //controller.thanaList.clear();
                         controller.instituteSumary();
                         controller.getInstitute();
-                        controller.hintextZela.value = 'জেলা নির্বাচন করুন';
-                        controller.hintextThana.value = 'উপজেলা নির্বাচন করুন';
+
                         print(controller.hintextZela.value);
 
                         //print('district: ${controller.districtList[0].name}');
@@ -146,6 +149,10 @@ class general_search_view extends GetView<InstituteSearchController> {
 
                         iconData: Icons.phone_android,
                         onChanged: (input) {
+                          controller.hintextZela.value = input.toString();
+                          controller.hintextThana.value = 'উপজেলা নির্বাচন করুন';
+
+
                           controller.districtName.value = input;
                           controller.upzilaName.value = '';
                           for (var item in controller.allDivDisTana.value.district_list!) {
@@ -188,6 +195,8 @@ class general_search_view extends GetView<InstituteSearchController> {
                       iconData: Icons.phone_android,
                       data: controller.thanaList?.map((item) => item.name!).toList(),
                       onChanged: (input) {
+                        controller.hintextThana.value = input.toString();
+
                         controller.upzilaName.value = input;
                         for (var item in controller.thanaList) {
                           if (item.name == input) {

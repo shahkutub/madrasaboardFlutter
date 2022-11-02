@@ -62,6 +62,7 @@ class InstituteSearchController extends GetxController {
   final victimUnion = ''.obs;
   final eiinNumber = ''.obs;
   final instituteID = ''.obs;
+  final inspectorID = '1'.obs;
   final instituteTypeId = ''.obs;
 
   final hintextZela = 'জেলা নির্বাচন করুন'.obs;
@@ -83,6 +84,9 @@ class InstituteSearchController extends GetxController {
   var instituteListTitle = ''.obs;
 
   var upzilaName = ''.obs;
+
+
+
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
@@ -280,6 +284,8 @@ class InstituteSearchController extends GetxController {
 
     });
   }
+
+
 
 
   getInsPectionListAll() async {

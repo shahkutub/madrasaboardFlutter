@@ -67,7 +67,8 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                         data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
                         iconData: Icons.phone_android,
                         onChanged: (input) {
-
+                          controller.hintTextDistrict.value = "জেলা নির্বাচন করুন";
+                          controller.hintTextUpojela.value = "উপজেলা নির্বাচন করুন";
                           // controller.victimDivisionName.value =input;
                           for (var item in controller.allDivDisTana.value.division_list!) {
                             if (item.name == input) {
@@ -102,7 +103,8 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                       width: 180,
                       child: dropdown_widget_small(
                         labelText: "জেলা",
-                        hintText: "জেলা নির্বাচন করুন",
+                       // hintText: "জেলা নির্বাচন করুন",
+                        hintText: controller.hintTextDistrict.value,
                         initialValue: '',
                         //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
                         data: controller.districtList?.map((item) => item.name!).toList(),
@@ -117,6 +119,11 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
 
                         iconData: Icons.phone_android,
                         onChanged: (input) {
+
+                          controller.hintTextUpojela.value = "উপজেলা নির্বাচন করুন";
+
+                          controller.hintTextDistrict.value = input.toString();
+
                           for (var item in controller.allDivDisTana.value.district_list!) {
                             if (item.name == input) {
                               controller.victimDistrict.value = item.id!.toString();
@@ -156,11 +163,15 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                     width: 180,
                     child: dropdown_widget_small(
                       labelText: "উপজেলা",
-                      hintText: "উপজেলা নির্বাচন করুন",
+                      //hintText: "উপজেলা নির্বাচন করুন",
+                      hintText: controller.hintTextUpojela.value,
                       initialValue: '',
                       iconData: Icons.phone_android,
                       data: controller.thanaList?.map((item) => item.name!).toList(),
                       onChanged: (input) {
+
+                        controller.hintTextUpojela.value = input.toString();
+
                         for (var item in controller.thanaList) {
                           if (item.name == input) {
                             controller.instituteUpazila.value = item.id!.toString();
@@ -354,30 +365,19 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                   hintText: "পরিদর্শকের নাম নির্বাচন করুন",
                   initialValue: '',
                   iconData: Icons.phone_android,
-                  //data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
+                  data: controller.insPectorListRespponse.value.inspectors?.map((item) => item.name!).toList(),
                   onChanged: (input) {
 
-                    for (var item in controller.instituteData.value.institute_list!) {
+                    for (var item in controller.insPectorListRespponse.value.inspectors!) {
                       if (item.name == input) {
-                        controller.instituteID.value = item.id!.toString();
+                        controller.inspectorID.value = item.id!.toString();
                         //controller.inspectionData.value.institute_id = item.id;
                       }
                     }
-
                     controller.placeLoaded.value = false;
-                    controller.getInsPectionListInstituteId();
+                    controller.getInsPectionListByInspectorId();
 
-                    // for (var item in controller.allStudentData.value.students!) {
-                    //   if (item.thana_id == controller.instituteUpazila.value && item.institute_type_id == controller.instituteTypeId) {
-                    //     controller.totalStudent.value = item.total! as int;
-                    //     controller.totalFemaleStudent.value = item.total_girls! as int;
-                    //   }
-                    // }
 
-                    //controller.totalBoyStudent.value = controller.totalStudent.value - controller.totalFemaleStudent.value ;
-
-                    // controller.getLocationData();
-                    // print('union_ id: ${controller.victimUnion.value}');
                   },
                   isFirst: true,
                   isLast: false,
@@ -455,7 +455,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                               // ),
                             ],
                         
-                        rows: controller.reversedList
+                        rows: controller.inspectionListData.value.inspection_list!
                                 .map(
                                   (data) => DataRow(
 

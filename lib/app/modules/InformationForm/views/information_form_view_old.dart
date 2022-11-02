@@ -65,6 +65,18 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
+                            TextFieldWidgetSmall(
+                              labelText: "পরিদর্শনকারীর নাম ও পদবি",
+                              hintText: "",
+                              initialValue: "",
+                              onChanged: (input) {
+                                controller.inspectionData.value.recognise_date = input;
+                              },
+                              keyboardType: TextInputType.multiline,
+
+                            ),
+
+
                             DropDownWidget(
                               labelText: "বিভাগ",
                               hintText: "বিভাগ নির্বাচন করুন",
@@ -204,7 +216,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 controller.inspectionData.value.recognise_date = input;
                               },
-                              keyboardType: TextInputType.datetime,
+                              keyboardType: TextInputType.multiline,
 
                             ),
 
@@ -216,7 +228,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                 controller.inspectionData.value.mpo_date = input;
 
                               },
-                              keyboardType: TextInputType.datetime,
+                              keyboardType: TextInputType.multiline,
 
                             ),
 

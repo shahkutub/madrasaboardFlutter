@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../models/District.dart';
 import '../../../models/Inspection.dart';
+import '../../../models/InspectorListResponse.dart';
 import '../../../models/InstituteTypeModel.dart';
 import '../../../models/InstitutionDataModel.dart';
 import '../../../models/Thana.dart';
@@ -32,6 +33,7 @@ class ProvidedDataListController extends GetxController {
   final allDivDisTana = all_division_dis_thanan_model().obs;
   final allInstype = InstituteTypeModel().obs;
   final instituteData = InstitutionDataModel().obs;
+  final insPectorListRespponse = InspectorListResponse().obs;
 
   final pdfUrl = ''.obs;
   final victimDivision = ''.obs;
@@ -41,6 +43,7 @@ class ProvidedDataListController extends GetxController {
   final victimUnion = ''.obs;
   final eiinNumber = ''.obs;
   final instituteID = ''.obs;
+  final inspectorID = '1'.obs;
   final instituteTypeId = ''.obs;
 
   List<District> districtList = <District>[].obs;
@@ -52,6 +55,9 @@ class ProvidedDataListController extends GetxController {
   var fromDateEditController = TextEditingController().obs;
   var toDateEditController = TextEditingController().obs;
 
+  var hintTextDistrict = "জেলা নির্বাচন করুন".obs;
+  var hintTextUpojela = "উপজেলা নির্বাচন করুন".obs;
+
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
@@ -61,6 +67,8 @@ class ProvidedDataListController extends GetxController {
      getAllInstituteType();
 
     getInsPectionListAll();
+    //getInsPectionListByInspectorId();
+    getAllInspector();
     super.onInit();
   }
 
@@ -89,6 +97,14 @@ class ProvidedDataListController extends GetxController {
     InformationRepository().getInstituteType().then((resp) {
       allInstype.value = resp;
      // placeLoaded.value = true;
+    });
+  }
+
+
+  getAllInspector() async {
+    InformationRepository().getInsPectorList().then((resp) {
+      insPectorListRespponse.value = resp;
+      // placeLoaded.value = true;
     });
   }
 
@@ -222,7 +238,7 @@ class ProvidedDataListController extends GetxController {
 
 
   getInsPectionListDateRange() async {
-    reversedList.clear();
+    //reversedList.clear();
     Map data = {
       // "division_id": victimDivision.value.toString(),
       // "district_id": victimDistrict.value.toString(),
@@ -245,6 +261,33 @@ class ProvidedDataListController extends GetxController {
 
     });
   }
+
+  getInsPectionListByInspectorId() async {
+
+    Map data = {
+      // "division_id": victimDivision.value.toString(),
+      // "district_id": victimDistrict.value.toString(),
+      // "thana_id": instituteUpazila.value.toString(),
+      // "institute_type": instituteTypeId.value.toString(),
+      "inspector": inspectorID.value.toString(),
+
+      // "division":victimDivision.value,
+    };
+
+    InformationRepository().getInspectionList(data).then((resp) {
+      //  allStudentData.value = resp;
+      inspectionListData.value = resp;
+      placeLoaded.value = true;
+
+      reversedList.clear();
+
+      if(inspectionListData.value.inspection_list!.length > 0){
+        reversedList = new List.from(inspectionListData.value.inspection_list!.reversed);
+      }
+
+    });
+  }
+
 
   getInsPectionListAll() async {
 
@@ -335,6 +378,7 @@ class ProvidedDataListController extends GetxController {
       if(s == 'from'){
         fromDate.value =  DateFormat("dd/MM/yyyy")
             .format(selectedDate.value).toString();
+        getInsPectionListDateRange();
       }
 
       if(s == 'to'){

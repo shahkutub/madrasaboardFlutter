@@ -20,6 +20,7 @@ import 'package:http/http.dart' as http;
 import '../../common/ui.dart';
 import '../models/AllStudentRessponse.dart';
 import '../models/Inspection_model.dart';
+import '../models/InspectorListResponse.dart';
 import '../models/InstituteTypeModel.dart';
 import '../routes/app_pages.dart';
 
@@ -388,6 +389,33 @@ class InformationRepository {
     }
   }
 
+  Future<InspectorListResponse> getInsPectorList() async {
+    String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+    var headers = {'Authorization': 'Bearer $token'};
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(ApiClient.inspector_list,headers);
+      print('respInstiTyp: ${response}');
+
+      if(response == null){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+
+        Get.toNamed(Routes.LOGIN);
+      }
+      return InspectorListResponse.fromJson(response);
+      // return all_division_dis_thanan_model().fromJson(response);
+      //  if (response['IsLoggedIn'] == true) {
+      //    Get.find<AuthService>().setUser(UserModel.fromJson(response));
+      //    return all_division_dis_thanan_model.fromJson(response);
+      //  } else {
+      //    return 'Unauthorised';
+      //  }
+    } catch (e) {
+      print('error:$e');
+      return InspectorListResponse.fromJson(response);
+    }
+  }
 
 
   Future<InstituteTypeModel> getInstituteType() async {
