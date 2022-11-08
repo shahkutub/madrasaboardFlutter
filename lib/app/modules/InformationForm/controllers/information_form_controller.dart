@@ -26,6 +26,7 @@ import 'package:uuid/uuid.dart';
 import 'package:date_format/date_format.dart';
 
 import '../../../models/District.dart';
+import '../../../models/InspectorListResponse.dart';
 import '../../../models/Thana.dart';
 import '../../../routes/app_pages.dart';
 
@@ -54,6 +55,7 @@ class InformationFormController extends GetxController {
   final placeLoaded = false.obs;
 
   final dbHelper = DatabaseHelper.instance;
+  final inspectorIdList = [].obs;
   late var victimname = '';
   late var victimage = '';
   late var victimPhone = '';
@@ -145,6 +147,7 @@ class InformationFormController extends GetxController {
   final cause_of_violence = ''.obs;
   final type_of_violence = ''.obs;
   final PersecutionReasonList = [].obs;
+
 
   var victimD = Set<String>();
 
@@ -406,7 +409,7 @@ class InformationFormController extends GetxController {
 
   var address = 'Getting Address..'.obs;
   late StreamSubscription<Position> streamSubscription;
-
+  final insPectorListRespponse = InspectorListResponse().obs;
 
   @override
   Future<void> onInit() async {
@@ -417,6 +420,7 @@ class InformationFormController extends GetxController {
     //getAllStudent();
      getAldivDis();
      getAllInstituteType();
+    getAllInspector();
 
     //getLocation();
     super.onInit();
@@ -425,6 +429,13 @@ class InformationFormController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+  }
+
+  getAllInspector() async {
+    InformationRepository().getInsPectorList().then((resp) {
+      insPectorListRespponse.value = resp;
+      // placeLoaded.value = true;
+    });
   }
 
   getLocationData() async {

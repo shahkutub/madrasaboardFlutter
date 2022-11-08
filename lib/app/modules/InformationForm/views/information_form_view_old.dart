@@ -75,17 +75,43 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               keyboardType: TextInputType.datetime,
 
                             ),
-                            TextFieldWidgetSmall(
+                            // TextFieldWidgetSmall(
+                            //   labelText: "পরিদর্শনকারীর নাম ও পদবি",
+                            //   hintText: "",
+                            //   initialValue: "",
+                            //   onChanged: (input) {
+                            //     controller.inspectionData.value.inspectorName = input;
+                            //   },
+                            //   keyboardType: TextInputType.multiline,
+                            //
+                            // ),
+
+                            MultipleSelectionDropDownWidget(
                               labelText: "পরিদর্শনকারীর নাম ও পদবি",
-                              hintText: "",
-                              initialValue: "",
+                              hintText: "পরিদর্শনকারীর নাম ও পদবি",
+                              initialValue: '',
+                              data: controller.insPectorListRespponse!.value.inspectors?.map((item) => item.name!).toList(),
+
                               onChanged: (input) {
-                                controller.inspectionData.value.inspectorName = input;
+                                controller.PersecutionReasonList.clear();
+                                controller.inspectorIdList.value.add(input);
+
+                                for (var inpuItem in input) {
+                                  for (var item in controller.insPectorListRespponse!.value.inspectors!) {
+                                    if (item.name == inpuItem) {
+                                      print('insPectorId: ${item.id}');
+                                      controller.PersecutionReasonList.add(item.id);
+                                    }
+                                  }
+                                }
+
+                                print('IdListLenth: ${controller.PersecutionReasonList.length}');
+
                               },
-                              keyboardType: TextInputType.multiline,
-
+                              iconData: Icons.merge_type,
+                              isFirst: true,
+                              isLast: false,
                             ),
-
 
                             DropDownWidget(
                               labelText: "বিভাগ",
@@ -94,6 +120,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
                               //data: controller.places.value.area!.map((item) => item.divisionName!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
                               data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
+
                               iconData: Icons.phone_android,
                               onChanged: (input) {
 
