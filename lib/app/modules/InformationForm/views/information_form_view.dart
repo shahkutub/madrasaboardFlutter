@@ -1484,7 +1484,7 @@ class InformationFormView extends GetView<InformationFormController> {
                             GestureDetector(
                               onTap: () {
                                 if (controller.infoFormKey.currentState!.validate()) {
-                                  controller.postInsPection();
+                                  controller.postInsPection('');
                                 }
                               },
                               child: Padding(

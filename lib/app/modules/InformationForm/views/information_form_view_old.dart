@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:brac_arna/app/models/place_model.dart';
 import 'package:brac_arna/app/modules/global_widgets/dropdown_widget.dart';
 import 'package:brac_arna/app/modules/global_widgets/dropdown_widget_menu.dart';
@@ -93,19 +95,21 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               data: controller.insPectorListRespponse!.value.inspectors?.map((item) => item.name!).toList(),
 
                               onChanged: (input) {
-                                controller.PersecutionReasonList.clear();
-                                controller.inspectorIdList.value.add(input);
+                                controller.inspectorIdList.clear();
+                               // controller.inspectorIdList.value.add(input);
 
                                 for (var inpuItem in input) {
                                   for (var item in controller.insPectorListRespponse!.value.inspectors!) {
                                     if (item.name == inpuItem) {
                                       print('insPectorId: ${item.id}');
-                                      controller.PersecutionReasonList.add(item.id);
+                                      controller.inspectorIdList.add(item.id);
                                     }
                                   }
                                 }
 
-                                print('IdListLenth: ${controller.PersecutionReasonList.length}');
+                                controller.inspectorIdListJson.value = jsonEncode(controller.inspectorIdList);
+                                print('IdListjson: ${controller.inspectorIdListJson.value.toString()}');
+                                print('IdListLenth: ${controller.inspectorIdList.length}');
 
                               },
                               iconData: Icons.merge_type,
@@ -253,7 +257,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               onChanged: (input) {
                                 controller.inspectionData.value.recognise_date = input;
                               },
-                              keyboardType: TextInputType.multiline,
+                              keyboardType: TextInputType.datetime,
 
                             ),
 
@@ -265,7 +269,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                 controller.inspectionData.value.mpo_date = input;
 
                               },
-                              keyboardType: TextInputType.multiline,
+                              keyboardType: TextInputType.datetime,
 
                             ),
 
@@ -1463,18 +1467,18 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
 
+                            // TextFieldWidgetSmall(
+                            //   labelText: "কোভিড-১৯ টিকা নিয়েছে কতজন শিক্ষার্থী?",
+                            //   hintText: "",
+                            //   initialValue: '',
+                            //   keyboardType: TextInputType.number,
+                            //   onChanged: (input) {
+                            //     //controller.techerIctTraining = input;
+                            //     controller.inspectionData.value.covid19_vaccinated = input;
+                            //   },
+                            //
+                            // ),
 
-                            TextFieldWidgetSmall(
-                              labelText: "কোভিড-১৯ টিকা নিয়েছে কতজন শিক্ষার্থী?",
-                              hintText: "",
-                              initialValue: '',
-                              keyboardType: TextInputType.number,
-                              onChanged: (input) {
-                                //controller.techerIctTraining = input;
-                                controller.inspectionData.value.covid19_vaccinated = input;
-                              },
-
-                            ),
                             TextFieldWidgetSmall(
                               labelText: "শিক্ষার্থীদের নিয়ে কি কি সাপ্তাহিক ক্রিয়াকলাপ হয়",
                               hintText: "",
@@ -1526,6 +1530,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
                               isLast: false,
                             ),
+
                             TextFieldWidgetSmall(
                               labelText: "ক্লাস আপগ্রেডেশন সাজেশন",
                               hintText: "ক্লাস আপগ্রেডেশন সাজেশন ",
@@ -1536,6 +1541,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               },
 
                             ),
+
                             // DropDownWidgetMenu(
                             //   labelText: "বার্ষিক পাঠ পরিকল্পনা আছে কি না ?",
                             //   hintText: "বার্ষিক পাঠ পরিকল্পনা আছে কি না ?",
@@ -1625,37 +1631,69 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               },
 
                             ),
-
-
-
-
-                            GestureDetector(
-                              onTap: () {
-                                if (controller.infoFormKey.currentState!.validate()) {
-                                  controller.postInsPection();
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      gradient: LinearGradient(colors: [
-                                        Colors.green,
-                                        Colors.green
-                                        // Color.fromRGBO(143, 148, 251, 1),
-                                        // Color.fromRGBO(143, 148, 251, .6),
-                                      ])),
-                                  child: Center(
-                                    child: Text(
-                                      "Submit",
-                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    if (controller.infoFormKey.currentState!.validate()) {
+                                      controller.postInsPection('Darft');
+                                    }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          gradient: LinearGradient(colors: [
+                                            Colors.green,
+                                            Colors.green
+                                            // Color.fromRGBO(143, 148, 251, 1),
+                                            // Color.fromRGBO(143, 148, 251, .6),
+                                          ])),
+                                      child: Center(
+                                        child: Text(
+                                          "Draft",
+                                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                                SizedBox(width: 20,),
+                                InkWell(
+                                  onTap: () {
+                                    if (controller.infoFormKey.currentState!.validate()) {
+                                      controller.postInsPection('Save');
+                                    }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          gradient: LinearGradient(colors: [
+                                            Colors.green,
+                                            Colors.green
+                                            // Color.fromRGBO(143, 148, 251, 1),
+                                            // Color.fromRGBO(143, 148, 251, .6),
+                                          ])),
+                                      child: Center(
+                                        child: Text(
+                                          "Submit",
+                                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
+
+
                             SizedBox(
                               height: 50,
                             ),

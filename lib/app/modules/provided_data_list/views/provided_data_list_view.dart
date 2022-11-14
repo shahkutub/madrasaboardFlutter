@@ -2,6 +2,7 @@ import 'package:brac_arna/app/modules/global_widgets/cliper.dart';
 import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
 import 'package:brac_arna/app/routes/app_pages.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
+import 'package:brac_arna/common/app_constant.dart';
 import 'package:brac_arna/common/custom_date_range_picker.dart';
 import 'package:brac_arna/common/ui.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -504,20 +505,54 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                                   // ),
 
                                   DataCell(
-                                      Icon(
-                                        Icons.picture_as_pdf,
-                                        color: Colors.green,
-                                        size: 30.0,
-                                      ),
+                                      // Icon(
+                                      //   Icons.picture_as_pdf,
+                                      //   color: Colors.green,
+                                      //   size: 30.0,
+                                      // ),
+                                      // // onTap: (){
+                                      // //   controller.launchURL(data.details_url!);
+                                      // // }
                                       // onTap: (){
-                                      //   controller.launchURL(data.details_url!);
+                                      //   controller.pdfUrl.value = data.details_url!;
+                                      //   print('pdfUrl : ${controller.pdfUrl.value}');
+                                      //   //controller.launchURL(data.details_url!);
+                                      //   Get.toNamed(Routes.SINGLE_INSPECTION_VIEW_PDF);
                                       // }
-                                      onTap: (){
-                                        controller.pdfUrl.value = data.details_url!;
-                                        print('pdfUrl : ${controller.pdfUrl.value}');
-                                        //controller.launchURL(data.details_url!);
-                                        Get.toNamed(Routes.SINGLE_INSPECTION_VIEW_PDF);
-                                      }
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                          child: Icon(
+                                            Icons.picture_as_pdf,
+                                            color: Colors.green,
+                                            size: 30.0,
+                                          ),
+                                          onTap: (){
+                                            controller.pdfUrl.value = data.details_url!;
+                                            print('pdfUrl : ${controller.pdfUrl.value}');
+                                            //controller.launchURL(data.details_url!);
+                                            Get.toNamed(Routes.SINGLE_INSPECTION_VIEW_PDF);
+                                          }
+                                        ),
+                                        SizedBox(width: 20,),
+                                        InkWell(
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.green,
+                                            size: 30.0,
+                                          ),
+                                          onTap: (){
+                                            AppConstant.inspectionData = data;
+                                            //Get.toNamed(Routes.INSPECTION_EDIT);
+                                            Get.toNamed(Routes.INFORMATION_FORM);
+                                          },
+                                        ),
+                                      ],
+                                    )
+
                                   ),
 
                                   // DataCell(Text(

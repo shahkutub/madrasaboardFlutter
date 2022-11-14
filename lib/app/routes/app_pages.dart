@@ -1,5 +1,6 @@
 import 'package:brac_arna/app/modules/institute_search/views/institute_list_view.dart';
 import 'package:brac_arna/app/modules/login/views/after_login_view.dart';
+import 'package:brac_arna/app/modules/provided_data_list/views/information_form_view_old_edit.dart';
 import 'package:brac_arna/app/modules/provided_data_list/views/inspection_report_pdf_view.dart';
 import 'package:brac_arna/app/modules/provided_data_list/views/single_inspection_form_view.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ import '../modules/institute_search/bindings/institute_search_binding.dart';
 import '../modules/institute_search/views/general_search_view.dart';
 import '../modules/institute_search/views/institute_search_list_view.dart';
 import '../modules/login/bindings/after_login_binding.dart';
+import '../modules/provided_data_list/bindings/inspection_edit_binding.dart';
 import '../modules/provided_data_list/bindings/single_inspectionView.dart';
 import '../modules/provided_data_list/bindings/single_inspectionView_pdf.dart';
 
@@ -68,6 +70,13 @@ class AppPages {
       page: () => ProvidedDataListView(),
       binding: ProvidedDataListBinding(),
     ),
+
+    GetPage(
+      name: _Paths.INSPECTION_EDIT,
+      page: () => InformationFormViewOldEdit(),
+      binding: InspectionEditBinding(),
+    ),
+
 
     GetPage(
       name: _Paths.SINGLE_INSPECTION_VIEW,

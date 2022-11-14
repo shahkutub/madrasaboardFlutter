@@ -56,6 +56,7 @@ class InformationFormController extends GetxController {
 
   final dbHelper = DatabaseHelper.instance;
   final inspectorIdList = [].obs;
+  final inspectorIdListJson = ''.obs;
   late var victimname = '';
   late var victimage = '';
   late var victimPhone = '';
@@ -609,7 +610,7 @@ class InformationFormController extends GetxController {
     });
   }
 
-  postInsPection() async {
+  postInsPection(String draft) async {
     InformationRepository().postInspection(inspectionData.value, true).then((resp) {
     //  allStudentData.value = resp;
       postResponse.value = resp;

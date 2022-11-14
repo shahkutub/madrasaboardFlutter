@@ -8,15 +8,20 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../common/ui.dart';
 import '../../../models/District.dart';
 import '../../../models/Inspection.dart';
+import '../../../models/Inspection_model.dart';
 import '../../../models/InspectorListResponse.dart';
 import '../../../models/InstituteTypeModel.dart';
 import '../../../models/InstitutionDataModel.dart';
+import '../../../models/PostResponse.dart';
 import '../../../models/Thana.dart';
 import '../../../models/all_division_dis_thanan_model.dart';
 import '../../../repositories/information_repository.dart';
 import 'package:flutter_share/flutter_share.dart';
+
+import '../../../routes/app_pages.dart';
 class ProvidedDataListController extends GetxController {
   //TODO: Implement ProvidedDataListController
   var poridorshonDataModel = new PoridorshonDataModel();
@@ -58,6 +63,17 @@ class ProvidedDataListController extends GetxController {
   var hintTextDistrict = "জেলা নির্বাচন করুন".obs;
   var hintTextUpojela = "উপজেলা নির্বাচন করুন".obs;
 
+
+  final Rx<Inspection_model> inspectionData = Inspection_model().obs;
+  final inspectorIdList = [].obs;
+  final inspectorIdListJson = ''.obs;
+  final IsInternet = 0.obs;
+  final IsOnlineClass = 0.obs;
+  final IsGurdianMeeting = 0.obs;
+  final IsTecherTraining = 0.obs;
+  final IsCleanActivity = 0.obs;
+  final IsElectricity = 0.obs;
+  final postResponse = PostResponse().obs;
   @override
   Future<void> onInit() async {
     box = Hive.box('formBox');
@@ -405,6 +421,17 @@ class ProvidedDataListController extends GetxController {
 
 
 
+  postInsPection() async {
+    InformationRepository().postInspection(inspectionData.value, true).then((resp) {
+      //  allStudentData.value = resp;
+      postResponse.value = resp;
 
+      if(postResponse.value.status == "success"){
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Inspection successfully inserted', title: 'Success'));
+        Get.toNamed(Routes.PROVIDED_DATA_LIST);
+      }
+
+    });
+  }
 
 }
