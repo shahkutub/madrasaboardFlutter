@@ -68,9 +68,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                           children: [
 
                             TextFieldWidgetSmall(
+                              controller: controller.inspectionDateEditContr.value,
                               labelText: "পরিদর্শনের তারিখ",
                               hintText: "",
-                              initialValue: "",
+                              //initialValue: controller.inspectionDateEditContr.value.text.toString(),
                               onChanged: (input) {
                                 controller.inspectionData.value.inspectionDate = input;
                               },
@@ -89,9 +90,11 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             // ),
 
                             MultipleSelectionDropDownWidget(
+
                               labelText: "পরিদর্শনকারীর নাম ও পদবি",
                               hintText: "পরিদর্শনকারীর নাম ও পদবি",
                               initialValue: '',
+                              selectedValue: controller.draftInspectorName,
                               data: controller.insPectorListRespponse!.value.inspectors?.map((item) => item.name!).toList(),
 
                               onChanged: (input) {
@@ -120,7 +123,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidget(
                               labelText: "বিভাগ",
                               hintText: "বিভাগ নির্বাচন করুন",
-                              initialValue: '',
+                              initialValue: controller.selectedDivname.value,
 
                               //data: controller.places.value.area!.map((item) => item.divisionName!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
                               data: controller.allDivDisTana!.value.division_list?.map((item) => item.name!).toList(),
@@ -159,7 +162,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidget(
                               labelText: "জেলা",
                               hintText: "জেলা নির্বাচন করুন",
-                              initialValue: '',
+                              initialValue: controller.selectedDistrictName.value.toString(),
                               //data: controller.allDivDisTana!.value.district_list!.map((item) => item.name!).toList().where((country) => controller.victimD.add(country.toString())).toList(),
                               data: controller.districtList?.map((item) => item.name!).toList(),
 
@@ -194,7 +197,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidget(
                               labelText: "থানা",
                               hintText: "থানা নির্বাচন করুন",
-                              initialValue: '',
+                              initialValue: controller.selectedThanaName.value.toString(),
                               iconData: Icons.phone_android,
                               data: controller.thanaList?.map((item) => item.name!).toList(),
                               onChanged: (input) {
@@ -1683,7 +1686,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                           ])),
                                       child: Center(
                                         child: Text(
-                                          "Submit",
+                                          "Save",
                                           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                         ),
                                       ),

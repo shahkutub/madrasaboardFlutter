@@ -1,4 +1,5 @@
 import 'package:brac_arna/app/routes/app_pages.dart';
+import 'package:brac_arna/common/app_constant.dart';
 import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 
@@ -201,6 +202,7 @@ class AfterLoginView extends GetView<after_login_controller> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    AppConstant.inspectionData = null;
                                     Get.toNamed(Routes.INFORMATION_FORM);
                                     //Get.offAllNamed(Routes.PROVIDED_DATA_LIST);
                                     // if (controller.loginFormKey.currentState!.validate()) {

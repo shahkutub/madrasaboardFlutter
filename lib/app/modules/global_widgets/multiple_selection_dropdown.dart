@@ -31,6 +31,7 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
     this.suffix,
     this.limit,
     this.data,
+    this.selectedValue,
   }) : super(key: key);
 
   final FormFieldSetter<String>? onSaved;
@@ -52,6 +53,7 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
   final Widget? suffix;
   final int? limit;
   final data;
+  final selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +81,7 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
           DropdownSearch<String>.multiSelection(
             mode: Mode.BOTTOM_SHEET,
             showSelectedItems: true,
+            selectedItems: selectedValue,
             dropdownSearchBaseStyle: TextStyle(
               color: Color(0xffec008c),
             ),

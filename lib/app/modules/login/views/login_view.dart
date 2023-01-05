@@ -7,8 +7,11 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+
+
   @override
   Widget build(BuildContext context) {
+
     final startAddressController = TextEditingController();
     final destinationAddressController = TextEditingController();
 
@@ -161,8 +164,9 @@ class LoginView extends GetView<LoginController> {
                                 padding: EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
                                 child: TextFormField(
-                                 // controller: controller.userNameController.value,
-                                  initialValue: "admin@gmail.com",
+                                  //controller: controller.userNameController.value,
+                                  //initialValue: "admin@gmail.com",
+                                  initialValue: "",
                                   onChanged: (input) {
                                     controller.userData.value.userName = input;
                                   },
@@ -198,9 +202,11 @@ class LoginView extends GetView<LoginController> {
                               //     }),
                               Container(
                                 padding: EdgeInsets.all(8.0),
-                                child: TextFormField(
+
+                                child: Obx(() =>TextFormField(
                                  // controller: controller.passwordController.value,
-                                  initialValue: "123",
+                                  //initialValue: "123",
+                                  initialValue: "",
                                   onChanged: (input) {
                                     controller.userData.value.password = input;
                                   },
@@ -208,13 +214,40 @@ class LoginView extends GetView<LoginController> {
                                     return input!.isEmpty ? 'Please provide your password.' : null;
                                   },
                                   style: TextStyle(fontSize: 20),
-                                  obscureText: true,
+                                  //obscureText: true,
+                                  // decoration: InputDecoration(
+                                  //   border: InputBorder.none,
+                                  //   hintText: "Password",
+                                  //   hintStyle: TextStyle(color: Colors.grey[500]),
+                                  // ),
+
+                                  obscureText: controller.passwordVisible.value,//This will obscure text dynamically
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: "Password",
-                                    hintStyle: TextStyle(color: Colors.grey[500]),
+                                   // labelText: 'Password',
+                                    hintText: 'Enter your password',
+                                    // Here is key idea
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        // Based on passwordVisible state choose the icon
+                                        controller.passwordVisible.value
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        color: Theme.of(context).primaryColorDark,
+                                      ),
+                                      onPressed: () {
+                                        if(controller.passwordVisible.value){
+                                          controller.passwordVisible.value = false;
+                                        }else{
+                                          controller.passwordVisible.value = true;
+                                        }
+
+                                      },
+                                    ),
                                   ),
-                                ),
+
+
+                                )),
                               )
                             ],
                           ),
@@ -226,8 +259,13 @@ class LoginView extends GetView<LoginController> {
                           onTap: () {
                             // Get.offAllNamed(Routes.INFORMATION_FORM);
                             //Get.offAllNamed(Routes.PROVIDED_DATA_LIST);
+
+                            // print('user: '+controller.userNameController.value.text);
+                            //
+                            // controller.userData.value.userName = controller.userNameController.value.text;
+                            // controller.userData.value.password = controller.passwordController.value.text;
                             if (controller.loginFormKey.currentState!.validate()) {
-                               controller.login();
+                               controller.login(context);
                             }
                           },
                           child: Container(

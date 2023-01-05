@@ -79,8 +79,8 @@ class ProvidedDataListController extends GetxController {
     box = Hive.box('formBox');
     //addDataInList();
     getInstitute();
-     getAldivDis();
-     getAllInstituteType();
+    getAldivDis();
+    getAllInstituteType();
 
     getInsPectionListAll();
     //getInsPectionListByInspectorId();
@@ -112,7 +112,7 @@ class ProvidedDataListController extends GetxController {
   getAllInstituteType() async {
     InformationRepository().getInstituteType().then((resp) {
       allInstype.value = resp;
-     // placeLoaded.value = true;
+      // placeLoaded.value = true;
     });
   }
 
@@ -335,11 +335,11 @@ class ProvidedDataListController extends GetxController {
 
   Future<void> share() async {
     await FlutterShare.share(
-        title: 'TMED app institute inspection report pdf',
-        text: 'Inspection report pdf',
-        //text: 'Please click on attach link to show & download pdf',
-        linkUrl: 'Please click on attach link to show & download pdf\n \n'+pdfUrl.value,
-        //chooserTitle: 'Please click on attach link to show & download pdf'
+      title: 'TMED app institute inspection report pdf',
+      text: 'Inspection report pdf',
+      //text: 'Please click on attach link to show & download pdf',
+      linkUrl: 'Please click on attach link to show & download pdf\n \n'+pdfUrl.value,
+      //chooserTitle: 'Please click on attach link to show & download pdf'
     );
   }
 
@@ -372,20 +372,20 @@ class ProvidedDataListController extends GetxController {
 
   chooseDate(String s) async {
     DateTime? pickedDate = await showDatePicker(
-        context: Get.context!,
-        initialDate: selectedDate.value,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2050),
-        initialEntryMode: DatePickerEntryMode.calendarOnly,
-         initialDatePickerMode: DatePickerMode.day,
-        //helpText: 'Select DOB',
-        cancelText: 'Close',
-        confirmText: 'Confirm',
-        errorFormatText: 'Enter valid date',
-        errorInvalidText: 'Enter valid date range',
-       // fieldLabelText: 'DOB',
-        fieldHintText: 'Month/Date/Year',
-        //selectableDayPredicate: disableDate
+      context: Get.context!,
+      initialDate: selectedDate.value,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2050),
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      initialDatePickerMode: DatePickerMode.day,
+      //helpText: 'Select DOB',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      // fieldLabelText: 'DOB',
+      fieldHintText: 'Month/Date/Year',
+      //selectableDayPredicate: disableDate
 
     );
     if (pickedDate != null && pickedDate != selectedDate.value) {

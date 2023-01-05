@@ -4,16 +4,19 @@ import 'package:brac_arna/app/models/AllProdResponse.dart';
 import 'package:brac_arna/app/models/LoginResponse.dart';
 import 'package:brac_arna/app/models/user_model.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../common/ui.dart';
 
 class AuthRepository {
   ///User Login api call
-  Future userLogin(UserModel userData) async {
+  Future userLogin(UserModel userData,BuildContext context) async {
     Map user = {
-      //'email': userData.userName,
-      'email': "admin@gmail.com",
-      //'password': userData.password,
-      'password': "123",
+      'email': userData.userName,
+      //'email': "admin@gmail.com",
+      'password': userData.password,
+      //'password': "123",
     };
     APIManager _manager = APIManager();
     var response;
@@ -25,10 +28,14 @@ class AuthRepository {
         Get.find<AuthService>().setUser(LoginResponse.fromJson(response));
         return LoginResponse.fromJson(response);
       } else {
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Unauthorised'.tr, title: 'Alert!'.tr));
+        Navigator.pop(context);
         return 'Unauthorised';
       }
     } catch (e) {
       print('error:$e');
+      Get.showSnackbar(Ui.SuccessSnackBar(message: 'Unauthorised'.tr, title: 'Alert!'.tr));
+      Navigator.pop(context);
       return 'Unauthorised';
     }
   }

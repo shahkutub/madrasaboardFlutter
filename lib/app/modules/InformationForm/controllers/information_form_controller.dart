@@ -12,6 +12,7 @@ import 'package:brac_arna/app/models/placeDataModel.dart';
 import 'package:brac_arna/app/models/place_model.dart';
 import 'package:brac_arna/app/modules/home/controllers/home_controller.dart';
 import 'package:brac_arna/app/repositories/information_repository.dart';
+import 'package:brac_arna/common/app_constant.dart';
 import 'package:brac_arna/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -175,195 +176,10 @@ class InformationFormController extends GetxController {
 
   ];
 
-  var types_of_violence = [
-    {'id': '864958', 'title': 'অন্যান্য'},
-    {'id': '864345', 'title': 'অপহরণ ও মুক্তিপণের জন্য অপহরণ'},
-    {'id': '864344', 'title': 'অর্থনৈতিক নির্যাতন'},
-    {'id': '864343', 'title': 'আত্মহত্যার প্ররোচনা'},
-    {'id': '866120', 'title': 'এসিড নির্যাতন'},
-    {'id': '864955', 'title': 'কণ্যা শিশুহত্যা'},
-    {'id': '864954', 'title': 'খুন'},
-    {'id': '864342', 'title': 'গণধর্ষণ'},
-    {'id': '864340', 'title': 'দগ্ধ নির্যাতন'},
-    {'id': '864953', 'title': 'ধর্ষণ'},
-    {'id': '864952', 'title': 'ধর্ষণ ও খুন'},
-    {'id': '866107', 'title': 'ধর্ষণের চেষ্টা'},
-    {'id': '864346', 'title': 'ধর্ষণের চেষ্টা'},
-    {'id': '864347', 'title': 'নারী পাচার'},
-    {'id': '864348', 'title': 'বহুবিবাহ'},
-    {'id': '864356', 'title': 'বাল্যবিবাহ'},
-    {'id': '864339', 'title': 'মানসিক নির্যাতন'},
-    {'id': '864341', 'title': 'যৌন হয়রানি'},
-    {'id': '864338', 'title': 'শারীরিক নির্যাতন'},
-    {'id': '864957', 'title': 'সাইবার বুলিং'},
-    {'id': '866108', 'title': 'হত্যার চেষ্টা'},
-  ];
 
-  List<Map> availableHobbies = [
-    {"name": "Foobball", "isChecked": false},
-    {"name": "Baseball", "isChecked": false},
-    {
-      "name": "Video Games",
-      "isChecked": false,
-    },
-    {"name": "Readding Books", "isChecked": false},
-    {"name": "Surfling The Internet", "isChecked": false}
-  ].obs;
 
-  var causes_of_violence = [
-    {'id': '864374', 'title': 'অন্যান্য'},
-    {'id': '864372', 'title': 'অশ্লীল প্রস্তাব'},
-    {'id': '864370', 'title': 'আপত্তিকর মনমানসিকতা'},
-    {'id': '864373', 'title': 'কর্তৃত্বপূর্ণ অভিভাবকত্ব'},
-    {'id': '864364', 'title': 'কুসংস্কার'},
-    {'id': '864361', 'title': 'জমিজমা সংক্রান্ত বিবাদ'},
-    {'id': '864358', 'title': 'জুয়া খেলা'},
-    {'id': '864360', 'title': 'টাকা পয়সা নিয়ে দ্বন্দ্ব'},
-    {'id': '864352', 'title': 'দারিদ্র'},
-    {'id': '866125', 'title': 'ধর্মীয় অপব্যাখা'},
-    {'id': '864368', 'title': 'প্রত্যাখ্যান (প্রেমের সম্পর্ক)'},
-    {'id': '864366', 'title': 'প্রযুক্তির অপব্যবহার'},
-    {'id': '864351', 'title': 'পারিবারিক কলহ'},
-    {'id': '864367', 'title': 'ব্যক্তিগত প্রতিহিংসা'},
-    {'id': '864353', 'title': 'বহুবিবাহ'},
-    {'id': '864369', 'title': 'বিনোদনের অভাব'},
-    {'id': '864354', 'title': 'বিবাহ বহির্ভুত সম্পর্ক'},
-    {'id': '864371', 'title': 'বেকারত্ব'},
-    {'id': '864362', 'title': 'ভরণপোষণের অভাব'},
-    {'id': '864356', 'title': 'মাদকাসক্তি'},
-    {'id': '864355', 'title': 'মেয়ে শিশুর জন্ম'},
-    {'id': '864365', 'title': 'মোবাইল/ইন্টারনেট/টিভির নেতিবাচক ব্যবহার'},
-    {'id': '864350', 'title': 'যৌতুক'},
-    {'id': '864359', 'title': 'রাগ / ক্ষোভ'},
-    {'id': '864357', 'title': 'সন্তান ধারণে অক্ষমতা'},
-  ];
 
-  var blood_group = [
-    {"id": "863719", "name": "A-"},
-    {"id": "863720", "name": "A+"},
-    {"id": "863721", "name": "AB-"},
-    {"id": "863722", "name": "AB+"},
-    {"id": "863723", "name": "B-"},
-    {"id": "863724", "name": "B+"},
-    {"id": "863725", "name": "O-"},
-    {"id": "863726", "name": "O+"}
-  ];
-  var disability = [
-    {"id": "864983", "name": "অন্যান্য"},
-    {"id": "864982", "name": "মানসিক"},
-    {"id": "864981", "name": "শারীরিক"}
-  ];
 
-  var document_type = [
-    {"id": "866105", "name": "জিডি কপি"},
-    {"id": "866104", "name": "প্রেসক্রিপশন"}
-  ];
-  var gender = [
-    {"id": "862677", "name": "অন্যান্য (নির্দিষ্ট করে লিখুন)"},
-    {"id": "860516", "name": "পুরুষ"},
-    {"id": "860517", "name": "মহিলা"}
-  ];
-
-  var emergency_help = [
-    {"id": "864382", "name": "১০৯ এ ফোন করা"},
-    {"id": "864384", "name": "16430"},
-    {"id": "864383", "name": "999"},
-    {"id": "864962", "name": "অন্যান্য"},
-    {"id": "864385", "name": "পুলিশ"},
-    {"id": "864961", "name": "হাসপাতাল"}
-  ];
-
-  var intermediate_support = [
-    {"id": "866111", "name": "অন্যান্য"},
-    {"id": "864378", "name": "আইনী সহায়তা"},
-    {"id": "864376", "name": "চিকিৎসা সহায়তা"},
-    {"id": "864377", "name": "মনোসামাজিক সহায়তা"},
-    {"id": "864968", "name": "শেল্টার হোম"}
-  ];
-
-  var place_of_occurrence = [
-    {"id": "864976", "name": "অন্যান্য"},
-    {"id": "864980", "name": "আত্মীয়স্বজনের বাড়িতে"},
-    {"id": "864971", "name": "কর্মস্থলে"},
-    {"id": "864973", "name": "গণপরিবহনে"},
-    {"id": "864972", "name": "জনপরিসরে"},
-    {"id": "864979", "name": "নিজের বাড়িতে"},
-    {"id": "864974", "name": "প্রবাসে অবস্থানকালীন সময়"},
-    {"id": "864969", "name": "পারিবারিক পরিসরে"},
-    {"id": "864978", "name": "বাবার বাড়িতে"},
-    {"id": "864977", "name": "শ্বশুর বাড়িতে"},
-    {"id": "864970", "name": "শিক্ষা প্রতিষ্ঠানে"},
-    {"id": "864975", "name": "সাইবার জগতে\/অনলাইনে"}
-  ];
-
-  var long_term_support = [
-    {"id": "864381", "name": "অন্যান্য"},
-    {"id": "866110", "name": "আয় মূলক কার্যক্রম"},
-    {"id": "864379", "name": "আর্থিক পুনর্বাসন"},
-    {"id": "864380", "name": "দক্ষতা উন্নয়ন প্রশিক্ষণ"},
-    {"id": "864965", "name": "সাংগঠনিক সংযুক্তিকরণ"}
-  ];
-
-  var marital_status = [
-    {"id": "865042", "name": "অবিবাহিত"},
-    {"id": "865046", "name": "তালাকপ্রাপ্ত"},
-    {"id": "865044", "name": "বিচ্ছেদ"},
-    {"id": "865045", "name": "বিধবা"},
-    {"id": "865043", "name": "বিবাহিত"},
-    {"id": "866119", "name": "স্বামী পরিত্যক্তা "}
-  ];
-
-  var relationship_with_abuser = [
-    {"id": "865003", "name": "অন্যান্য"},
-    {"id": "865009", "name": "অন্যান্য আত্মীয়"},
-    {"id": "865015", "name": "অপরিচিত"},
-    {"id": "865010", "name": "প্রতিবেশী"},
-    {"id": "865011", "name": "পরিচিত"},
-    {"id": "865012", "name": "বন্ধু"},
-    {"id": "865004", "name": "বাবা"},
-    {"id": "865005", "name": "ভাইবোন"},
-    {"id": "865006", "name": "মা"},
-    {"id": "865007", "name": "শ্বশুর শাশুড়ি"},
-    {"id": "865008", "name": "শ্বশুরবাড়ির অন্য সদস্য"},
-    {"id": "865014", "name": "শিক্ষক"},
-    {"id": "866117", "name": "স্বামী "},
-    {"id": "866118", "name": "স্বামী "},
-    {"id": "865013", "name": "সহকর্মী"}
-  ];
-
-  var current_position_of_perpetrator = [
-    {"id": "865050", "name": "অন্যান্য (নির্দিষ্ট করে লিখুন)"},
-    {"id": "865049", "name": "জেলখানায়"},
-    {"id": "865048", "name": "পলাতক"},
-    {"id": "865047", "name": "বাসায়"}
-  ];
-
-  var occupation_of_torturer = [
-    {"id": "865019", "name": "অন্যান্য"},
-    {"id": "865041", "name": "ইলেক্ট্রিশিয়ান"},
-    {"id": "865040", "name": "কাঠমিস্ত্রী"},
-    {"id": "865026", "name": "কারখানা শ্রমিক"},
-    {"id": "865021", "name": "কারিগর"},
-    {"id": "865025", "name": "খনি শ্রমিক"},
-    {"id": "865020", "name": "জেলে"},
-    {"id": "865024", "name": "ড্রাইভার"},
-    {"id": "865033", "name": "দর্জি"},
-    {"id": "865030", "name": "দিনমজুর"},
-    {"id": "865036", "name": "ধোপা"},
-    {"id": "865028", "name": "পরিচ্ছন্নতা কর্মী"},
-    {"id": "865023", "name": "পুলিশ"},
-    {"id": "865022", "name": "ফেরিওয়ালা"},
-    {"id": "865031", "name": "বন কর্মী"},
-    {"id": "865038", "name": "বাজার বিক্রেতা"},
-    {"id": "865027", "name": "বাবুর্চি"},
-    {"id": "866112", "name": "বেসরকারি চাকরিজীবী"},
-    {"id": "865037", "name": "ভ্রমণ নির্দেশনাকারী বা ট্যুর গাইড"},
-    {"id": "865034", "name": "ভাসমান দোকানী"},
-    {"id": "865032", "name": "মেথর"},
-    {"id": "865029", "name": "শিক্ষক"},
-    {"id": "865035", "name": "স্বাস্থ্যসেবা কর্মী"},
-    {"id": "865039", "name": "সরকারি চাকরিজীবী"}
-  ];
   var selectedImagePath = ''.obs;
   var selectedImageSize = ''.obs;
 
@@ -412,11 +228,29 @@ class InformationFormController extends GetxController {
   late StreamSubscription<Position> streamSubscription;
   final insPectorListRespponse = InspectorListResponse().obs;
 
+  var inspectionDateEditContr = TextEditingController().obs;
+  var inspectorNameEditContr = TextEditingController().obs;
+  List<String> draftInspectorName = <String>[].obs;
+
+  var selectedDivname = "".obs;
+  var selectedDistrictName = "".obs;
+  var selectedThanaName = "".obs;
   @override
   Future<void> onInit() async {
     infoFormKey = GlobalKey<FormState>();
     box = Hive.box('formBox');
-    documentType.value = document_type[0]['name']!;
+    try{
+      print('date: '+AppConstant.inspectionData!.updated_at.toString());
+      inspectionDateEditContr.value.text = AppConstant.inspectionData!.updated_at.toString();
+      draftInspectorName.add("Admin");
+      print('inspector_id: '+AppConstant.inspectionData!.inspector_id.toString());
+      
+      selectedDivname.value = AppConstant.inspectionData!.division_name.toString();
+      selectedDistrictName.value = AppConstant.inspectionData!.district_name.toString();
+      selectedThanaName.value = AppConstant.inspectionData!.thana_name.toString();
+
+    }catch(e){}
+
     //getLocationData();
     //getAllStudent();
      getAldivDis();
@@ -435,6 +269,20 @@ class InformationFormController extends GetxController {
   getAllInspector() async {
     InformationRepository().getInsPectorList().then((resp) {
       insPectorListRespponse.value = resp;
+      insPectorListRespponse.value.inspectors?.forEach((element) {
+
+        try{
+          if(element.id == AppConstant.inspectionData?.inspector_id){
+            print('inspectorname: '+element.name!);
+            draftInspectorName.add(element.name!);
+            //inspectorNameEditContr.value.text = draftInspectorName;
+          }
+        }catch(e){
+
+        }
+
+      });
+
       // placeLoaded.value = true;
     });
   }
@@ -590,6 +438,8 @@ class InformationFormController extends GetxController {
   getAldivDis() async {
     InformationRepository().getDivDisThana().then((resp) {
       allDivDisTana.value = resp;
+
+
       if(allDivDisTana.value == null){
         Get.toNamed(Routes.LOGIN);
       }

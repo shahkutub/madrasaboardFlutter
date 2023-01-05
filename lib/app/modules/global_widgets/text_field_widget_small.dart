@@ -28,7 +28,9 @@ class TextFieldWidgetSmall extends StatelessWidget {
       this.style,
       this.textAlign,
       this.suffix,
-      this.limit})
+      this.limit,
+      this.controller
+      })
       : super(key: key);
 
   final FormFieldSetter<String>? onSaved;
@@ -49,6 +51,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? suffix;
   final int? limit;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +74,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
             textAlign: textAlign ?? TextAlign.start,
           ),
           TextFormField(
+            controller: controller,
             onTap: onTapped,
             keyboardType: keyboardType ?? TextInputType.multiline,
             onSaved: onSaved,
@@ -78,7 +82,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
             maxLines: null,
             onChanged: onChanged,
             validator: validator,
-            initialValue: initialValue ?? '',
+            initialValue: initialValue,
             style: TextStyle(color: Colors.black,fontWeight: FontWeight.normal, fontSize: 20),
             obscureText: obscureText ?? false,
             textAlign: textAlign ?? TextAlign.start,

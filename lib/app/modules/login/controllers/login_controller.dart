@@ -9,11 +9,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../models/LoginResponse.dart';
 import '../../../services/auth_service.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
-
+  final passwordVisible = true.obs;
   final Rx<UserModel> userData = UserModel().obs;
   Rx<TextEditingController> userNameController = TextEditingController().obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
@@ -24,6 +25,8 @@ class LoginController extends GetxController {
   var address = 'Getting Address..'.obs;
   late StreamSubscription<Position> streamSubscription;
   late GlobalKey<FormState> loginFormKey;
+  LoginResponse loginResponse = LoginResponse();
+
   @override
   void onInit() {
     loginFormKey = GlobalKey<FormState>();
@@ -53,21 +56,30 @@ class LoginController extends GetxController {
     super.onReady();
   }
 
-  void login() async {
+  void login(BuildContext context) async {
     // userData.value.fullName = userNameController.value.text;
     // userData.value.password = passwordController.value.text;
     Get.focusScope!.unfocus();
 
     Ui.customLoaderDialogWithMessage();
-    AuthRepository().userLogin(userData.value).then((response) {
+    AuthRepository().userLogin(userData.value,context).then((response) {
       print(response);
 
       if(response != null){
-        //String? loginData = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
-        Get.offAllNamed(Routes.AFTER_LOGIN);
-        //Get.offAllNamed(Routes.HOME);
-        // Get.find<RootController>().changePageOutRoot(0);
-        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Successfully logged in'.tr, title: 'Success'.tr));
+
+        loginResponse = response;
+        if(loginResponse.api_info!.original!.user!=null){
+          //String? loginData = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
+          Get.offAllNamed(Routes.AFTER_LOGIN);
+          //Get.offAllNamed(Routes.HOME);
+          // Get.find<RootController>().changePageOutRoot(0);
+          Get.showSnackbar(Ui.SuccessSnackBar(message: 'Successfully logged in'.tr, title: 'Success'.tr));
+        }else{
+          Get.showSnackbar(Ui.SuccessSnackBar(message: 'User not found'.tr, title: 'Alert!'.tr));
+
+        }
+
+
       }
       // if (response == 'Unauthorised') {
       //   Get.back();
