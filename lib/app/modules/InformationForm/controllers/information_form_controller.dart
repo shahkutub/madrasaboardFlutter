@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:brac_arna/app/database_helper/offline_database_helper.dart';
@@ -113,30 +114,7 @@ class InformationFormController extends GetxController {
   //List<District>? district_list;
   ///victim details
 
-  final victimFatherName = ''.obs;
-  final victimMotherNAme = ''.obs;
-  final victimHusbandName = ''.obs;
-  final victimNID = ''.obs;
-  final victimBDCID = ''.obs;
-  final victimMaritalStatus = ''.obs;
-  final victimNoOfChild = ''.obs;
-  final HaveTreatmentCertificate = ''.obs;
 
-  ///tortureer details
-
-  late var torturerName = '';
-  final torturerAge = ''.obs;
-  final torturerGender = ''.obs;
-  final torturerOccup = ''.obs;
-  final torturerMaritalStatus = ''.obs;
-  late var numberOfTorturer = '';
-  final torturerPresentAddress = ''.obs;
-  final torturerLocationDetails = ''.obs;
-  final torturerDivision = ''.obs;
-  final torturerDistrict = ''.obs;
-  final torturerUpazila = ''.obs;
-  final torturerUnion = ''.obs;
-  final torturerAddress = ''.obs;
 
   ///long term help
 
@@ -151,17 +129,6 @@ class InformationFormController extends GetxController {
   final PersecutionReasonList = [].obs;
 
 
-  var victimD = Set<String>();
-
-  var victimU = Set<String>();
-
-  var union = Set<String>();
-
-  var torturerDist = Set<String>();
-
-  var torturerUpa = Set<String>();
-
-  var torturerUni = Set<String>();
 
   late GlobalKey<FormState> infoFormKey;
 
@@ -230,32 +197,150 @@ class InformationFormController extends GetxController {
 
   var inspectionDateEditContr = TextEditingController().obs;
   var inspectorNameEditContr = TextEditingController().obs;
-  List<String> draftInspectorName = <String>[].obs;
+  var recogniseDateEditContr = TextEditingController().obs;
+  var mpoDateEditContr = TextEditingController().obs;
+  var headTeacherEditContr = TextEditingController().obs;
+  var headTeacherMobileEditContr = TextEditingController().obs;
+  var teacherCountEditContr = TextEditingController().obs;
+  var womanteacherCountEditContr = TextEditingController().obs;
+  var studentCountEditContr = TextEditingController().obs;
+  var girlstudentCountEditContr = TextEditingController().obs;
+  var examineeCountEditContr = TextEditingController().obs;
+  var passedCountEditContr = TextEditingController().obs;
+  var multimediaRoomCountEditContr = TextEditingController().obs;
+  var digitalLabCountEditContr = TextEditingController().obs;
+  var weeklyActivityEditContr = TextEditingController().obs;
+  var softskillEditContr = TextEditingController().obs;
+  var cocaricolamActiEditContr = TextEditingController().obs;
+  var classActivityEditContr = TextEditingController().obs;
+  var classUpgradeEditContr = TextEditingController().obs;
+  var overAllStatusEditContr = TextEditingController().obs;
+  var commentEditContr = TextEditingController().obs;
+
+  List<String> selectedInspectorNameList = <String>[].obs;
+  List<String> selectedInspectorIdList = <String>[].obs;
 
   var selectedDivname = "".obs;
   var selectedDistrictName = "".obs;
   var selectedThanaName = "".obs;
+  var selectedInstituteType = "".obs;
+  var selectedInstituteName = "".obs;
+  var selectedElectricity = "".obs;
+  var selectedInternet_facility = "".obs;
+  var selectedIctTraining = "".obs;
   @override
   Future<void> onInit() async {
     infoFormKey = GlobalKey<FormState>();
     box = Hive.box('formBox');
     try{
       print('date: '+AppConstant.inspectionData!.updated_at.toString());
-      inspectionDateEditContr.value.text = AppConstant.inspectionData!.updated_at.toString();
-      draftInspectorName.add("Admin");
-      print('inspector_id: '+AppConstant.inspectionData!.inspector_id.toString());
-      
+      inspectionDateEditContr.value.text = AppConstant.inspectionData!.updated_at !=null ?AppConstant.inspectionData!.updated_at.toString():'';
+
+      recogniseDateEditContr.value.text = '';
+      mpoDateEditContr.value.text = AppConstant.inspectionData!.mpo_date !=null ? AppConstant.inspectionData!.mpo_date.toString():'';
+      inspectionData.value.mpo_date = AppConstant.inspectionData!.mpo_date !=null ? AppConstant.inspectionData!.mpo_date.toString():'';
+
+      headTeacherEditContr.value.text = AppConstant.inspectionData!.headmaster_name !=null ? AppConstant.inspectionData!.headmaster_name.toString():'';
+      inspectionData.value.headmaster_name = AppConstant.inspectionData!.headmaster_name !=null ? AppConstant.inspectionData!.headmaster_name.toString():'';
+
+      headTeacherMobileEditContr.value.text = AppConstant.inspectionData!.headmaster_mobile_no !=null ? AppConstant.inspectionData!.headmaster_mobile_no.toString():'';
+      inspectionData.value.headmaster_mobile_no = AppConstant.inspectionData!.headmaster_mobile_no !=null ? AppConstant.inspectionData!.headmaster_mobile_no.toString():'';
+
+      teacherCountEditContr.value.text = AppConstant.inspectionData!.total_teachers
+          !=null ? AppConstant.inspectionData!.total_teachers.toString():'';
+      inspectionData.value.total_teachers = AppConstant.inspectionData!.total_teachers
+          !=null ? AppConstant.inspectionData!.total_teachers.toString():'';
+
+      womanteacherCountEditContr.value.text = AppConstant.inspectionData!.total_women_teachers !=null ? AppConstant.inspectionData!.total_women_teachers.toString():'';
+      inspectionData.value.total_women_teachers = AppConstant.inspectionData!.total_women_teachers !=null ? AppConstant.inspectionData!.total_women_teachers.toString():'';
+
+      studentCountEditContr.value.text = AppConstant.inspectionData!.total_students !=null ? AppConstant.inspectionData!.total_students.toString():'';
+      inspectionData.value.total_students = AppConstant.inspectionData!.total_students !=null ? AppConstant.inspectionData!.total_students.toString():'';
+
+      girlstudentCountEditContr.value.text = AppConstant.inspectionData!.total_girls_students !=null ? AppConstant.inspectionData!.total_girls_students.toString():'';
+      inspectionData.value.total_girls_students = AppConstant.inspectionData!.total_girls_students !=null ? AppConstant.inspectionData!.total_girls_students.toString():'';
+
+      examineeCountEditContr.value.text = AppConstant.inspectionData!.total_examinees !=null ? AppConstant.inspectionData!.total_examinees.toString():'';
+      inspectionData.value.total_examine = AppConstant.inspectionData!.total_examinees !=null ? AppConstant.inspectionData!.total_examinees.toString():'';
+
+      passedCountEditContr.value.text = AppConstant.inspectionData!.total_passed
+          !=null ? AppConstant.inspectionData!.total_passed.toString():'';
+      inspectionData.value.total_passed = AppConstant.inspectionData!.total_passed
+          !=null ? AppConstant.inspectionData!.total_passed.toString():'';
+
+      multimediaRoomCountEditContr.value.text = AppConstant.inspectionData!.total_multimedia_classroom
+          !=null ? AppConstant.inspectionData!.total_multimedia_classroom.toString():'';
+
+      digitalLabCountEditContr.value.text = AppConstant.inspectionData!.total_digital_lab
+          !=null ? AppConstant.inspectionData!.total_digital_lab.toString():'';
+
+      weeklyActivityEditContr.value.text = AppConstant.inspectionData!.week_studuents_activities
+          !=null ? AppConstant.inspectionData!.week_studuents_activities.toString():'';
+
+      softskillEditContr.value.text = AppConstant.inspectionData!.soft_skill_description
+          !=null ? AppConstant.inspectionData!.soft_skill_description.toString():'';
+
+      cocaricolamActiEditContr.value.text = AppConstant.inspectionData!.cocurricular_activities
+          !=null ? AppConstant.inspectionData!.cocurricular_activities.toString():'';
+
+      classActivityEditContr.value.text = AppConstant.inspectionData!.class_inspection
+          !=null ? AppConstant.inspectionData!.class_inspection.toString():'';
+
+      classUpgradeEditContr.value.text = AppConstant.inspectionData!.class_upgradation_suggestion
+          !=null ? AppConstant.inspectionData!.class_upgradation_suggestion.toString():'';
+
+      overAllStatusEditContr.value.text = AppConstant.inspectionData!.overall_status
+          !=null ? AppConstant.inspectionData!.overall_status.toString():'';
+
+      commentEditContr.value.text = AppConstant.inspectionData!.comments
+          !=null ? AppConstant.inspectionData!.comments.toString():'';
+
+
+
+      print('InspctorList: '+AppConstant.inspectionData!.inspection_inspector_list!.length.toString());
+
+
+
+      //selectedInspectorIdList.add('1');
+      AppConstant.inspectionData!.inspection_inspector_list!.forEach((element) {
+        selectedInspectorIdList.add(element.inspector_id.toString());
+        inspectorIdList.add(element.inspector_id);
+      });
+      inspectorIdListJson.value = jsonEncode(inspectorIdList);
+      print('IdListjson: ${inspectorIdListJson.value.toString()}');
+
+
       selectedDivname.value = AppConstant.inspectionData!.division_name.toString();
+      inspectionData.value.division_id = AppConstant.inspectionData!.division_id;
+
       selectedDistrictName.value = AppConstant.inspectionData!.district_name.toString();
+      inspectionData.value.district_id = AppConstant.inspectionData!.district_id;
+
       selectedThanaName.value = AppConstant.inspectionData!.thana_name.toString();
+      inspectionData.value.thana_id = AppConstant.inspectionData!.thana_id;
+
+      selectedInstituteName.value = AppConstant.inspectionData!.institution_name.toString();
+      inspectionData.value.institute_id = AppConstant.inspectionData!.institute_id;
+
+      selectedElectricity.value = AppConstant.inspectionData!.electricity_facility == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.electricity_facility = AppConstant.inspectionData!.electricity_facility;
+
+      selectedInternet_facility.value = AppConstant.inspectionData!.internet_facility == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.internet_facility = AppConstant.inspectionData!.internet_facility;
+
+      selectedIctTraining.value = AppConstant.inspectionData!.ict_training == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.isIctTraining = int.parse(AppConstant.inspectionData!.ict_training.toString());
+
+
 
     }catch(e){}
 
     //getLocationData();
     //getAllStudent();
+    getAllInspector();
      getAldivDis();
      getAllInstituteType();
-    getAllInspector();
+
 
     //getLocation();
     super.onInit();
@@ -269,19 +354,26 @@ class InformationFormController extends GetxController {
   getAllInspector() async {
     InformationRepository().getInsPectorList().then((resp) {
       insPectorListRespponse.value = resp;
-      insPectorListRespponse.value.inspectors?.forEach((element) {
 
-        try{
-          if(element.id == AppConstant.inspectionData?.inspector_id){
-            print('inspectorname: '+element.name!);
-            draftInspectorName.add(element.name!);
-            //inspectorNameEditContr.value.text = draftInspectorName;
-          }
-        }catch(e){
+      try{
+       // selectedInspectorNameList.add('admin');
+        selectedInspectorIdList.forEach((element1) {
+          print("element1:"+element1);
+          insPectorListRespponse.value.inspectors?.forEach((element2) {
 
-        }
+            if(element1 == element2.id.toString()){
+              print("element2: "+element2.id.toString());
+              selectedInspectorNameList.add(element2.name!.toString());
+            }
 
-      });
+          });
+        });
+      }catch(e){
+
+      }
+
+
+
 
       // placeLoaded.value = true;
     });
@@ -330,70 +422,7 @@ class InformationFormController extends GetxController {
     PersecutionDateAndTime.update((val) {});
   }
 
-  addData() async {
-    box.add({
-      "id": Uuid().v1(),
-      "IsInternet": IsInternet == 'Yes' ? 'true' : 'false',
-      "IsGurdianMeeting": IsInternet == 'Yes' ? 'true' : 'false',
-      "IsPichiyePoraJorePora": IsPichiyePoraJorePora == 'Yes' ? 'true' : 'false',
-      "IsElectricity": IsElectricity == 'Yes' ? 'true' : 'false',
-      "IsMentalHealthActivity": IsMentalHealthActivity == 'Yes' ? 'true' : 'false',
-      "IsTecherTraining": IsTecherTraining == 'Yes' ? 'true' : 'false',
-      "IsCleanActivity": IsCleanActivity == 'Yes' ? 'true' : 'false',
-      "IsPrimaryHealthActivity": IsPrimaryHealthActivity == 'Yes' ? 'true' : 'false',
-      // "StatePlaintiffCaseDescription": StatePlaintiffCaseDescription,
-      "VictimName": victimname,
-      "AgeInYear": victimage,
-      "MobileNo": victimPhone,
-      // "DistrictId": victimDistrict.value,
-      // "UpazillaId": victimUpazila.value,
-      // "UnionId": victimUnion.value,
-      "PersecutionDateAndTime": PersecutionDateAndTime.value,
-     // "VictimAddress": victimAddress,
-      "PersecutionReasonList": PersecutionReasonList,
-      // "InformationSource": informationSource.value,
-      // "NeedImmediateFacilitation": true,
-      // "NeedIntermediateFacilitation": true,
-      // "NeedLongTermFacilitation": true,
-      // "OccurancePlaceId": OccurancePlaceId.value,
-      // "OccurancePlaceSpecification": 'OccurancePlaceSpecification',
-      // "HasAnyDisabilities": true,
-      // "DisabilityId": DisabilityId,
-      // "OtherDisabilityName": "string",
-      // "MothersName": victimMotherNAme.value,
-      // "FathersName": victimFatherName.value,
-      // "HusbandName": victimHusbandName.value,
-      // "NidNo": victimNID.value,
-      // "BirthCertificateNo": victimBDCID.value,
-      // "HaveTreatmentCertificate": true,
-      // "MaritalStatusId": victimMaritalStatus.value,
-      // "NumberOfChild": victimNoOfChild.value,
-      "TorturerName": torturerName,
-      // "TorturerGenderId": torturerGender.value,
-      // "TorturerOtherGenderName": "string",
-      //  "TorturerOccupationId": torturerOccup,
-      //"TorturerOtherOccupationName": "string",
-      // "TorturerMaritalStatusId": torturerMaritalStatus,
-      "NumberOfTorturer": numberOfTorturer,
-      // "TorturerRelationWithVictimId": TorturerRelationWithVictimId,
-      // "TorturerOtherRelationName": "string",
-      // "TorturerCurrentLocationId": 0,
-      // "TorturerOtherCurrentLocationName": "string",
-      // "TorturerDistrictId": torturerDistrict.value,
-      // "TorturerUpazillaId": torturerUpazila,
-      // "TorturerUnionId": torturerUnion,
-      // "TorturerAddress": torturerAddress,
-      // "ImmediateFacilitationList": ImmediateFacilitationList,
-      // "IntermediateFacilitationList": IntermediateFacilitationList,
-      // "LongTermFacilitationList": LongTermFacilitationList,
-      // "RelatedDocumentList": documents
-    });
 
-    Get.showSnackbar(Ui.SuccessSnackBar(message: 'Information added successfully'.tr, title: 'Success'.tr));
-    Get.find<HomeController>().box = Hive.box('formBox');
-    Get.find<HomeController>().addDataInList();
-    print(box.length);
-  }
 
   void getImage() async {
     selectedImagePath = ''.obs;
@@ -461,6 +490,10 @@ class InformationFormController extends GetxController {
   }
 
   postInsPection(String draft) async {
+
+    inspectionData.value.inspectionDate = inspectionDateEditContr.value.text.toString();
+
+
     InformationRepository().postInspection(inspectionData.value, true).then((resp) {
     //  allStudentData.value = resp;
       postResponse.value = resp;

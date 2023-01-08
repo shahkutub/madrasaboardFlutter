@@ -285,7 +285,8 @@ class ProvidedDataListController extends GetxController {
       // "district_id": victimDistrict.value.toString(),
       // "thana_id": instituteUpazila.value.toString(),
       // "institute_type": instituteTypeId.value.toString(),
-      "inspector": inspectorID.value.toString(),
+      //"inspector": inspectorID.value.toString(),
+      "inspector_id": inspectorID.value.toString(),
 
       // "division":victimDivision.value,
     };

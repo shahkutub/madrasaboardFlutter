@@ -84,7 +84,7 @@ class DropDownWidgetMenu extends StatelessWidget {
             ),
             items: data,
             onChanged: onChanged,
-            selectedItem: hintText,
+            selectedItem: initialValue,
             showSearchBox: true,
             dropdownSearchDecoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),

@@ -89,17 +89,18 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             //
                             // ),
 
+                        Obx(() =>
                             MultipleSelectionDropDownWidget(
 
                               labelText: "পরিদর্শনকারীর নাম ও পদবি",
                               hintText: "পরিদর্শনকারীর নাম ও পদবি",
-                              initialValue: '',
-                              selectedValue: controller.draftInspectorName,
+                              initialValue: controller.selectedInspectorNameList[0].toString(),
+                              selectedValue: controller.selectedInspectorNameList,
                               data: controller.insPectorListRespponse!.value.inspectors?.map((item) => item.name!).toList(),
 
                               onChanged: (input) {
                                 controller.inspectorIdList.clear();
-                               // controller.inspectorIdList.value.add(input);
+                                // controller.inspectorIdList.value.add(input);
 
                                 for (var inpuItem in input) {
                                   for (var item in controller.insPectorListRespponse!.value.inspectors!) {
@@ -119,6 +120,8 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               isFirst: true,
                               isLast: false,
                             ),
+                        ),
+
 
                             DropDownWidget(
                               labelText: "বিভাগ",
@@ -134,7 +137,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                // controller.victimDivisionName.value =input;
                                 for (var item in controller.allDivDisTana.value.division_list!) {
                                   if (item.name == input) {
-                                    controller.victimDivision.value = item.id.toString();
+                                    //controller.victimDivision.value = item.id.toString();
                                     //controller.districtList.add(item);
                                     controller.inspectionData.value.division_id = item.id;
                                   }
@@ -237,7 +240,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidget(
                               labelText: "শিক্ষা প্রতিষ্ঠানের নাম",
                               hintText: "শিক্ষা প্রতিষ্ঠানের নাম নির্বাচন করুন",
-                              initialValue: '',
+                              initialValue: controller.selectedInstituteName.value,
                               iconData: Icons.phone_android,
                               data: controller.instituteData.value.institute_list?.map((item) => item.name!).toList(),
                               onChanged: (input) {
@@ -254,9 +257,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.recogniseDateEditContr.value,
                               labelText: "স্বীকৃতি প্রাপ্তির তারিখ",
                               hintText: "",
-                              initialValue: "",
+                              //initialValue: "",
                               onChanged: (input) {
                                 controller.inspectionData.value.recognise_date = input;
                               },
@@ -265,9 +269,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.mpoDateEditContr.value,
                               labelText: "এমপিওভুক্তির তারিখ",
                               hintText: "",
-                              initialValue: "",
+                              //initialValue: "",
                               onChanged: (input) {
                                 controller.inspectionData.value.mpo_date = input;
 
@@ -336,18 +341,20 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
 
                             TextFieldWidgetSmall(
+                              controller: controller.headTeacherEditContr.value,
                               labelText: "প্রতিষ্ঠান প্রধানের নাম",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 controller.inspectionData.value.headmaster_name = input;
                               },
 
                             ),
                             TextFieldWidgetSmall(
+                              controller: controller.headTeacherMobileEditContr.value,
                               labelText: "প্রতিষ্ঠান প্রধানের মোবাইল নম্বর",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 //controller.instiruteHeadMobile = input;
                                 controller.inspectionData.value.headmaster_mobile_no = input;
@@ -394,9 +401,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
 
                             TextFieldWidgetSmall(
+                              controller: controller.teacherCountEditContr.value,
                               labelText: "কর্মরত মোট শিক্ষক সংখ্যা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 //controller.teacherCount = input;
                                 controller.inspectionData.value.total_teachers = input;
@@ -410,9 +418,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.womanteacherCountEditContr.value,
                               labelText: "কর্মরত মোট শিক্ষিকার সংখ্যা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 //controller.femaleteacherCount = input;
                                 controller.inspectionData.value.total_women_teachers = input;
@@ -428,9 +437,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
 
                             TextFieldWidgetSmall(
+                              controller: controller.studentCountEditContr.value,
                               labelText: "মোট ছাত্র-ছাত্রীর সংখ্যা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.number,
                               onChanged: (input) {
                                 //controller.totalStudent.value = input as int;
@@ -442,9 +452,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.girlstudentCountEditContr.value,
                               labelText: "মোট ছাত্রীর সংখ্যা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 // controller.totalFemaleStudent.value = input as int;
                                 controller.inspectionData.value.total_girls_students = input;
@@ -455,9 +466,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.examineeCountEditContr.value,
                               labelText: "মোট পরীক্ষার্থীর সংখ্যা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 // controller.totalFemaleStudent.value = input as int;
                                 controller.inspectionData.value.total_examine = input;
@@ -468,9 +480,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.passedCountEditContr.value,
                               labelText: "মোট পাশের সংখ্যা ",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 // controller.totalFemaleStudent.value = input as int;
                                 controller.inspectionData.value.total_passed = input;
@@ -566,7 +579,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidgetMenu(
                               labelText: "শিক্ষকদের আইসিটি প্রশিক্ষণ আছে কি না?",
                               hintText: "শিক্ষকদের আইসিটি প্রশিক্ষণ আছে কি না?",
-                              initialValue: 'না',
+                              initialValue: controller.selectedIctTraining.value,
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
 
@@ -577,15 +590,13 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                 }
                                 //controller.inspectionData.value.teacher_training = controller.IsTecherTraining.value.toString();
 
-
                               },
                               //iconData: Icons.merge_type,
                               isFirst: true,
                               isLast: false,
                             ),
 
-
-
+                            
                             DropDownWidgetMenu(
                               labelText: "শিক্ষকদের অন্যান্য প্রশিক্ষণ আছে কি না?",
                               hintText: "শিক্ষকদের অন্যান্য প্রশিক্ষণ আছে কি না?",
@@ -1174,7 +1185,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidgetMenu(
                               labelText: "বিদ্যুৎ সুবিধা",
                               hintText: "বিদ্যুৎ সুবিধা",
-                              initialValue: 'না',
+                              initialValue: controller.selectedElectricity.value,
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 // controller.IsElectricity.value = input!;
@@ -1216,9 +1227,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.multimediaRoomCountEditContr.value,
                               labelText: "মাল্টিমিডিয়া শ্রেণীকক্ষের সংখ্যা ",
                               hintText: "",
-                              initialValue: "",
+                              //initialValue: "",
                               onChanged: (input) {
                                 controller.inspectionData.value.total_multimedia_classroom = input;
 
@@ -1230,9 +1242,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
 
                             TextFieldWidgetSmall(
+                              controller: controller.digitalLabCountEditContr.value,
                               labelText: "ডিজিটাল ল্যাব এর সংখ্যা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               onChanged: (input) {
                                 controller.inspectionData.value.total_digital_lab = input;
 
@@ -1483,9 +1496,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             // ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.weeklyActivityEditContr.value,
                               labelText: "শিক্ষার্থীদের নিয়ে কি কি সাপ্তাহিক ক্রিয়াকলাপ হয়",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 controller.inspectionData.value.week_studuents_activities = input;
@@ -1494,9 +1508,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               isLast: false,
                             ),
                             TextFieldWidgetSmall(
+                              controller: controller.softskillEditContr.value,
                               labelText: "ছাত্র-ছাত্রীদের সফট স্কিল /English Language skill বিষয়ে কী ধরনের কার্যক্রম গ্রহণ করাহয়েছে তার বিবরণ",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
@@ -1509,9 +1524,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
 
                             TextFieldWidgetSmall(
+                              controller: controller.cocaricolamActiEditContr.value,
                               labelText: "প্রতিষ্ঠানে কী কী কো-কারিকুলাম কার্যকর রয়েছে",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
@@ -1522,9 +1538,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.classActivityEditContr.value,
                               labelText: "শ্রেণী কার্যক্রম পর্যবেক্ষণ",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 //controller.techerIctTraining = input;
@@ -1535,9 +1552,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.classUpgradeEditContr.value,
                               labelText: "ক্লাস আপগ্রেডেশন সাজেশন",
                               hintText: "ক্লাস আপগ্রেডেশন সাজেশন ",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 controller.inspectionData.value.upgradationSuggession = input;
@@ -1614,9 +1632,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             // ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.overAllStatusEditContr.value,
                               labelText: "প্রতিষ্টানের সামগ্রিক অবস্থা",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 controller.inspectionData.value.overall_status = input;
@@ -1625,9 +1644,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
 
                             TextFieldWidgetSmall(
+                              controller: controller.commentEditContr.value,
                               labelText: "সার্বিক মন্তব্য ও সুপারিশ",
                               hintText: "",
-                              initialValue: '',
+                              //initialValue: '',
                               keyboardType: TextInputType.multiline,
                               onChanged: (input) {
                                 controller.inspectionData.value.comments = input;

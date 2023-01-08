@@ -79,6 +79,7 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
             height: 10,
           ),
           DropdownSearch<String>.multiSelection(
+
             mode: Mode.BOTTOM_SHEET,
             showSelectedItems: true,
             selectedItems: selectedValue,

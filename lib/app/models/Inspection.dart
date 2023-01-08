@@ -50,11 +50,18 @@ class Inspection {
     String? week_studuents_activities;
     String? details_url;
     int? year;
+    List<InspectionInspector>? inspection_inspector_list;
 
-    Inspection({this.approval_date, this.class_inspection, this.class_upgradation_suggestion, this.cleaning_steps, this.cocurricular_activities, this.comments, this.covid19_vaccinated, this.created_at, this.district_id, this.district_name,  this.division_id, this.division_name, this.electricity_facility, this.first_aid_description, this.guardian_gathering, this.headmaster_mobile_no, this.headmaster_name, this.ict_training, this.id, this.inspector_id, this.institute_id, this.institute_type, this.institution_name, this.internet_facility, this.mental_health_activities, this.mpo_date, this.online_class, this.overall_status, this.soft_skill_description, this.teacher_training,  this.thana_id, this.thana_name, this.total_digital_lab, this.total_examinees, this.total_girls_students, this.total_multimedia_classroom, this.total_passed, this.total_students, this.total_teachers, this.total_women_teachers, this.updated_at, this.week_studuents_activities,this.details_url, this.year});
+    Inspection({this.inspection_inspector_list,this.approval_date, this.class_inspection, this.class_upgradation_suggestion, this.cleaning_steps, this.cocurricular_activities, this.comments, this.covid19_vaccinated,
+        this.created_at, this.district_id, this.district_name,  this.division_id, this.division_name, this.electricity_facility, this.first_aid_description, this.guardian_gathering,
+        this.headmaster_mobile_no, this.headmaster_name, this.ict_training, this.id, this.inspector_id, this.institute_id, this.institute_type, this.institution_name, this.internet_facility,
+        this.mental_health_activities, this.mpo_date, this.online_class, this.overall_status,
+        this.soft_skill_description, this.teacher_training,  this.thana_id, this.thana_name, this.total_digital_lab, this.total_examinees, this.total_girls_students, this.total_multimedia_classroom,
+        this.total_passed, this.total_students, this.total_teachers, this.total_women_teachers, this.updated_at, this.week_studuents_activities,this.details_url, this.year});
 
     factory Inspection.fromJson(Map<String, dynamic> json) {
         return Inspection(
+            inspection_inspector_list: json['inspection_inspector_list'] != null ? (json['inspection_inspector_list'] as List).map((i) => InspectionInspector.fromJson(i)).toList() : null,
             approval_date: json['approval_date'], 
             class_inspection: json['class_inspection'],
             class_upgradation_suggestion: json['class_upgradation_suggestion'],
@@ -104,6 +111,9 @@ class Inspection {
 
     Map<String, dynamic> toJson() {
         final Map<String, dynamic> data = new Map<String, dynamic>();
+        if (this.inspection_inspector_list != null) {
+            data['inspection_inspector_list'] = this.inspection_inspector_list?.map((v) => v.toJson()).toList();
+        }
         data['approval_date'] = this.approval_date;
         data['created_at'] = this.created_at;
         data['district_id'] = this.district_id;
@@ -134,6 +144,38 @@ class Inspection {
         data['details_url'] = this.details_url;
         data['year'] = this.year;
 
+        return data;
+    }
+
+
+}
+
+class InspectionInspector {
+    String? created_at;
+    int? id;
+    int? inspection_id;
+    int? inspector_id;
+    String? updated_at;
+
+    InspectionInspector({this.created_at, this.id, this.inspection_id, this.inspector_id, this.updated_at});
+
+    factory InspectionInspector.fromJson(Map<String, dynamic> json) {
+        return InspectionInspector(
+            created_at: json['created_at'],
+            id: json['id'],
+            inspection_id: json['inspection_id'],
+            inspector_id: json['inspector_id'],
+            updated_at: json['updated_at'],
+        );
+    }
+
+    Map<String, dynamic> toJson() {
+        final Map<String, dynamic> data = new Map<String, dynamic>();
+        data['created_at'] = this.created_at;
+        data['id'] = this.id;
+        data['inspection_id'] = this.inspection_id;
+        data['inspector_id'] = this.inspector_id;
+        data['updated_at'] = this.updated_at;
         return data;
     }
 }
