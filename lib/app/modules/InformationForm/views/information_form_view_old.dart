@@ -596,11 +596,11 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                               isLast: false,
                             ),
 
-                            
+
                             DropDownWidgetMenu(
                               labelText: "শিক্ষকদের অন্যান্য প্রশিক্ষণ আছে কি না?",
                               hintText: "শিক্ষকদের অন্যান্য প্রশিক্ষণ আছে কি না?",
-                              initialValue: 'না',
+                              initialValue: controller.selectedOtherTraining.value,
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 //  controller.IsTecherTraining.value = input!;

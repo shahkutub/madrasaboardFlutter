@@ -228,6 +228,7 @@ class InformationFormController extends GetxController {
   var selectedElectricity = "".obs;
   var selectedInternet_facility = "".obs;
   var selectedIctTraining = "".obs;
+  var selectedOtherTraining = "".obs;
   @override
   Future<void> onInit() async {
     infoFormKey = GlobalKey<FormState>();
@@ -331,8 +332,10 @@ class InformationFormController extends GetxController {
       selectedIctTraining.value = AppConstant.inspectionData!.ict_training == 1 ? 'হ্যাঁ':'না';
       inspectionData.value.isIctTraining = int.parse(AppConstant.inspectionData!.ict_training.toString());
 
+      selectedOtherTraining.value = AppConstant.inspectionData!.teacher_training == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.isOtherTraining = int.parse(AppConstant.inspectionData!.teacher_training.toString());
 
-
+      
     }catch(e){}
 
     //getLocationData();
