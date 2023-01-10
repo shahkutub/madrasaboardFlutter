@@ -9,6 +9,7 @@ class Inspection_model {
   int? institute_id;
   String? eiinNumber;
   String? inspectorName;
+  String? inspector_id;
   String? approval_date;
   String? mpo_date;
   String? inspectorPost;
@@ -83,6 +84,8 @@ class Inspection_model {
   String? previousInspetionApply;
   String? comments;
   String? week_studuents_activities;
+  String? class_inspection;
+  String? submit;
 
 
 

@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../services/auth_service.dart';
 import '../controllers/information_form_controller.dart';
@@ -66,18 +67,25 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-                            TextFieldWidgetSmall(
-                              controller: controller.inspectionDateEditContr.value,
-                              labelText: "পরিদর্শনের তারিখ",
-                              hintText: "",
-                              //initialValue: controller.inspectionDateEditContr.value.text.toString(),
-                              onChanged: (input) {
-                                controller.inspectionData.value.inspectionDate = input;
+                            InkWell(
+                              onTap: (){
+                                selectDate(context,controller.inspectionDateEditContr.value);
                               },
-                              keyboardType: TextInputType.datetime,
+                              child: TextFieldWidgetSmall(
+                                enabled: false,
+                                controller: controller.inspectionDateEditContr.value,
+                                labelText: "পরিদর্শনের তারিখ",
+                                hintText: "",
+                                //initialValue: controller.inspectionDateEditContr.value.text.toString(),
+                                onChanged: (input) {
 
+                                  controller.inspectionData.value.inspectionDate = input;
+                                },
+                                keyboardType: TextInputType.datetime,
+
+                              ),
                             ),
+
                             // TextFieldWidgetSmall(
                             //   labelText: "পরিদর্শনকারীর নাম ও পদবি",
                             //   hintText: "",
@@ -94,8 +102,8 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
                               labelText: "পরিদর্শনকারীর নাম ও পদবি",
                               hintText: "পরিদর্শনকারীর নাম ও পদবি",
-                              initialValue: controller.selectedInspectorNameList[0].toString(),
-                              selectedValue: controller.selectedInspectorNameList,
+                              initialValue: controller.selectedInspectorNameList,
+                              //selectedValueString: controller.selectedInspectorNameList.length >0 ?controller.selectedInspectorNameList[0].toString():"",
                               data: controller.insPectorListRespponse!.value.inspectors?.map((item) => item.name!).toList(),
 
                               onChanged: (input) {
@@ -106,14 +114,24 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                   for (var item in controller.insPectorListRespponse!.value.inspectors!) {
                                     if (item.name == inpuItem) {
                                       print('insPectorId: ${item.id}');
+                                      //controller.inspectorIdList.add(item.id);
                                       controller.inspectorIdList.add(item.id);
                                     }
                                   }
                                 }
 
-                                controller.inspectorIdListJson.value = jsonEncode(controller.inspectorIdList);
-                                print('IdListjson: ${controller.inspectorIdListJson.value.toString()}');
-                                print('IdListLenth: ${controller.inspectorIdList.length}');
+                                print('arryjoin: ${controller.inspectorIdList.join(',')}');
+
+                                //controller.inspectorIdListJson.value = jsonEncode(controller.inspectorIdList);
+
+                                controller.inspectionData.value.inspector_id = "${controller.inspectorIdList.join(',')}";
+                                //controller.inspectionData.value.inspector_id = "1,53";
+
+
+                                print('arryjoin2: ${controller.inspectionData.value.inspector_id}');
+
+                                // print('IdListjson: ${controller.inspectorIdListJson.value.toString()}');
+                                // print('IdListLenth: ${controller.inspectorIdList.length}');
 
                               },
                               iconData: Icons.merge_type,
@@ -137,7 +155,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                // controller.victimDivisionName.value =input;
                                 for (var item in controller.allDivDisTana.value.division_list!) {
                                   if (item.name == input) {
-                                    //controller.victimDivision.value = item.id.toString();
+                                    controller.victimDivision.value = item.id.toString();
                                     //controller.districtList.add(item);
                                     controller.inspectionData.value.division_id = item.id;
                                   }
@@ -219,7 +237,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidget(
                               labelText: "শিক্ষা প্রতিষ্ঠানের ধরণ",
                               hintText: "শিক্ষা প্রতিষ্ঠানের ধরণ নির্বাচন করুন",
-                              initialValue: '',
+                              initialValue: controller.selectedInstituteTypeName.value.toString(),
                               iconData: Icons.phone_android,
                               data: controller.allInstype.value.institute__type_list?.map((item) => item.name!).toList(),
                               onChanged: (input) {
@@ -256,30 +274,44 @@ class InformationFormViewOld extends GetView<InformationFormController> {
 
                             ),
 
-                            TextFieldWidgetSmall(
-                              controller: controller.recogniseDateEditContr.value,
-                              labelText: "স্বীকৃতি প্রাপ্তির তারিখ",
-                              hintText: "",
-                              //initialValue: "",
-                              onChanged: (input) {
-                                controller.inspectionData.value.recognise_date = input;
+                            InkWell(
+                              onTap: (){
+                                selectDate(context,controller.recogniseDateEditContr.value);
                               },
-                              keyboardType: TextInputType.datetime,
+                              child:TextFieldWidgetSmall(
+                                enabled: false,
+                                controller: controller.recogniseDateEditContr.value,
+                                labelText: "স্বীকৃতি প্রাপ্তির তারিখ",
+                                hintText: "",
+                                //initialValue: "",
+                                onChanged: (input) {
+                                  controller.inspectionData.value.recognise_date = input;
+                                },
+                                keyboardType: TextInputType.datetime,
 
+                              ),
                             ),
 
-                            TextFieldWidgetSmall(
-                              controller: controller.mpoDateEditContr.value,
-                              labelText: "এমপিওভুক্তির তারিখ",
-                              hintText: "",
-                              //initialValue: "",
-                              onChanged: (input) {
-                                controller.inspectionData.value.mpo_date = input;
 
+                            InkWell(
+                              onTap: (){
+                                selectDate(context, controller.mpoDateEditContr.value);
                               },
-                              keyboardType: TextInputType.datetime,
+                              child:TextFieldWidgetSmall(
+                                enabled: false,
+                                controller: controller.mpoDateEditContr.value,
+                                labelText: "এমপিওভুক্তির তারিখ",
+                                hintText: "",
+                                //initialValue: "",
+                                onChanged: (input) {
+                                  controller.inspectionData.value.mpo_date = input;
 
+                                },
+                                keyboardType: TextInputType.datetime,
+
+                              ),
                             ),
+
 
                             // TextFieldWidgetSmall(
                             //   labelText: "প্রতিষ্ঠানের ই আই এন (EIN)",
@@ -1208,7 +1240,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidgetMenu(
                               labelText: "ইন্টারনেট সুবিধা",
                               hintText: "ইন্টারনেট সুবিধা",
-                              initialValue: 'না',
+                              initialValue: controller.selectedInternet_facility.value,
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 if(input == 'হ্যাঁ'){
@@ -1274,10 +1306,10 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             DropDownWidgetMenu(
                               labelText: "অনলাইনে ক্লাস",
                               hintText: "অনলাইনে ক্লাস",
-                              initialValue: 'না',
+                              initialValue: controller.selectedOnlineClass.value,
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
-                                if(input == 'নাই'){
+                                if(input == 'হ্যাঁ'){
                                   controller.inspectionData.value.isOnlineClass = 1;
                                 }else{
                                   controller.inspectionData.value.isOnlineClass = 0;
@@ -1348,20 +1380,22 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             //   },
                             //
                             // ),
-                            DropDownWidgetMenu(
-                              labelText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
-                              hintText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
-                              initialValue: 'না',
-                              data: ['হ্যাঁ', 'না'],
-                              onChanged: (input) {
-                                if(input == 'না'){
-                                  controller.inspectionData.value.isPrymariHealth = 0;
-                                }else{
-                                  controller.inspectionData.value.isPrymariHealth = 1;
-                                }
-                              },
+                            // DropDownWidgetMenu(
+                            //   labelText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
+                            //   hintText: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কি না?",
+                            //   initialValue: 'না',
+                            //   data: ['হ্যাঁ', 'না'],
+                            //   onChanged: (input) {
+                            //     if(input == 'না'){
+                            //       controller.inspectionData.value.isPrymariHealth = 0;
+                            //     }else{
+                            //       controller.inspectionData.value.isPrymariHealth = 1;
+                            //     }
+                            //   },
+                            //
+                            // ),
 
-                            ),
+
                             DropDownWidgetMenu(
                               labelText: "পরিস্কার পরিচ্ছন্নতা প্রদক্ষেপ আছে কি না ",
                               hintText: "পরিস্কার পরিচ্ছন্নতা প্রদক্ষেপ আছে কি না ",
@@ -1468,7 +1502,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                              DropDownWidgetMenu(
                               labelText: "মানসিক স্বাস্থ্য কার্যক্রম হয় কি না?",
                               hintText: "মানসিক স্বাস্থ্য কার্যক্রম হয় কি না?",
-                              initialValue: 'না',
+                              initialValue: controller.selectedMentalHealth.value,
                               data: ['হ্যাঁ', 'না'],
                               onChanged: (input) {
                                 //controller.IsInternet.value = input!;
@@ -1659,6 +1693,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                 InkWell(
                                   onTap: () {
                                     if (controller.infoFormKey.currentState!.validate()) {
+                                      controller.inspectionData.value.submit = 'Darft';
                                       controller.postInsPection('Darft');
                                     }
                                   },
@@ -1688,6 +1723,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                 InkWell(
                                   onTap: () {
                                     if (controller.infoFormKey.currentState!.validate()) {
+                                      controller.inspectionData.value.submit = 'Save';
                                       controller.postInsPection('Save');
                                     }
                                   },
@@ -1735,5 +1771,28 @@ class InformationFormViewOld extends GetView<InformationFormController> {
             return Center(child: CircularProgressIndicator());
           }
         }));
+  }
+
+  void selectDate(BuildContext context, TextEditingController editingController) async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: controller.selectedDate.value,
+      firstDate: DateTime(2010),
+      lastDate: DateTime(2025),
+    );
+    if (selected != null && selected != controller.selectedDate.value)
+      //setState(() {
+      controller.selectedDate.value = selected;
+    // var now = new DateTime.now();
+    //var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('dd-MM-yyyy');
+    String formattedDate = formatter.format(controller.selectedDate.value);
+    print(formattedDate);
+    editingController.text = formattedDate.toString();
+    //controller.tallyDate.value = formattedDate.toString();
+    //print('controller.tallyDate: '+controller.tallyDate.value.toString());
+   // controller.getItemDispatch(formattedDate.toString());
+
+    //});
   }
 }

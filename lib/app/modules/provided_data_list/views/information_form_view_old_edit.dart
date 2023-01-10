@@ -87,7 +87,6 @@ class InformationFormViewOldEdit extends GetView<ProvidedDataListController> {
                             MultipleSelectionDropDownWidget(
                               labelText: "পরিদর্শনকারীর নাম ও পদবি",
                               hintText: "পরিদর্শনকারীর নাম ও পদবি",
-                              initialValue: '',
                               data: controller.insPectorListRespponse!.value.inspectors?.map((item) => item.name!).toList(),
 
                               onChanged: (input) {
@@ -1671,7 +1670,7 @@ class InformationFormViewOldEdit extends GetView<ProvidedDataListController> {
                 ),
               ),
             );
-          } 
+          }
           else {
             return Center(child: CircularProgressIndicator());
           }

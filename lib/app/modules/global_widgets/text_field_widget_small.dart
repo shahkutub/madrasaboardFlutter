@@ -25,6 +25,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
       this.suffixIcon,
       this.isFirst,
       this.isLast,
+      this.enabled,
       this.style,
       this.textAlign,
       this.suffix,
@@ -48,6 +49,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
   final bool? obscureText;
   final bool? isFirst;
   final bool? isLast;
+  final bool? enabled;
   final Widget? suffixIcon;
   final Widget? suffix;
   final int? limit;
@@ -74,6 +76,7 @@ class TextFieldWidgetSmall extends StatelessWidget {
             textAlign: textAlign ?? TextAlign.start,
           ),
           TextFormField(
+            enabled: enabled,
             controller: controller,
             onTap: onTapped,
             keyboardType: keyboardType ?? TextInputType.multiline,

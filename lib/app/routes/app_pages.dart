@@ -71,11 +71,11 @@ class AppPages {
       binding: ProvidedDataListBinding(),
     ),
 
-    GetPage(
-      name: _Paths.INSPECTION_EDIT,
-      page: () => InformationFormViewOldEdit(),
-      binding: InspectionEditBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.INSPECTION_EDIT,
+    //   page: () => InformationFormViewOldEdit(),
+    //   binding: InspectionEditBinding(),
+    // ),
 
 
     GetPage(

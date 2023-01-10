@@ -2,6 +2,8 @@
  * Copyright (c) 2020 .
  */
 
+import 'dart:convert';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,8 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
     this.suffix,
     this.limit,
     this.data,
-    this.selectedValue,
+    //this.selectedValue,
+    this.selectedValueString,
   }) : super(key: key);
 
   final FormFieldSetter<String>? onSaved;
@@ -39,7 +42,7 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
   final VoidCallback? onTapped;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
-  final String? initialValue;
+  final List<String>? initialValue;
   final String? hintText;
   final String? errorText;
   final TextAlign? textAlign;
@@ -53,7 +56,8 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
   final Widget? suffix;
   final int? limit;
   final data;
-  final selectedValue;
+  //final selectedValue;
+  final selectedValueString;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,8 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
 
             mode: Mode.BOTTOM_SHEET,
             showSelectedItems: true,
-            selectedItems: selectedValue,
+            //itemAsString: selectedValueString,
+            selectedItems: initialValue!,
             dropdownSearchBaseStyle: TextStyle(
               color: Color(0xffec008c),
             ),
@@ -115,6 +120,11 @@ class MultipleSelectionDropDownWidget extends StatelessWidget {
     }
     return BorderRadius.all(Radius.circular(10));
   }
+
+  // String  itemString (){
+  //   String data = jsonEncode(selectedValue);
+  //   return data;
+  // }
 
   double get topMargin {
     if ((isFirst != null && isFirst!)) {

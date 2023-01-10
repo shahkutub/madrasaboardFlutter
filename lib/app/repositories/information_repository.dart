@@ -168,8 +168,8 @@ class InformationRepository {
     var year = DateTime.now().year;
 
     Map data = {
-
-
+      'submit':inspection_model.submit.toString(),
+      'inspector_id': inspection_model.inspector_id.toString(),
       'thana_id': inspection_model.thana_id.toString(),
       'district_id': inspection_model.district_id.toString(),
       'year': ""+year.toString(),
@@ -300,7 +300,7 @@ class InformationRepository {
 
 
     };
-    print(_connectionStatus.toString());
+    print('Savedatd'+jsonEncode(data).toString());
     var response;
     try {
     //  if (_connectionStatus == true) {

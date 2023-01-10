@@ -223,21 +223,36 @@ class InformationFormController extends GetxController {
   var selectedDivname = "".obs;
   var selectedDistrictName = "".obs;
   var selectedThanaName = "".obs;
-  var selectedInstituteType = "".obs;
+  var selectedInstituteTypeName = "".obs;
   var selectedInstituteName = "".obs;
   var selectedElectricity = "".obs;
   var selectedInternet_facility = "".obs;
   var selectedIctTraining = "".obs;
   var selectedOtherTraining = "".obs;
+  var selectedOnlineClass = "".obs;
+  var selectedMentalHealth = "".obs;
+  var selectedCleanActivity = "".obs;
+  var selectedGuardian_gathering = "".obs;
+
+  var selectedDate = DateTime.now().obs;
   @override
   Future<void> onInit() async {
     infoFormKey = GlobalKey<FormState>();
     box = Hive.box('formBox');
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    String formattedDate = formatter.format(now);
+    print(formattedDate);
+    inspectionDateEditContr.value.text = formattedDate.toString();
+    recogniseDateEditContr.value.text = formattedDate.toString();
+    mpoDateEditContr.value.text = formattedDate.toString();
     try{
       print('date: '+AppConstant.inspectionData!.updated_at.toString());
-      inspectionDateEditContr.value.text = AppConstant.inspectionData!.updated_at !=null ?AppConstant.inspectionData!.updated_at.toString():'';
 
-      recogniseDateEditContr.value.text = '';
+
+      inspectionDateEditContr.value.text = AppConstant.inspectionData!.updated_at !=null ?AppConstant.inspectionData!.updated_at.toString():formattedDate;
+
+      recogniseDateEditContr.value.text = AppConstant.inspectionData!.approval_date !=null ? AppConstant.inspectionData!.approval_date.toString():'';
       mpoDateEditContr.value.text = AppConstant.inspectionData!.mpo_date !=null ? AppConstant.inspectionData!.mpo_date.toString():'';
       inspectionData.value.mpo_date = AppConstant.inspectionData!.mpo_date !=null ? AppConstant.inspectionData!.mpo_date.toString():'';
 
@@ -266,39 +281,60 @@ class InformationFormController extends GetxController {
 
       passedCountEditContr.value.text = AppConstant.inspectionData!.total_passed
           !=null ? AppConstant.inspectionData!.total_passed.toString():'';
+
       inspectionData.value.total_passed = AppConstant.inspectionData!.total_passed
           !=null ? AppConstant.inspectionData!.total_passed.toString():'';
 
       multimediaRoomCountEditContr.value.text = AppConstant.inspectionData!.total_multimedia_classroom
           !=null ? AppConstant.inspectionData!.total_multimedia_classroom.toString():'';
 
+      inspectionData.value.total_multimedia_classroom =  AppConstant.inspectionData!.total_multimedia_classroom
+          !=null ? AppConstant.inspectionData!.total_multimedia_classroom.toString():'';
+
       digitalLabCountEditContr.value.text = AppConstant.inspectionData!.total_digital_lab
+          !=null ? AppConstant.inspectionData!.total_digital_lab.toString():'';
+
+      inspectionData.value.total_digital_lab = AppConstant.inspectionData!.total_digital_lab
           !=null ? AppConstant.inspectionData!.total_digital_lab.toString():'';
 
       weeklyActivityEditContr.value.text = AppConstant.inspectionData!.week_studuents_activities
           !=null ? AppConstant.inspectionData!.week_studuents_activities.toString():'';
+      inspectionData.value.week_studuents_activities = AppConstant.inspectionData!.week_studuents_activities
+          !=null ? AppConstant.inspectionData!.week_studuents_activities.toString():'';
+
 
       softskillEditContr.value.text = AppConstant.inspectionData!.soft_skill_description
+          !=null ? AppConstant.inspectionData!.soft_skill_description.toString():'';
+      inspectionData.value.soft_skill = AppConstant.inspectionData!.soft_skill_description
           !=null ? AppConstant.inspectionData!.soft_skill_description.toString():'';
 
       cocaricolamActiEditContr.value.text = AppConstant.inspectionData!.cocurricular_activities
           !=null ? AppConstant.inspectionData!.cocurricular_activities.toString():'';
+      inspectionData.value.cocurricular_activities = AppConstant.inspectionData!.cocurricular_activities
+          !=null ? AppConstant.inspectionData!.cocurricular_activities.toString():'';
 
       classActivityEditContr.value.text = AppConstant.inspectionData!.class_inspection
           !=null ? AppConstant.inspectionData!.class_inspection.toString():'';
+      inspectionData.value.class_inspection = AppConstant.inspectionData!.class_inspection
+          !=null ? AppConstant.inspectionData!.class_inspection.toString():'';
 
       classUpgradeEditContr.value.text = AppConstant.inspectionData!.class_upgradation_suggestion
+          !=null ? AppConstant.inspectionData!.class_upgradation_suggestion.toString():'';
+      inspectionData.value.upgradationSuggession = AppConstant.inspectionData!.class_upgradation_suggestion
           !=null ? AppConstant.inspectionData!.class_upgradation_suggestion.toString():'';
 
       overAllStatusEditContr.value.text = AppConstant.inspectionData!.overall_status
           !=null ? AppConstant.inspectionData!.overall_status.toString():'';
 
+      inspectionData.value.overall_status = AppConstant.inspectionData!.overall_status
+          !=null ? AppConstant.inspectionData!.overall_status.toString():'';
+
       commentEditContr.value.text = AppConstant.inspectionData!.comments
           !=null ? AppConstant.inspectionData!.comments.toString():'';
+      inspectionData.value.comments = AppConstant.inspectionData!.comments
+          !=null ? AppConstant.inspectionData!.comments.toString():'';
 
-
-
-      print('InspctorList: '+AppConstant.inspectionData!.inspection_inspector_list!.length.toString());
+          print('InspctorList: '+AppConstant.inspectionData!.inspection_inspector_list!.length.toString());
 
 
 
@@ -307,8 +343,11 @@ class InformationFormController extends GetxController {
         selectedInspectorIdList.add(element.inspector_id.toString());
         inspectorIdList.add(element.inspector_id);
       });
-      inspectorIdListJson.value = jsonEncode(inspectorIdList);
-      print('IdListjson: ${inspectorIdListJson.value.toString()}');
+      // inspectorIdListJson.value = jsonEncode(inspectorIdList);
+      // print('IdListjson: ${inspectorIdListJson.value.toString()}');
+
+     // inspectionData.value.inspector_id = inspectorIdListJson.value.toString();
+      inspectionData.value.inspector_id = "${inspectorIdList.join(',')}";
 
 
       selectedDivname.value = AppConstant.inspectionData!.division_name.toString();
@@ -323,6 +362,9 @@ class InformationFormController extends GetxController {
       selectedInstituteName.value = AppConstant.inspectionData!.institution_name.toString();
       inspectionData.value.institute_id = AppConstant.inspectionData!.institute_id;
 
+
+
+
       selectedElectricity.value = AppConstant.inspectionData!.electricity_facility == 1 ? 'হ্যাঁ':'না';
       inspectionData.value.electricity_facility = AppConstant.inspectionData!.electricity_facility;
 
@@ -333,9 +375,23 @@ class InformationFormController extends GetxController {
       inspectionData.value.isIctTraining = int.parse(AppConstant.inspectionData!.ict_training.toString());
 
       selectedOtherTraining.value = AppConstant.inspectionData!.teacher_training == 1 ? 'হ্যাঁ':'না';
-      inspectionData.value.isOtherTraining = int.parse(AppConstant.inspectionData!.teacher_training.toString());
+      inspectionData.value.isOtherTraining = AppConstant.inspectionData!.teacher_training;
 
-      
+      selectedOnlineClass.value = AppConstant.inspectionData!.online_class == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.isOnlineClass = AppConstant.inspectionData!.online_class;
+
+      selectedMentalHealth.value = AppConstant.inspectionData!.mental_health_activities == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.mentalHealthActivity = AppConstant.inspectionData!.mental_health_activities;
+
+      selectedCleanActivity.value = AppConstant.inspectionData!.cleaning_steps == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.isCleanness = int.parse(AppConstant.inspectionData!.cleaning_steps.toString());
+
+      selectedGuardian_gathering.value = AppConstant.inspectionData!.guardian_gathering == 1 ? 'হ্যাঁ':'না';
+      inspectionData.value.guardian_gathering = AppConstant.inspectionData!.guardian_gathering.toString();
+
+      //selectedInspectorNameList.add('admin');
+
+
     }catch(e){}
 
     //getLocationData();
@@ -483,6 +539,16 @@ class InformationFormController extends GetxController {
     InformationRepository().getInstituteType().then((resp) {
       allInstype.value = resp;
       placeLoaded.value = true;
+      if(AppConstant.inspectionData != null){
+        allInstype.value.institute__type_list!.forEach((element) {
+          if(element.id == AppConstant.inspectionData!.institute_type){
+            selectedInstituteTypeName.value = element.name;
+            inspectionData.value.institute_type = element.id;
+          }
+        });
+      }
+
+
     });
   }
 
