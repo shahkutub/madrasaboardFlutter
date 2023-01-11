@@ -279,7 +279,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                       child: Column(
                       children: [
                         Text("তারিখ হইতে",style: TextStyle(color: Colors.teal),),
-                        GestureDetector(
+                        InkWell(
                             onTap: (){
                               controller.chooseDate('from');
 
@@ -316,7 +316,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                                 ),
 
                               ),
-                              child: Text(controller.fromDate.value,style: TextStyle(fontSize: 15),
+                              child: Text(controller.fromDate.value.toString(),style: TextStyle(fontSize: 15),
 
                               ),
                             )
@@ -331,7 +331,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                     Flexible(child: Column(
                       children: [
                         Text("তারিখ পর্যন্ত",style: TextStyle(color: Colors.teal),),
-                        GestureDetector(
+                        InkWell(
                             onTap: (){
                               controller.chooseDate('to');
                             },
@@ -347,7 +347,7 @@ class ProvidedDataListView extends GetView<ProvidedDataListController> {
                                 ),
 
                               ),
-                              child: Text(controller.toDate.value,style: TextStyle(fontSize: 15),),
+                              child: Text(controller.toDate.value.toString(),style: TextStyle(fontSize: 15),),
                             )
 
                         ),

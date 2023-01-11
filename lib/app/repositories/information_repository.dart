@@ -201,7 +201,7 @@ class InformationRepository {
       'total_digital_lab': ""+inspection_model.total_digital_lab.toString(),
       'total_girls_students': ""+inspection_model.total_girls_students.toString(),
       'total_students': ""+inspection_model.total_students.toString(),
-      'institute_id': ""+inspection_model.institute_id.toString(),
+      //'institute_id': ""+inspection_model.institute_id.toString(),
       'institute_type': ""+inspection_model.institute_type.toString(),
       'total_teachers': ""+inspection_model.total_teachers.toString(),
       'total_women_teachers': ""+inspection_model.total_women_teachers.toString(),

@@ -54,8 +54,8 @@ class ProvidedDataListController extends GetxController {
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
   var selectedDate = DateTime.now().obs;
-  final fromDate = 'তারিখ হইতে'.obs;
-  final toDate = 'তারিখ পর্যন্ত'.obs;
+  var fromDate = ''.obs;
+  var toDate = ''.obs;
 
   var fromDateEditController = TextEditingController().obs;
   var toDateEditController = TextEditingController().obs;
@@ -401,6 +401,7 @@ class ProvidedDataListController extends GetxController {
       if(s == 'to'){
         toDate.value =  DateFormat("dd/MM/yyyy")
             .format(selectedDate.value).toString();
+
 
         getInsPectionListDateRange();
       }

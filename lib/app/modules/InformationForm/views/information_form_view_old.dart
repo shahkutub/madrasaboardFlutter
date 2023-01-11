@@ -267,6 +267,8 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                   if (item.name == input) {
                                     controller.eiinNumber.value = item.eiin!;
                                     controller.inspectionData.value.institute_id = item.id;
+                                    print('institute_id'+controller.inspectionData.value.institute_id.toString());
+
                                   }
                                 }
 

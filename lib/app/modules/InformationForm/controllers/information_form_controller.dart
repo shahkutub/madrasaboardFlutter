@@ -559,7 +559,7 @@ class InformationFormController extends GetxController {
   }
 
   postInsPection(String draft) async {
-
+    Ui.customLoaderDialogWithMessage();
     inspectionData.value.inspectionDate = inspectionDateEditContr.value.text.toString();
 
 
@@ -569,7 +569,7 @@ class InformationFormController extends GetxController {
 
       if(postResponse.value.status == "success"){
         Get.showSnackbar(Ui.SuccessSnackBar(message: 'Inspection successfully inserted', title: 'Success'));
-        Get.toNamed(Routes.PROVIDED_DATA_LIST);
+        Get.offNamed(Routes.PROVIDED_DATA_LIST);
       }
 
     });
