@@ -10,6 +10,7 @@ import 'package:brac_arna/app/models/InstitutionListResponse.dart';
 import 'package:brac_arna/app/models/PostResponse.dart';
 import 'package:brac_arna/app/models/SummaryPdf.dart';
 import 'package:brac_arna/app/models/all_division_dis_thanan_model.dart';
+import 'package:brac_arna/app/models/institute_sumary_list_response.dart';
 import 'package:brac_arna/app/models/placeDataModel.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:flutter/services.dart';
@@ -311,6 +312,13 @@ class InformationRepository {
         response = await _manager.postAPICallWithHeader(ApiClient.postInspectionUrl, data, headers);
         print('response: ${response}');
 
+        if(response == null){
+          Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication Expired, Please login'.tr, title: 'Error'.tr));
+
+          Get.toNamed(Routes.LOGIN);
+          //Get.offNamed(Routes.LOGIN);
+        }
+
         String body = response.statusMessage;
         print(body);
 
@@ -346,7 +354,7 @@ class InformationRepository {
       print('responseAllDivDis: ${response}');
 
       if(response == null){
-        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication Expired, Please login'.tr, title: 'Error'.tr));
 
         Get.toNamed(Routes.LOGIN);
       }
@@ -400,7 +408,7 @@ class InformationRepository {
       print('respInstiTyp: ${response}');
 
       if(response == null){
-        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication Expired, Please login'.tr, title: 'Error'.tr));
 
         Get.toNamed(Routes.LOGIN);
       }
@@ -429,7 +437,7 @@ class InformationRepository {
       print('respInstiTyp: ${response}');
 
       if(response == null){
-        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication failed, Please login'.tr, title: 'Error'.tr));
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Authentication Expired, Please login'.tr, title: 'Error'.tr));
 
         Get.toNamed(Routes.LOGIN);
       }
@@ -518,7 +526,6 @@ class InformationRepository {
 
         Get.toNamed(Routes.LOGIN);
       }
-
       if (response != null) {
        // instituteSummary.value = response;
        // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
@@ -532,7 +539,7 @@ class InformationRepository {
     }
   }
 
-  Future instituteListSumaryBased(String url_last,String education_id,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id) async {
+  Future <institute_sumary_list_response> instituteListSumaryBased(String url_last,String education_id,String division_id,String district_id,String thana_id,String institute_type_id,String institute_id,String page) async {
 
     Map param = {
       'education_id': education_id,
@@ -541,6 +548,7 @@ class InformationRepository {
       'thana_id': thana_id,
       'institute_type': institute_type_id,
       'institute_id': institute_id,
+      'page': page,
     };
 
     String? token = Get.find<AuthService>().currentUser.value.api_info!.original!.access_token;
@@ -560,13 +568,12 @@ class InformationRepository {
       if (response != null) {
         // instituteSummary.value = response;
         // print('instituteSummary.value: ${instituteSummary.value.api_info!.total_examinees.toString()}');
-        return InstitutionListResponse.fromJson(response);
+        return institute_sumary_list_response.fromJson(response);
       } else {
-        return 'Unauthorised';
+        return institute_sumary_list_response.fromJson(response);
       }
     } catch (e) {
-      print('error:$e');
-      return 'Unauthorised';
+      return institute_sumary_list_response.fromJson(response);
     }
   }
 

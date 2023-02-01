@@ -11,6 +11,7 @@ import 'package:brac_arna/app/models/InstituteSumaryResponse.dart';
 import 'package:brac_arna/app/models/InstitutionListResponse.dart';
 import 'package:brac_arna/app/models/PoridorshonDataModel.dart';
 import 'package:brac_arna/app/models/SummaryPdf.dart';
+import 'package:brac_arna/app/models/institute_sumary_list_response.dart';
 import 'package:brac_arna/app/models/user_model.dart';
 import 'package:brac_arna/app/services/auth_service.dart';
 import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
@@ -55,6 +56,8 @@ class InstituteSearchController extends GetxController {
   final pdfUrl = ''.obs;
   //var url_last = ''.obs;
   final education_id = '1'.obs;
+  final url_last = ''.obs;
+  final page = 1.obs;
   final victimDivision = ''.obs;
   final victimDivisionName = ''.obs;
   final victimDistrict = ''.obs;
@@ -73,8 +76,9 @@ class InstituteSearchController extends GetxController {
 
   List<District> districtList = <District>[].obs;
   List<Thana> thanaList = <Thana>[].obs;
+  //List<DataRes> fullList = <DataRes>[].obs;
   var instituteSummary = InstituteSumaryResponse().obs;
-  var instituteListSummaryBased = InstitutionListResponse().obs;
+  var instituteListSummaryBased = institute_sumary_list_response().obs;
   var instituteSummaryPdf = SummaryPdf().obs;
   var instituteTypeResponse = InstituteTypeByEducationResponse().obs;
   var instituteListPdf = ''.obs;
@@ -104,9 +108,9 @@ class InstituteSearchController extends GetxController {
 
     requestPermission();
 
-     getAldivDis();
-     getAllInstituteType();
-     //getInstitute();
+    getAldivDis();
+    getAllInstituteType();
+    //getInstitute();
     //instituteSumaryPdf();
     instituteSumary();
 
@@ -153,7 +157,7 @@ class InstituteSearchController extends GetxController {
   getAllInstituteType() async {
     InformationRepository().getInstituteType().then((resp) {
       allInstype.value = resp;
-     // placeLoaded.value = true;
+      // placeLoaded.value = true;
     });
   }
 
@@ -329,21 +333,22 @@ class InstituteSearchController extends GetxController {
     });
   }
 
-  Future instituteListSumaryBased(String url_last) async {
-    InformationRepository().instituteListSumaryBased(url_last,education_id.value,victimDivision.value,victimDistrict.value,
-        instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) {
+  Future instituteListSumaryBased() async {
+    InformationRepository().instituteListSumaryBased(url_last.value,education_id.value,victimDivision.value,victimDistrict.value,
+        instituteUpazila.value,instituteTypeId.value,instituteID.value,page.value.toString()).then((resp) {
       //  allStudentData.value = resp;
       placeLoaded.value = true;
-      instituteListSummaryBased.value = resp;
-      print('nointernet'+instituteListSummaryBased.value.api_info![0].name.toString());
+       instituteListSummaryBased.value = resp;
+
+      // print('nointernet'+instituteListSummaryBased.value.api_info!.data![0].name.toString());
 
       //instituteListPDFSumaryBased(url_last);
     });
   }
 
 
-Future instituteListPDFSumaryBased(String url_last) async {
-  SumaryBasedinstituteListPdf(victimDivision.value,victimDistrict.value,
+  Future instituteListPDFSumaryBased(String url_last) async {
+    SumaryBasedinstituteListPdf(victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value,url_last);
 
     //     .then((resp) {
@@ -434,7 +439,7 @@ Future instituteListPDFSumaryBased(String url_last) async {
     InformationRepository().instituteSumaryPdf(education_id.value,victimDivision.value,victimDistrict.value,
         instituteUpazila.value,instituteTypeId.value,instituteID.value).then((resp) async {
       instituteSummaryPdf.value = resp;
-     print(''+instituteSummaryPdf.value.api_info!.toString());
+      print(''+instituteSummaryPdf.value.api_info!.toString());
       placeLoaded.value = true;
 
       createFileFromString();

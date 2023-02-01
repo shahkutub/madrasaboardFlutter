@@ -1692,36 +1692,7 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                             ),
                             Row(
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    if (controller.infoFormKey.currentState!.validate()) {
-                                      controller.inspectionData.value.submit = 'Darft';
-                                      controller.postInsPection('Darft');
-                                    }
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Container(
-                                      width: 100,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          gradient: LinearGradient(colors: [
-                                            Colors.green,
-                                            Colors.green
-                                            // Color.fromRGBO(143, 148, 251, 1),
-                                            // Color.fromRGBO(143, 148, 251, .6),
-                                          ])),
-                                      child: Center(
-                                        child: Text(
-                                          "Draft",
-                                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 20,),
+
                                 InkWell(
                                   onTap: () {
                                     if (controller.infoFormKey.currentState!.validate()) {
@@ -1751,6 +1722,38 @@ class InformationFormViewOld extends GetView<InformationFormController> {
                                     ),
                                   ),
                                 ),
+                                SizedBox(width: 20,),
+                                InkWell(
+                                  onTap: () {
+                                    if (controller.infoFormKey.currentState!.validate()) {
+                                      controller.inspectionData.value.submit = 'Darft';
+                                      controller.postInsPection('Darft');
+                                    }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          gradient: LinearGradient(colors: [
+                                            Colors.green,
+                                            Colors.green
+                                            // Color.fromRGBO(143, 148, 251, 1),
+                                            // Color.fromRGBO(143, 148, 251, .6),
+                                          ])),
+                                      child: Center(
+                                        child: Text(
+                                          "Submit",
+                                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+
                               ],
                             ),
 

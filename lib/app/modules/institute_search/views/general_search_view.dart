@@ -383,11 +383,11 @@ class general_search_view extends GetView<InstituteSearchController> {
                                         child: GestureDetector(
                                           onTap: (){
                                             FlutterShare.shareFile(
-                                              title: 'TMED app institute search report pdf',
-                                              text: 'Report pdf',
-                                              //text: 'Please click on attach link to show & download pdf',
-                                              filePath: controller.searchPdfPath.value,
-                                              fileType: '*/*'
+                                                title: 'TMED app institute search report pdf',
+                                                text: 'Report pdf',
+                                                //text: 'Please click on attach link to show & download pdf',
+                                                filePath: controller.searchPdfPath.value,
+                                                fileType: '*/*'
                                               //chooserTitle: 'Please click on attach link to show & download pdf'
                                             );
                                           },
@@ -480,7 +480,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'স্বীকৃতিপ্রাপ্ত শিক্ষা প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('recognize');
+                                                  controller.url_last.value = 'recognize';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -507,7 +509,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'এমপিওভুক্ত শিক্ষা প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('mpo');
+                                                  controller.url_last.value = 'mpo';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
 
                                                   // if(controller.instituteListSummaryBased.value.api_info!.length>0){
@@ -543,7 +547,10 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'স্বীকৃতিপ্রাপ্ত কিন্তু এম পি ও ভুক্ত নয় প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('recognized_without_mpo');
+
+                                                  controller.url_last.value = 'recognized_without_mpo';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -571,7 +578,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'মাল্টিমিডিয়া ক্লাসরুম আছে প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('yes_multimedia');
+                                                  controller.url_last.value = 'yes_multimedia';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -599,7 +608,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'মাল্টিমিডিয়া ক্লাসরুম নাই প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('no_multimedia');
+                                                  controller.url_last.value = 'no_multimedia';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -627,7 +638,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'শেখ রাসেল ডিজিটাল ল্যাব আছে প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('yes_digital_lab');
+                                                  controller.url_last.value = 'yes_digital_lab';
+                                                  controller.instituteListSumaryBased();
+                                                  controller.page.value = 1;
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -655,7 +668,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'শেখ রাসেল ডিজিটাল ল্যাব নাই প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('no_digital_lab');
+                                                  controller.url_last.value = 'no_digital_lab';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -682,7 +697,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'ইন্টারনেট আছে শিক্ষা প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('yes_internet');
+                                                  controller.url_last.value = 'yes_internet';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child:Padding(
@@ -709,7 +726,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'ইন্টারনেট নাই প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('no_internet');
+                                                  controller.url_last.value = 'no_internet';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -737,7 +756,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'ইলেক্ট্রিসিটি আছে প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('yes_electricity');
+                                                  controller.url_last.value = 'yes_electricity';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -765,7 +786,9 @@ class general_search_view extends GetView<InstituteSearchController> {
                                                 onTap: (){
                                                   controller.placeLoaded.value = false;
                                                   controller.instituteListTitle.value = 'ইলেক্ট্রিসিটি নাই প্রতিষ্ঠান';
-                                                  controller.instituteListSumaryBased('no_electricity');
+                                                  controller.url_last.value = 'no_electricity';
+                                                  controller.page.value = 1;
+                                                  controller.instituteListSumaryBased();
                                                   Get.toNamed(Routes.INSTITUTE_LIST);
                                                 },
                                                 child: Padding(
@@ -1157,7 +1180,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                 ),
                 Expanded(
                     child: Obx(() => ListView.builder(
-                        itemCount: controller.instituteListSummaryBased.value.api_info!.length,
+                        itemCount: controller.instituteListSummaryBased.value.api_info!.data!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Column(
                             children: [
@@ -1168,7 +1191,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                   margin: EdgeInsets.all(10.0),
                                   //width: MediaQuery.of(context).size.width -20,
                                   child: Text(
-                                    controller.instituteListSummaryBased.value.api_info![index].name.toString(),
+                                  controller.instituteListSummaryBased.value.api_info!.data![index].name.toString(),
                                     style: TextStyle(fontSize: 12,color: Colors.black),
                                     textAlign: TextAlign.left,
                                   )),
@@ -1271,7 +1294,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                   Expanded(
                     child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: controller.instituteListSummaryBased.value.api_info!.length,
+                        itemCount: controller.instituteListSummaryBased.value.api_info!.data!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Column(
                             children: [
@@ -1282,7 +1305,7 @@ class general_search_view extends GetView<InstituteSearchController> {
                                   padding: EdgeInsets.all(10.0),
                                   //width: MediaQuery.of(context).size.width -20,
                                   child: Text(
-                                    controller.instituteListSummaryBased.value.api_info![index].name.toString(),
+                                    controller.instituteListSummaryBased.value.api_info!.data![index].name.toString(),
                                     style: TextStyle(fontSize: 12,color: Colors.black),
                                   )),
                               //),
